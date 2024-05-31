@@ -1,5 +1,5 @@
 {
-  "name": "Yuugo",
+  "name": "yuugo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -24,6 +24,7 @@
     "react-native-screens": "^3.31.1",
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^10.1.0",
+    "react-redux": "^9.1.2",
     "redux": "^5.0.1",
     "yup": "^1.4.0"
   },

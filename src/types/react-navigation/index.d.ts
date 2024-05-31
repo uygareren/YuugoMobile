@@ -1,4 +1,4 @@
 export type RootStackParamList = {
-    Screen1: undefined;
+    Login: undefined;
     Screen2: { userId: string };
 };
