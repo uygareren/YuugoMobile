@@ -1,18 +1,14 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import NativeBaseProvider from './src/provider/NativeBaseProvider';
+import type { RootStackParamList } from './src/types/react-navigation';
 
 // Screens
 import Screen1 from './src/screen/Screen1';
 import Screen2 from './src/screen/Screen2';
-import NativeBaseProvider from './src/provider/NativeBaseProvider';
 
-type StackParamList = {
-    Screen1: undefined;
-    Screen2: undefined;
-};
-
-const Stack = createNativeStackNavigator<StackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): React.JSX.Element {
     return (
