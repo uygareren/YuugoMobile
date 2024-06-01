@@ -54,7 +54,7 @@ const ThemeData: ThemeUtil = {
         Text: { // @ts-ignore
             baseStyle() {
                 return {
-                    color: "#FCFCFC",
+                    color: "#000",
                     fontSize: 14,
                     fontFamily: "body",
                 }
@@ -141,8 +141,8 @@ const ThemeData: ThemeUtil = {
             900: '#090c10',
         },
         black: "#000",
-        lightText: "#fcfcfc",
-        darkText: "#000000",
+        lightText: "#111",
+        darkText: "#fff",
     }
 }
 
