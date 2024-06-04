@@ -40,12 +40,12 @@ const ThemeData: ThemeUtil = {
                     ...props,
                     color: "#0C101570",
                     _input: {
-                        bg: "secondary.600",
+                        bg: "white",
                     },
-                    borderColor: "transparent",
+                    borderColor: "#afafaf",
                     borderRadius: "10px",
-                    py: "10px",
-                    px: "12px",
+                    py: "13px",
+                    px: "10px",
                     placeholderTextColor: "#0C101590"
                     
                 }
@@ -105,16 +105,16 @@ const ThemeData: ThemeUtil = {
     // @ts-ignore
     colors: {
         primary: {
-            50: '#ffe6e9',
-            100: '#f9bbc2',
-            200: '#ef909b',
-            300: '#e76574',
-            400: '#df3a4c',
-            500: '#c52133',
-            600: '#9a1827',
-            700: '#6f0f1c',
-            800: '#440710',
-            900: '#1d0004',
+          50: '#e0f8ff',
+          100: '#c2e1ed',
+          200: '#a0cddc',
+          300: '#7eb7cc',
+          400: '#5ca3bd',
+          500: '#4289a3',
+          600: '#316b80',
+          700: '#204c5d',
+          800: '#0b2f39',
+          900: '#001119',
         },
         success: {
             50: '#e1fde9',
@@ -140,6 +140,7 @@ const ThemeData: ThemeUtil = {
             800: '#1f252d',
             900: '#090c10',
         },
+        white: "#FFF",
         black: "#000",
         lightText: "#111",
         darkText: "#fff",

@@ -1,5 +1,13 @@
 {
+    "ValidationErrors": {
+        "required": "Boş bırakmayınız",
+        "email": "Geçerli mail giriniz",
+        "password": "Şifrenizi giriniz"
+    },
     "Login": {
-        "hello": "Merhaba"
+        "hello": "Merhaba",
+        "toLogin": "Giriş Yap",
+        "email": "Mail",
+        "password": "Şifre"
     }
 }

@@ -54,6 +54,7 @@
 		2E9F9D065F36426CB47D42BE /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37C3DD053F374E96B3AB418B /* Poppins-ThinItalic.ttf */; };
 		DB493D6E2ED147A9897F1975 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FD0A8E383F94F77871377F3 /* SimpleLineIcons.ttf */; };
 		FDE548FE95D34CD6BD0D34A4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3F6EFD3E2BF43159944749C /* Zocial.ttf */; };
+		E844C99AC68F44F5B966422E /* ShadowsIntoLight-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB69E7E7C06C46309E50D3BA /* ShadowsIntoLight-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		37C3DD053F374E96B3AB418B /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-ThinItalic.ttf"; path = "../assets/fonts/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8FD0A8E383F94F77871377F3 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../assets/fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C3F6EFD3E2BF43159944749C /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../assets/fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EB69E7E7C06C46309E50D3BA /* ShadowsIntoLight-Regular.ttf */ = {isa = PBXFileReference; name = "ShadowsIntoLight-Regular.ttf"; path = "../assets/fonts/ShadowsIntoLight-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 				37C3DD053F374E96B3AB418B /* Poppins-ThinItalic.ttf */,
 				8FD0A8E383F94F77871377F3 /* SimpleLineIcons.ttf */,
 				C3F6EFD3E2BF43159944749C /* Zocial.ttf */,
+				EB69E7E7C06C46309E50D3BA /* ShadowsIntoLight-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				2E9F9D065F36426CB47D42BE /* Poppins-ThinItalic.ttf in Resources */,
 				DB493D6E2ED147A9897F1975 /* SimpleLineIcons.ttf in Resources */,
 				FDE548FE95D34CD6BD0D34A4 /* Zocial.ttf in Resources */,
+				E844C99AC68F44F5B966422E /* ShadowsIntoLight-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
