@@ -9,5 +9,9 @@
         "toLogin": "Giriş Yap",
         "email": "Mail",
         "password": "Şifre"
+    },
+    "RegisterEmailScreen": {
+        "email": "Mail"
+
     }
 }
