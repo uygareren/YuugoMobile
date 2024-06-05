@@ -27,7 +27,7 @@ module.exports = {
                 // semi: true, // Noktalı virgül kullanımını zorla
                 // trailingComma: 'all', // Satır sonu virgülü kullanımını zorla
                 printWidth: 120, // Yazdırma genişliğini belirle
-                tabWidth: 2, // Sekme genişliğini belirle
+                tabWidth: 4, // Sekme genişliğini belirle
                 endOfLine: "off",
                 jsxBracketSameLine: false,
             },

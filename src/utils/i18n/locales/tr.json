@@ -1,13 +1,12 @@
 {
-    "ValidationErrors": {
-        "required": "Boş bırakmayınız",
-        "email": "Geçerli mail giriniz",
-        "password": "Şifrenizi giriniz"
-    },
+    "ValidationErrors.required": "Boş bırakmayınız",
+    "ValidationErrors.email": "Geçerli e-posta giriniz",
+    "ValidationErrors.password": "Şifrenizi giriniz",
+    "ValidationErros.passwordMinLength": "Şifreniz en az 6 karakter olmalıdır",
     "Login": {
         "hello": "Merhaba",
         "toLogin": "Giriş Yap",
-        "email": "Mail",
+        "email": "E-Posta",
         "password": "Şifre"
     },
     "RegisterEmailScreen": {
