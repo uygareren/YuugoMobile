@@ -38,11 +38,11 @@ const ThemeData: ThemeUtil = {
             baseStyle(props) {
                 return {
                     ...props,
-                    color: "#0C101570",
+                    color: "#0C1015",
                     _input: {
                         bg: "white",
                     },
-                    borderColor: "#afafaf",
+                    borderColor: "#0C101570",
                     borderRadius: "10px",
                     py: "13px",
                     px: "10px",
@@ -54,7 +54,7 @@ const ThemeData: ThemeUtil = {
         Text: { // @ts-ignore
             baseStyle() {
                 return {
-                    color: "#000",
+                    color: "#0C1015",
                     fontSize: 14,
                     fontFamily: "body",
                 }

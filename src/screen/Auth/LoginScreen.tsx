@@ -17,10 +17,9 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 const schema = yup.object({
-    email: yup.string().required(i18n.t(["translation", "ValidationErrors", "required"])).email(i18n.t("ValidationErrors.email")),
-    password: yup.string().required(i18n.t("translation.ValidationErrors.required"))
-    .min(6, 'Şifreniz uzunluğu')
-    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
+    email: yup.string().required(i18n.t("ValidationErrors.required")).email(i18n.t("ValidationErrors.email")),
+    password: yup.string().required(i18n.t("ValidationErrors.required"))
+    .min(6, i18n.t("ValidationErros.passwordMinLength"))
 }).required();
 
 export default function LoginScreen(){
@@ -37,7 +36,7 @@ export default function LoginScreen(){
 
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
-            <Text fontFamily="ShadowsIntoLight-Regular" fontSize="24px" alignSelf="center" marginTop="16px">Yuugo</Text>
+            <Text fontFamily="ShadowsIntoLight-Regular" fontSize="30px" alignSelf="center" marginTop="16px">Yuugo</Text>
                 <Formik initialValues={{
                 email: "",
                 password: ""
@@ -58,7 +57,7 @@ export default function LoginScreen(){
                                 errorMessage={errors.password} />
                         </View>
 
-                        <Button onPress={() => handleSubmit()} mt="20px"
+                        <Button onPress={() => handleSubmit()} mt="16px"
                             alignSelf="center" width={maxWidth - 32} mx="16px" marginBottom="14px">{t("toLogin")}</Button>
                     </>
                 )}
