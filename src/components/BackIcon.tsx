@@ -7,7 +7,7 @@ type Props = {
     title?: string;
 }
 
-export const BackScreenIcon = ({ onPress = undefined, title }: Props) => {
+export const BackIcon = ({ onPress = undefined, title }: Props) => {
     const navigation = useNavigation();
 
     const handlePress = () => onPress && navigation.goBack();

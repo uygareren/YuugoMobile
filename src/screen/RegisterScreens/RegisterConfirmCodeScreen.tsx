@@ -6,8 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import * as yup from "yup";
-import { ButtonComp } from "../../components/ButtonComp";
-import { BackIcon } from "../../components/GoBack";
+import { Button } from "../../components/ButtonComp";
+import { BackIcon } from "../../components/BackIcon";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import { BUTTON_RADIUS } from "../../utils/utils";
@@ -79,7 +79,7 @@ export default function RegisterConfirmCodeScreen(){
             
             <View style={{position:"absolute", top:64, paddingHorizontal:16, width:width}}>
             <View style={{flexDirection:"row", marginTop:16}}>
-                   <BackIcon navigation={navigation}/>
+                   <BackIcon/>
                     <View style={{marginLeft:8}}>
                         <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("codeConfirm")}</Text>
                     </View>
@@ -132,12 +132,7 @@ export default function RegisterConfirmCodeScreen(){
                     </TouchableOpacity>
                 </View>
 
-                    <ButtonComp onPress={handleSubmit} 
-                    containerStyle={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
-                    borderRadius:BUTTON_RADIUS, backgroundColor:"blue"}}
-                    textStyle={{color:theme.colors.white, fontWeight:"600", fontSize:16}}
-                    loading={false}/>
-                    
+                    <Button title="Devam Et" onPress={handleSubmit} loading={false}/>
 
                     <View style={{ marginTop: 25 }}>
                     {counter > 0 ? (

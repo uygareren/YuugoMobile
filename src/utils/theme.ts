@@ -22,6 +22,9 @@ const ThemeData: ThemeUtil = {
                 return {
                     ...props,
                     borderRadius: "10px",
+                    _text: {
+                        fontWeight: "600"
+                    }
                 }
             },
         },

@@ -10,7 +10,7 @@ import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
 import { BUTTON_RADIUS } from "../../utils/utils";
-import { BackScreenIcon } from "../../components/BackIcon";
+import { BackIcon } from "../../components/BackIcon";
 
 type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -36,7 +36,7 @@ export default function RegisterEmailScreen(){
 
             
             <View mt="16px" ml="16px">
-                <BackScreenIcon title="Email Doğrula" />
+                <BackIcon title="Email Doğrula" />
                 <Text mt="16px" maxWidth="85%" fontSize="15px" fontWeight="300" >{t("emailConfirmSubText")}</Text>
             </View>
 
