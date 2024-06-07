@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
-import { useTheme } from "native-base";
+import { useTheme, View, Text } from "native-base";
 import { useEffect, useRef, useState } from "react";
-import { AppState, Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import * as yup from "yup";
 import { Button } from "../../components/ButtonComp";
@@ -28,6 +28,7 @@ export default function RegisterConfirmCodeScreen(){
     const theme = useTheme();
     const {width, height} = Dimensions.get("screen");
 
+    const [code, setCode] = useState("");
     const [counter, setCounter] = useState(90);
     const counterRef = useRef(counter);
     counterRef.current = counter;
@@ -64,75 +65,55 @@ export default function RegisterConfirmCodeScreen(){
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
 
     function handleTryAgain() {
-       
         setCounter(90);
     }
 
-    function handleConfirmCode(values: { code: string }) {
+    function handleSubmit() {
+
+    }
+
+    function handleConfirmCode() {
         navigation.push("RegisterConfirmPassword");
-        console.log("Code entered:", values.code);
-        // Perform the confirm code action here
     }
 
     return(
-        <View style={{backgroundColor: theme.colors.white, flex:1, paddingHorizontal:16, justifyContent:"center"}}>
-            
-            <View style={{position:"absolute", top:64, paddingHorizontal:16, width:width}}>
-            <View style={{flexDirection:"row", marginTop:16}}>
-                   <BackIcon/>
-                    <View style={{marginLeft:8}}>
-                        <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("codeConfirm")}</Text>
-                    </View>
-                </View>
-                <View style={{marginTop:16}}>
-                    <Text style={{fontSize:16, fontWeight:"300", color:theme.colors.black}}>{t("codeConfirmSubText")}</Text>
-                </View>                
-            </View>
-
-            <Formik initialValues={{
-                code:""
-            }}
-            validationSchema={schema}
-            onSubmit={handleConfirmCode}
-            >
-                {({errors, touched, values, handleChange, handleBlur, handleSubmit}) => (
-                    <>
-                    <View style={{marginTop:45}}>
-                    <CodeField
-                        ref={ref}
-                        {...props}
-                        value={values.code}
-                        onChangeText={handleChange("code")}
-                        cellCount={CELL_COUNT}
-                        rootStyle={{ width: "100%", alignItems: "center" }}
-                        keyboardType="number-pad"
-                        textContentType="oneTimeCode"
-                        autoComplete={Platform.select({ android: 'sms-otp', default: 'one-time-code' }) as any}
-                        testID="my-code-input"
-                        renderCell={({ index, symbol, isFocused }) => (
-                            <Text
-                                key={index}
-                                style={[styles.cell, isFocused && styles.focusCell]}
-                                onLayout={getCellOnLayoutHandler(index)}>
-                                {symbol || (isFocused ? <Cursor /> : null)}
-                            </Text>
-                        )}
-                    />
-
-                    {touched.code && errors.code && (
-                        <Text style={{color: 'red', textAlign: 'center', marginTop: 10}}>
-                            {errors.code}
+        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
+            <View mt="28px" mx="16px">
+                <CodeField
+                    ref={ref}
+                    {...props}
+                    value={code}
+                    onChangeText={setCode}
+                    cellCount={CELL_COUNT}
+                    rootStyle={{ width: "100%", alignItems: "center" }}
+                    keyboardType="number-pad"
+                    textContentType="oneTimeCode"
+                    autoComplete={Platform.select({ android: 'sms-otp', default: 'one-time-code' }) as any}
+                    testID="my-code-input"
+                    renderCell={({ index, symbol, isFocused }) => (
+                        <Text
+                            key={index}
+                            style={[styles.cell, isFocused && styles.focusCell]}
+                            onLayout={getCellOnLayoutHandler(index)}>
+                            {symbol || (isFocused ? <Cursor /> : null)}
                         </Text>
                     )}
+                />
 
-<View style={{ marginTop: 15, flexDirection: "row", alignItems: "center", borderWidth: 0, justifyContent: "flex-end" }}>
-                    <Text style={{ fontSize: 13, fontWeight: "500", color: "black" }}>Sorun mu yaşıyorsun? </Text>
-                    <TouchableOpacity onPress={handleTryAgain}>
-                        <Text style={{ fontSize: 13, fontWeight: "700", color: "green" }}>Tekrar kod gönder</Text>
-                    </TouchableOpacity>
+                <Text fontSize={16} color="darkText" fontWeight="300" mt="16px">{t("codeConfirmSubText")}</Text>
+
+                <View flexDir="row" justifyContent="flex-end" mt="20px">
+                    <Button title="Tekrar Kod Gönder" onPress={handleConfirmCode} />
                 </View>
 
+                <View mt="24px">
                     <Button title="Devam Et" onPress={handleSubmit} loading={false}/>
+                </View>
+            </View>
+            
+            <View style={{ marginTop: 15, flexDirection: "row", alignItems: "center", borderWidth: 0, justifyContent: "flex-end" }}>
+                </View>
+
 
                     <View style={{ marginTop: 25 }}>
                     {counter > 0 ? (
@@ -147,14 +128,7 @@ export default function RegisterConfirmCodeScreen(){
                         </TouchableOpacity>
                     )}
                 </View>
-
-                    </View>
-                    </>
-                )}
-
-            </Formik>
-                
-        </View>
+        </SafeAreaView>
     )
 }
 

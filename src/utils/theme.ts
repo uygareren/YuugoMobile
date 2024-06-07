@@ -146,7 +146,7 @@ const ThemeData: ThemeUtil = {
         white: "#FFF",
         black: "#000",
         lightText: "#111",
-        darkText: "#3a3a3a",
+        darkText: "#131313",
     }
 }
 
