@@ -1,33 +1,25 @@
-import { useTheme } from "native-base";
+import { Button as NButton, useTheme } from "native-base";
 import React from "react";
 import { ActivityIndicator, StyleProp, Text, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
 import { BUTTON_RADIUS } from "../utils/utils";
 
 interface ButtonCompProps {
     onPress: () => void;
-    containerStyle?: StyleProp<ViewStyle>;
+    style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
     loading?: boolean;
+    title: string
 }
 
-export const ButtonComp: React.FC<ButtonCompProps> = ({onPress, containerStyle, textStyle, loading}) => {
+export const Button: React.FC<ButtonCompProps> = ({
+    onPress, style, textStyle={}, loading=false, title
+}) => {
 
     const theme = useTheme();
 
     return(
-        <TouchableOpacity
-            onPress={onPress}
-            style={[{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
-                borderRadius:BUTTON_RADIUS, backgroundColor:"blue"}, containerStyle]}
-        >
-            {loading ? (
-                <ActivityIndicator size={24} color="white"/>
-            ):(
-                <Text style={[{color:theme.colors.white, fontWeight:"600", fontSize:16}, textStyle]}>
-                    Devam Et
-                </Text>
-            )}
-            
-        </TouchableOpacity> 
+        <NButton style={style} backgroundColor="primary.500" onPress={onPress} isLoading={loading} _text={{style: textStyle}}>
+            {title}
+        </NButton>
     )
 }

@@ -1,15 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
-import { useTheme } from "native-base";
-import { Dimensions, Text, View } from "react-native";
+import { useTheme, View, Text } from "native-base";
+import { Dimensions, SafeAreaView } from "react-native";
 import * as yup from "yup";
-import { ButtonComp } from "../../components/ButtonComp";
+import { Button } from "../../components/ButtonComp";
 import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
 import { BUTTON_RADIUS } from "../../utils/utils";
+import { BackScreenIcon } from "../../components/BackIcon";
 
 type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -31,25 +32,13 @@ export default function RegisterEmailScreen(){
     }
 
     return(
-        <View style={{backgroundColor: theme.colors.white, flex:1, paddingHorizontal:16, justifyContent:"center"}}>
+        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1}}>
 
-            <View style={{position:"absolute", top:64, paddingHorizontal:16, width:width}}>
-
-                <View style={{flexDirection:"row", marginTop:16}}>
-                    {/* ARROW LEFT İCON
-                    <TouchableOpacity>
-                        
-                    </TouchableOpacity> */}
-                    <View>
-                        <Text style={{fontSize:24, fontWeight:"500"}}>{t("emailConfirm")}</Text>
-                    </View>
-                </View>
-                <View style={{marginTop:16}}>
-                    <Text style={{fontSize:16, fontWeight:"300" }}>{t("emailConfirmSubText")}</Text>
-                </View>
-
+            
+            <View mt="16px" ml="16px">
+                <BackScreenIcon title="Email Doğrula" />
+                <Text mt="16px" maxWidth="85%" fontSize="15px" fontWeight="300" >{t("emailConfirmSubText")}</Text>
             </View>
-
 
             <Formik initialValues={{
                 email:""
@@ -59,25 +48,21 @@ export default function RegisterEmailScreen(){
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit}) => (
                     console.log("error", errors),
-                    <>
-                    <View style={{marginTop:45}}>
-                    <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
-                    onBlur={handleBlur("email")}
-                    required isInvalid={errors.email != undefined && touched.email as boolean}
-                    errorMessage={errors.email} />
+                    <View mt="32px" mx="16px">
+                        <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
+                        onBlur={handleBlur("email")}
+                        required isInvalid={errors.email != undefined && touched.email as boolean}
+                        errorMessage={errors.email} />
 
-                    <ButtonComp onPress={handleSubmit} 
-                        containerStyle={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
-                        borderRadius:BUTTON_RADIUS, backgroundColor:"blue"}}
-                        textStyle={{color:theme.colors.white, fontWeight:"600", fontSize:16}}
-                        loading={false}/>
-                    
+                        <Button onPress={handleSubmit} 
+                            style={{marginTop:32}} title="Kaydol"
+                            loading={false}/>
+                        
 
                     </View>
-                    </>
                 )}
 
             </Formik>
-        </View>
+        </SafeAreaView>
     )
 }

@@ -1,11 +1,11 @@
 import { TouchableOpacity } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 
-type GoBackComponentProp = {
+type GoBackProp = {
     navigation:any
 }
 
-export const GoBackComponent:React.FC<GoBackComponentProp> = ({navigation}) => {
+export const GoBack:React.FC<GoBackProp> = ({navigation}) => {
 
 
     return(

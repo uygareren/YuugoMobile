@@ -5,7 +5,7 @@ import { useTheme } from "native-base";
 import { Dimensions, Text, View } from "react-native";
 import * as yup from "yup";
 import { ButtonComp } from "../../components/ButtonComp";
-import { GoBackComponent } from "../../components/GoBackComponent";
+import { BackIcon } from "../../components/GoBack";
 import PasswordInput from "../../components/input/PasswordInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
@@ -39,7 +39,7 @@ export default function RegisterConfirmPasswordScreen(){
 
             <View style={{flex:1, paddingTop:48}}>
             <View style={{flexDirection:"row", marginTop:16}}>
-                   <GoBackComponent navigation={navigation}/>
+                   <BackIcon navigation={navigation}/>
                     <View style={{marginLeft:8}}>
                         <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("passwordConfirm")}</Text>
                     </View>

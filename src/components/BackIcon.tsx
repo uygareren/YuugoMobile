@@ -10,12 +10,12 @@ type Props = {
 export const BackScreenIcon = ({ onPress = undefined, title }: Props) => {
     const navigation = useNavigation();
 
-    const handlePress = () => onPress ? onPress() : navigation.goBack();
+    const handlePress = () => onPress && navigation.goBack();
 
     return (
-        <Box padding="5px" opacity="80" bgColor="#FCFCFC" borderRadius="50px" alignSelf="flex-start" alignItems="center" >
-            <Icon onPress={handlePress} as={FontAwesomeIcon} name="chevron-left" color="secondary.900" size="15px" />
-            {title && (<Text>{title}</Text>)}
+        <Box alignSelf="flex-start" alignItems="center" flexDir="row" >
+            <Icon onPress={handlePress} as={FontAwesomeIcon} name="chevron-left" color="secondary.900" size="20px" />
+            {title && (<Text fontWeight="medium" fontSize="18px">{title}</Text>)}
         </Box>
     )
 }

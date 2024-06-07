@@ -7,7 +7,7 @@ import { AppState, Dimensions, Platform, StyleSheet, Text, TouchableOpacity, Vie
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import * as yup from "yup";
 import { ButtonComp } from "../../components/ButtonComp";
-import { GoBackComponent } from "../../components/GoBackComponent";
+import { BackIcon } from "../../components/GoBack";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import { BUTTON_RADIUS } from "../../utils/utils";
@@ -79,7 +79,7 @@ export default function RegisterConfirmCodeScreen(){
             
             <View style={{position:"absolute", top:64, paddingHorizontal:16, width:width}}>
             <View style={{flexDirection:"row", marginTop:16}}>
-                   <GoBackComponent navigation={navigation}/>
+                   <BackIcon navigation={navigation}/>
                     <View style={{marginLeft:8}}>
                         <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("codeConfirm")}</Text>
                     </View>
