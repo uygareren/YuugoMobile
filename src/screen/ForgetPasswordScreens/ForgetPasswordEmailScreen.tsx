@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { useTheme } from "native-base";
 import { Dimensions, Text, View } from "react-native";
 import * as yup from "yup";
-import { ButtonComp } from "../../components/ButtonComp";
+import { ButtonComp } from "../../components/Button";
 import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";

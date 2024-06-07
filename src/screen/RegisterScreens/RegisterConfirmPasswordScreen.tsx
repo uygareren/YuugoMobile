@@ -1,11 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
-import { useTheme } from "native-base";
-import { Dimensions, Text, View } from "react-native";
+import { useTheme, Text, View } from "native-base";
+import { Dimensions, SafeAreaView } from "react-native";
 import * as yup from "yup";
-import { ButtonComp } from "../../components/ButtonComp";
-import { BackIcon } from "../../components/GoBack";
+import { Button } from "../../components/Button";
 import PasswordInput from "../../components/input/PasswordInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
@@ -35,19 +34,13 @@ export default function RegisterConfirmPasswordScreen(){
     }
 
     return(
-        <View style={{backgroundColor: theme.colors.white, flex:1, paddingHorizontal:16, justifyContent:"center"}}>
+        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
+            <View ml="16px" mt="16px">
+                <Text fontWeight="medium" fontSize="18px">{t("passwordConfirm")}</Text>
 
-            <View style={{flex:1, paddingTop:48}}>
-            <View style={{flexDirection:"row", marginTop:16}}>
-                   <BackIcon navigation={navigation}/>
-                    <View style={{marginLeft:8}}>
-                        <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("passwordConfirm")}</Text>
-                    </View>
-                </View>
-                <View style={{marginTop:16}}>
-                    <Text style={{fontSize:16, fontWeight:"300", color:theme.colors.black}}>{t("passwordConfirmSubText")}</Text>
-                </View>                
+                <Text mt="8px" fontSize="16px" fontWeight="300" color="darkText" >{t("passwordConfirmSubText")}</Text>
             </View>
+
 
             <Formik initialValues={{
                 password1:"",
@@ -57,30 +50,24 @@ export default function RegisterConfirmPasswordScreen(){
             onSubmit={handleConfirmPassword}
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit}) => (
-                    <>
-                    <View style={{marginTop:45, flex:3}}>
-                    <PasswordInput label={t("password")} value={values.password1} onChangeText={handleChange("password")}
-                        onBlur={handleBlur("password1")}
-                        required isInvalid={errors.password1 != undefined && touched.password1 as boolean}
-                        errorMessage={errors.password1} />
+                    <View style={{rowGap: 16}} mt="32px" mx="16px">
+                        <PasswordInput label={t("password")} value={values.password1} onChangeText={handleChange("password")}
+                            onBlur={handleBlur("password1")}
+                            required isInvalid={errors.password1 != undefined && touched.password1 as boolean}
+                            errorMessage={errors.password1} />
 
-                    <PasswordInput style={{marginTop:24}} label={t("password2")} value={values.password2} onChangeText={handleChange("password")}
-                        onBlur={handleBlur("password2")}
-                        required isInvalid={errors.password2 != undefined && touched.password2 as boolean}
-                        errorMessage={errors.password2} />
+                        <PasswordInput label={t("password2")} value={values.password2} onChangeText={handleChange("password")}
+                            onBlur={handleBlur("password2")}
+                            required isInvalid={errors.password2 != undefined && touched.password2 as boolean}
+                            errorMessage={errors.password2} />
 
-                    <ButtonComp onPress={handleSubmit} 
-                        containerStyle={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
-                        borderRadius:BUTTON_RADIUS, backgroundColor:"blue"}}
-                        textStyle={{color:theme.colors.white, fontWeight:"600", fontSize:16}}
-                        loading={false}/>
+                        <Button onPress={handleSubmit} title="Devam Et" loading={false}/>
 
                     </View>
-                    </>
                 )}
 
             </Formik>
 
-        </View>
+        </SafeAreaView>
     )
 }

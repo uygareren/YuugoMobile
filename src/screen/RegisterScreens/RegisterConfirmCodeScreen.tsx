@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import * as yup from "yup";
-import { Button } from "../../components/ButtonComp";
+import { Button } from "../../components/Button";
 import { BackIcon } from "../../components/BackIcon";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";

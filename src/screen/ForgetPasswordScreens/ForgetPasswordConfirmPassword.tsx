@@ -4,8 +4,8 @@ import { Formik } from "formik";
 import { useTheme } from "native-base";
 import { Dimensions, Text, View } from "react-native";
 import * as yup from "yup";
-import { ButtonComp } from "../../components/ButtonComp";
-import { BackIcon } from "../../components/GoBack";
+import { Button } from "../../components/Button";
+import { BackIcon } from "../../components/BackIcon";
 import PasswordInput from "../../components/input/PasswordInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
@@ -37,7 +37,7 @@ export default function ForgetPasswordConfirmPassword(){
 
             <View style={{flex:1, paddingTop:48}}>
             <View style={{flexDirection:"row", marginTop:16}}>
-                    <BackIcon navigation={navigation}/>
+                    <BackIcon />
                     <View style={{marginLeft:8}}>
                         <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("passwordConfirm")}</Text>
                     </View>
@@ -67,8 +67,8 @@ export default function ForgetPasswordConfirmPassword(){
                         required isInvalid={errors.password2 != undefined && touched.password2 as boolean}
                         errorMessage={errors.password2} />
 
-                    <ButtonComp onPress={handleSubmit} 
-                    containerStyle={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
+                    <Button onPress={handleSubmit} title="Devam Et"
+                    style={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
                     borderRadius:BUTTON_RADIUS, backgroundColor:"blue"}}
                     textStyle={{color:theme.colors.white, fontWeight:"600", fontSize:16}}
                     loading={false}/>

@@ -6,8 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from "react-native-confirmation-code-field";
 import * as yup from "yup";
-import { ButtonComp } from "../../components/ButtonComp";
-import { BackIcon } from "../../components/GoBack";
+import { Button } from "../../components/Button";
+import { BackIcon } from "../../components/BackIcon";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
@@ -80,7 +80,7 @@ export default function ForgetPasswordCodeScreen(){
             <View style={{position:"absolute", top:64, paddingHorizontal:16, width:width}}>
             <View style={{flexDirection:"row", marginTop:16, alignItems:"center"}}>
 
-                    <BackIcon navigation={navigation}/>
+                    <BackIcon />
                     
                     <View style={{marginLeft:8}}>
                         <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("codeConfirm")}</Text>
@@ -135,8 +135,8 @@ export default function ForgetPasswordCodeScreen(){
                 </View>
 
 
-                    <ButtonComp onPress={handleSubmit} 
-                    containerStyle={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
+                    <Button onPress={handleSubmit} title="Devam et"
+                    style={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
                     borderRadius:BUTTON_RADIUS, backgroundColor:"blue"}}
                     textStyle={{color:theme.colors.white, fontWeight:"600", fontSize:16}}
                     loading={false}/>
