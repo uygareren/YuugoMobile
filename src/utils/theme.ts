@@ -42,7 +42,7 @@ const ThemeData: ThemeUtil = {
                     _input: {
                         bg: "white",
                     },
-                    borderColor: "#0C101570",
+                    borderColor: "#D1D1D1",
                     borderRadius: "10px",
                     py: "13px",
                     px: "10px",
@@ -54,7 +54,7 @@ const ThemeData: ThemeUtil = {
         Text: { // @ts-ignore
             baseStyle() {
                 return {
-                    color: "#0C1015",
+                    color: "rgba(12, 16, 21, 0.7)",
                     fontSize: 14,
                     fontFamily: "body",
                 }
@@ -105,16 +105,16 @@ const ThemeData: ThemeUtil = {
     // @ts-ignore
     colors: {
         primary: {
-          50: '#e0f8ff',
-          100: '#c2e1ed',
-          200: '#a0cddc',
-          300: '#7eb7cc',
-          400: '#5ca3bd',
-          500: '#4289a3',
-          600: '#316b80',
-          700: '#204c5d',
-          800: '#0b2f39',
-          900: '#001119',
+            "50": "#63abf3",
+            "100": "#4597ea",
+            "200": "#2884df",
+            "300": "#2470bc",
+            "400": "#1d5d9b",
+            "500": "#1e5082",
+            "600": "#1e446a",
+            "700": "#1c3855",
+            "800": "#192d40",
+            "900": "#14212d"
         },
         success: {
             50: '#e1fde9',
@@ -143,7 +143,7 @@ const ThemeData: ThemeUtil = {
         white: "#FFF",
         black: "#000",
         lightText: "#111",
-        darkText: "#fff",
+        darkText: "#3a3a3a",
     }
 }
 

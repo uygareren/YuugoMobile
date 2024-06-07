@@ -17,7 +17,7 @@ type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
 >
 
 const schema = yup.object({
-    email: yup.string().required(i18n.t(["translation", "ValidationErrors", "required"])).email(i18n.t("ValidationErrors.email")),
+    email: yup.string().required(i18n.t("ValidationErrors.required")).email(i18n.t("ValidationErrors.email")),
 }).required();
 
 export default function RegisterEmailScreen(){
@@ -25,7 +25,6 @@ export default function RegisterEmailScreen(){
     const navigation = useNavigation<RegisterEmailScreenNavigationProp>();
     const theme = useTheme();
     const {width, height} = Dimensions.get("screen");
-
 
     function handleConfirmEmail(){
         navigation.navigate("RegisterConfirmCode");
@@ -42,11 +41,11 @@ export default function RegisterEmailScreen(){
                         
                     </TouchableOpacity> */}
                     <View>
-                        <Text style={{fontSize:24, color:theme.colors.black, fontWeight:"500"}}>{t("emailConfirm")}</Text>
+                        <Text style={{fontSize:24, fontWeight:"500"}}>{t("emailConfirm")}</Text>
                     </View>
                 </View>
                 <View style={{marginTop:16}}>
-                    <Text style={{fontSize:16, fontWeight:"300", color:theme.colors.black}}>{t("emailConfirmSubText")}</Text>
+                    <Text style={{fontSize:16, fontWeight:"300" }}>{t("emailConfirmSubText")}</Text>
                 </View>
 
             </View>

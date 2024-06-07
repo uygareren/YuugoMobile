@@ -10,6 +10,8 @@ import * as yup from "yup";
 import i18n from "../../utils/i18n/i18n";
 import { useDispatch } from "react-redux";
 import PasswordInput from "../../components/input/PasswordInput";
+import CheckBox from "../../components/CheckBox";
+import { useState } from "react";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -29,14 +31,17 @@ export default function LoginScreen(){
     const maxWidth = Dimensions.get("screen").width;
     const dispatch = useDispatch();
 
-
     function handleLogin() {
         // navigation.navigate("Screen2", {userId: "asd"});
     }
 
+    function handleForgotPassword(){
+        navigation.navigate("ForgetPasswordEmail");
+    }
+
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
-            <Text fontFamily="ShadowsIntoLight-Regular" fontSize="30px" alignSelf="center" marginTop="16px">Yuugo</Text>
+            <Text pt="16px" fontSize="24px" pl="16px" fontWeight="medium" color="darkText">{t("title")}</Text>
                 <Formik initialValues={{
                 email: "",
                 password: ""
@@ -46,7 +51,7 @@ export default function LoginScreen(){
                 >
                     {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
                     <>
-                        <View marginX="16px" mt="45px" style={{ rowGap: 12 }}>
+                        <View marginX="16px" mt="32px" style={{ rowGap: 12 }}>
                             <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
                                 onBlur={handleBlur("email")} visibleIcon={errors.email == undefined && touched.email as boolean}
                                 required isInvalid={errors.email != undefined && touched.email as boolean}
@@ -57,12 +62,23 @@ export default function LoginScreen(){
                                 errorMessage={errors.password} />
                         </View>
 
-                        <Button onPress={() => handleSubmit()} mt="16px"
+                        <Text fontWeight="bold" color="primary.500" alignSelf="flex-start"
+                        fontSize="15px" mt="20px" ml="16px"
+                        onPress={handleForgotPassword}>{t("forogtPassword")}</Text>
+
+                        <Button onPress={() => handleSubmit()} mt="20px"
                             alignSelf="center" width={maxWidth - 32} mx="16px" marginBottom="14px">{t("toLogin")}</Button>
                     </>
                 )}
                     
                 </Formik>
+
+                <View alignSelf="center">
+                    <Text fontSize="13px">{t("registerQuestion")}<Text fontWeight="bold" color="primary.500"
+                        fontSize="15px" mt="20px" mr="16px" onPress={handleForgotPassword}>{t("register")}
+                        </Text>
+                    </Text>
+                </View>
             
         </SafeAreaView>
     )

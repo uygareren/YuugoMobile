@@ -8,7 +8,11 @@
         "hello": "Merhaba",
         "toLogin": "Giriş Yap",
         "email": "E-Posta",
-        "password": "Şifre"
+        "password": "Şifre",
+        "forogtPassword": "Şifremi Unuttum?",
+        "registerQuestion": "Hesap Oluşturmadınız mı? ",
+        "register": "Kayıt Ol",
+        "title": "Giriş Yap"
     },
     "RegisterEmailScreen": {
         "email": "Mail",
