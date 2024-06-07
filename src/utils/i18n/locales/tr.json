@@ -3,6 +3,7 @@
     "ValidationErrors.email": "Geçerli e-posta giriniz",
     "ValidationErrors.password": "Şifrenizi giriniz",
     "ValidationErros.passwordMinLength": "Şifreniz en az 6 karakter olmalıdır",
+    
     "Login": {
         "hello": "Merhaba",
         "toLogin": "Giriş Yap",
@@ -10,7 +11,31 @@
         "password": "Şifre"
     },
     "RegisterEmailScreen": {
-        "email": "Mail"
+        "email": "Mail",
+        "emailConfirm":"Email Doğrula",
+        "emailConfirmSubText" :"Kaydını devam ettirmek için email adresini gir!"
+
+    },
+    "RegisterConfirmCodeScreen":{
+        "codeConfirm":"Kodu Doğrula",
+        "codeConfirmSubText":"Emailinize gelen doğrulama kodunu girin"
+    },
+    "RegisterConfirmPasswordScreen":{
+        "passwordConfirm":"Parolayı Belirle",
+        "passwordConfirmSubText":"Kod Başarılı! Şimdi Giriş Parolanı Belirle!",
+        "password": "Şifreyi Belirle",
+        "password2": "Şifreni Onayla"   
+    },
+    "ForgetPasswordEmailScreen": {
+        "email": "Mail",
+        "emailConfirm":"Şifremi Unuttum",
+        "emailConfirmSubText" :"Şifreni yenilemek için email adresini gir!"
+
+    },
+    "ForgetPasswordCodeScreen": {
+        "email": "Mail",
+        "codeConfirm":"Kod Onayla",
+        "codeConfirmSubText" :"Şifreni yenilemek için emailinize gelen kodu girin!"
 
     }
 }
