@@ -90,6 +90,10 @@ export default function LoginScreen(){
         navigation.navigate("ForgetPasswordEmail");
     }
 
+    function handleRegister() {
+        navigation.navigate("RegisterEmail");
+    }
+
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
             <Text pt="16px" fontSize="24px" pl="16px" fontWeight="medium" color="darkText">{t("title")}</Text>
@@ -117,7 +121,7 @@ export default function LoginScreen(){
                         fontSize="15px" mt="20px"
                         onPress={handleForgotPassword}>{t("forogtPassword")}</Text>
 
-                        <Button onPress={() => handleSubmit()} mt="20px" loading={loading} title={t("toLogin")}
+                        <Button onPress={() => handleSubmit()} mt="20px" loading={loading} title={t("toLogin")} 
                             mb="8px" />
                     </View>
                 )}
@@ -126,7 +130,7 @@ export default function LoginScreen(){
 
                 <View alignSelf="center">
                     <Text fontSize="13px">{t("registerQuestion")}<Text fontWeight="bold" color="primary.500"
-                        fontSize="15px" mt="20px" mr="16px" onPress={handleForgotPassword}>{t("register")}
+                        fontSize="15px" mt="20px" mr="16px" onPress={handleRegister}>{t("register")}
                         </Text>
                     </Text>
                 </View>
