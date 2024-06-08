@@ -1,21 +1,20 @@
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Formik } from "formik";
-import { useTheme, View, Text } from "native-base";
+import { type RouteProp, useNavigation, useRoute, CommonActions } from "@react-navigation/native";
+import { type NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useTheme, View, Text, useToast } from "native-base";
 import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import * as yup from "yup";
 import { Button } from "../../components/Button";
-import { BackIcon } from "../../components/BackIcon";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import { BUTTON_RADIUS } from "../../utils/utils";
+import api, { ResponseError } from "../../api/api";
 
 type RegisterConfirmCodeScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
     "RegisterConfirmCode"
 >
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'RegisterConfirmCode'>;
 
 const schema = yup.object({
     code: yup.string().required("sdasdasd  ascasda")
@@ -23,12 +22,15 @@ const schema = yup.object({
 
 export default function RegisterConfirmCodeScreen(){
 
-    const { t } = useI18n("RegisterConfirmCodeScreen");
     const navigation = useNavigation<RegisterConfirmCodeScreenNavigationProp>();
+    const route = useRoute<ProfileScreenRouteProp>();
+    const activationToken = route.params.activationToken;
+    
+    const { t } = useI18n("RegisterConfirmCodeScreen");
     const theme = useTheme();
-    const {width, height} = Dimensions.get("screen");
+    const toast = useToast();
 
-    const [code, setCode] = useState("");
+    const [loading, setLoading] = useState(false);
     const [counter, setCounter] = useState(90);
     const counterRef = useRef(counter);
     counterRef.current = counter;
@@ -68,12 +70,49 @@ export default function RegisterConfirmCodeScreen(){
         setCounter(90);
     }
 
-    function handleSubmit() {
+    async function handleSubmit() {
+        try {
+            setLoading(true);
+            const resp = await api.post("/auth/verify/register", {
+                activationToken, accessCode: value
+            });
 
+            setLoading(false);
+            
+            navigation.dispatch(
+                CommonActions.reset({
+                    routes: [
+                        { 
+                            name: "RegisterConfirmPassword", params: {
+                                jwt: resp.data.data.jwt
+                            }
+                        }
+                    ],
+                    index: 0
+                })
+            )
+        } catch (error: any) {
+            setLoading(false);
+            console.log("Error", error.response.status);
+            const errorCode = error.response.data.errorCode as ResponseError;
+            if(errorCode == ResponseError.ACTIVATION_CODE_BANNED) {
+                toast.show({
+                    title: t("loginError"),
+                });
+            } else if(errorCode == ResponseError.WRONG_CONFIRMATION_CODE) {
+                toast.show({
+                    title: t("loginError"),
+                });
+            } else {
+                toast.show({
+                    title: t("unknownError"),
+                });
+            }
+        }
     }
 
     function handleConfirmCode() {
-        navigation.push("RegisterConfirmPassword");
+        
     }
 
     return(
@@ -82,8 +121,8 @@ export default function RegisterConfirmCodeScreen(){
                 <CodeField
                     ref={ref}
                     {...props}
-                    value={code}
-                    onChangeText={setCode}
+                    value={value}
+                    onChangeText={setValue}
                     cellCount={CELL_COUNT}
                     rootStyle={{ width: "100%", alignItems: "center" }}
                     keyboardType="number-pad"
@@ -106,9 +145,8 @@ export default function RegisterConfirmCodeScreen(){
                     <Button title="Tekrar Kod Gönder" onPress={handleConfirmCode} />
                 </View>
 
-                <View mt="24px">
-                    <Button title="Devam Et" onPress={handleSubmit} loading={false}/>
-                </View>
+                <Button title="Devam Et" onPress={handleSubmit} loading={loading} mt="24px" />
+                
             </View>
             
             <View style={{ marginTop: 15, flexDirection: "row", alignItems: "center", borderWidth: 0, justifyContent: "flex-end" }}>

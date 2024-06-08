@@ -5,7 +5,9 @@ export type RootStackParamList = {
     RegisterConfirmCode: {
         activationToken: string
     },
-    RegisterConfirmPassword: undefined,
+    RegisterConfirmPassword: {
+        jwt: string
+    },
     ForgetPasswordEmail: undefined,
     ForgetPasswordCode: undefined,
     ForgetPasswordConfirmPassword:undefined
