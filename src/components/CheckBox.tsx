@@ -1,6 +1,6 @@
-import { StyleProp, ViewStyle } from "react-native";
 import RNCheckBox from '@react-native-community/checkbox';
 import { useTheme } from "native-base";
+import { StyleProp, ViewStyle } from "react-native";
 
 type Props = {
     value: boolean

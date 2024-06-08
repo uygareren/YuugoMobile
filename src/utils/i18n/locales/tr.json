@@ -25,7 +25,13 @@
     "RegisterEmailScreen": {
         "email": "Mail",
         "emailConfirm":"Email Doğrula",
-        "emailConfirmSubText" :"Kaydını devam ettirmek için email adresini gir!"
+        "emailConfirmSubText" :"Email adresini gir!",
+        "checkBoxMessage1":"Yuugo",
+        "checkBoxMessage2":"'ya kaydolarak,",
+        "checkBoxMessage3":"Şartlar ve Gizlilik Politikamızı",
+        "checkBoxMessage4":"kabul etmiş olursunuz.",
+        "continue":"DEVAM ET"
+
 
     },
     "RegisterConfirmCodeScreen":{
