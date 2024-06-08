@@ -30,7 +30,11 @@
     },
     "RegisterConfirmCodeScreen":{
         "codeConfirm":"Kodu Doğrula",
-        "codeConfirmSubText":"Emailinize gelen doğrulama kodunu girin"
+        "codeConfirmSubText":"E-postanıza bir kod gönderdik. Lütfen E-postanızı kontrol edip gelen kodu aşağıdaki kısma giriniz",
+        "didNotGetCode": "Kod gelmedi mi? ",
+        "resend": "Tekrar Gönder",
+        "title": "Onay Kodu",
+        "btnText": "Devam Et"
     },
     "RegisterConfirmPasswordScreen":{
         "passwordConfirm":"Parolayı Belirle",
