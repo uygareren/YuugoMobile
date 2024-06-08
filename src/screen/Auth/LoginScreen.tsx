@@ -1,8 +1,8 @@
-import { useNavigation } from "@react-navigation/native";
-import { Dimensions, SafeAreaView} from "react-native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
+import { SafeAreaView} from "react-native";
 import { type RootStackParamList } from "../../types/react-navigation";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Button, Image, Text, View, useTheme } from "native-base";
+import { Text, View, useTheme, useToast } from "native-base";
 import { useI18n } from "../../hooks/useI18n";
 import TextInput from "../../components/input/TextInput";
 import { Formik } from "formik";
@@ -10,8 +10,11 @@ import * as yup from "yup";
 import i18n from "../../utils/i18n/i18n";
 import { useDispatch } from "react-redux";
 import PasswordInput from "../../components/input/PasswordInput";
-import CheckBox from "../../components/CheckBox";
 import { useState } from "react";
+import api, { ResponseError } from "../../api/api";
+import { accountSliceActions } from "../../store/slices/accountSlice";
+import { setSecureStoreToken } from "../../utils/AsyncStorage";
+import { Button } from "../../components/Button";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -28,10 +31,58 @@ export default function LoginScreen(){
     const navigation = useNavigation<LoginScreenNavigationProp>();
     const { t } = useI18n("Login");
     const theme = useTheme();
-    const maxWidth = Dimensions.get("screen").width;
     const dispatch = useDispatch();
+    const toast = useToast();
+    const [loading, setLoading] = useState(false);
 
-    function handleLogin() {
+    async function handleLogin(values: { email: string, password: string }) {
+        setLoading(true);
+        try {
+            const resp = await api.post("/auth/login", values);
+
+            const data = resp.data.data;
+            await setSecureStoreToken(data.jwt);
+
+            if(data.userInfo) {
+                dispatch(accountSliceActions.setAccount(data));
+                /*
+                navigation.dispatch(
+                    CommonActions.reset({
+                        routes: [
+                            { name: "Home" }
+                        ],
+                        index: 0
+                    })
+                );
+                */
+            } else {
+                /*
+                navigation.dispatch(
+                    CommonActions.reset({
+                        routes: [
+                            { name: "RegisterInfo" }
+                        ],
+                        index: 0
+                    })
+                );
+                */
+            }
+
+        } catch (error: any) {
+            setLoading(false);
+
+            const errorCode = error.response.data.errorCode as ResponseError;
+            if(errorCode == ResponseError.LOGIN_FAILED || errorCode == ResponseError.LOGIN_FAILED_HAS_NOT_ACC) {
+                toast.show({
+                    title: t("loginError"),
+                });
+            } else {
+                toast.show({
+                    title: t("unknownError"),
+                });
+            }
+        }
+
         // navigation.navigate("Screen2", {userId: "asd"});
     }
 
@@ -43,15 +94,15 @@ export default function LoginScreen(){
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
             <Text pt="16px" fontSize="24px" pl="16px" fontWeight="medium" color="darkText">{t("title")}</Text>
                 <Formik initialValues={{
-                email: "",
-                password: ""
+                email: "ertugruldirik35@gmail.com",
+                password: "Asd123."
             }}
                 validationSchema={schema}
                 onSubmit={handleLogin}
                 >
                     {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
-                    <>
-                        <View marginX="16px" mt="32px" style={{ rowGap: 12 }}>
+                    <View mx="16px">
+                        <View mt="32px" style={{ rowGap: 12 }}>
                             <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
                                 onBlur={handleBlur("email")} visibleIcon={errors.email == undefined && touched.email as boolean}
                                 required isInvalid={errors.email != undefined && touched.email as boolean}
@@ -63,12 +114,12 @@ export default function LoginScreen(){
                         </View>
 
                         <Text fontWeight="bold" color="primary.500" alignSelf="flex-start"
-                        fontSize="15px" mt="20px" ml="16px"
+                        fontSize="15px" mt="20px"
                         onPress={handleForgotPassword}>{t("forogtPassword")}</Text>
 
-                        <Button onPress={() => handleSubmit()} mt="20px"
-                            alignSelf="center" width={maxWidth - 32} mx="16px" marginBottom="14px">{t("toLogin")}</Button>
-                    </>
+                        <Button onPress={() => handleSubmit()} mt="20px" loading={loading} title={t("toLogin")}
+                            mb="8px" />
+                    </View>
                 )}
                     
                 </Formik>

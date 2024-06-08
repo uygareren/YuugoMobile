@@ -3,7 +3,7 @@
     "ValidationErrors.email": "Geçerli e-posta giriniz",
     "ValidationErrors.password": "Şifrenizi giriniz",
     "ValidationErros.passwordMinLength": "Şifreniz en az 6 karakter olmalıdır",
-    
+
     "Login": {
         "hello": "Merhaba",
         "toLogin": "Giriş Yap",
@@ -12,7 +12,9 @@
         "forogtPassword": "Şifremi Unuttum?",
         "registerQuestion": "Hesap Oluşturmadınız mı? ",
         "register": "Kayıt Ol",
-        "title": "Giriş Yap"
+        "title": "Giriş Yap",
+        "unknownError": "Bilinmeyen Hata",
+        "loginError": "E-posta veya şifreniz yanlış"
     },
     "RegisterEmailScreen": {
         "email": "Mail",

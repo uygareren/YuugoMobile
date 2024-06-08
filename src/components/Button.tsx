@@ -8,17 +8,22 @@ interface ButtonCompProps {
     style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>;
     loading?: boolean;
-    title: string
+    title: string;
+    mt?: string;
+    mb?: string;
+    ml?: string;
+    mr?: string;
 }
 
 export const Button: React.FC<ButtonCompProps> = ({
-    onPress, style, textStyle={}, loading=false, title
+    onPress, style, textStyle={}, loading=false, title, mt="0px", mb="0px", ml="0px", mr="0px"
 }) => {
 
     const theme = useTheme();
 
     return(
-        <NButton style={style} backgroundColor="primary.500" onPress={onPress} isLoading={loading} _text={{style: textStyle}}>
+        <NButton mt={mt} mb={mb} ml={ml} mr={mr}
+        style={style} backgroundColor="primary.500" onPress={onPress} isLoading={loading} _text={{style: textStyle}}>
             {title}
         </NButton>
     )

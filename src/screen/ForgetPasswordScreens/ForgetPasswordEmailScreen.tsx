@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { useTheme } from "native-base";
 import { Dimensions, Text, View } from "react-native";
 import * as yup from "yup";
-import { ButtonComp } from "../../components/Button";
+import { Button } from "../../components/Button";
 import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
@@ -67,8 +67,8 @@ export default function ForgetPasswordEmailScreen(){
                     errorMessage={errors.email} />
 
                     
-                    <ButtonComp onPress={handleSubmit} 
-                    containerStyle={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
+                    <Button onPress={handleSubmit} title="Devam Et"
+                    style={{marginTop:32, paddingVertical:16, alignItems:"center", justifyContent:"center",
                     borderRadius:BUTTON_RADIUS, backgroundColor:"blue"}}
                     textStyle={{color:theme.colors.white, fontWeight:"600", fontSize:16}}
                     loading={false}/>
