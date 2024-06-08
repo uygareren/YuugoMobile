@@ -14,16 +14,12 @@ type RegisterConfirmCodeScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
     "RegisterConfirmCode"
 >
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'RegisterConfirmCode'>;
-
-const schema = yup.object({
-    code: yup.string().required("sdasdasd  ascasda")
-}).required();
+type RegisterConfirmCodeScreenRouteProp = RouteProp<RootStackParamList, 'RegisterConfirmCode'>;
 
 export default function RegisterConfirmCodeScreen(){
 
     const navigation = useNavigation<RegisterConfirmCodeScreenNavigationProp>();
-    const route = useRoute<ProfileScreenRouteProp>();
+    const route = useRoute<RegisterConfirmCodeScreenRouteProp>();
     const activationToken = route.params.activationToken;
     
     const { t } = useI18n("RegisterConfirmCodeScreen");
@@ -90,10 +86,10 @@ export default function RegisterConfirmCodeScreen(){
                     ],
                     index: 0
                 })
-            )
+            );
         } catch (error: any) {
             setLoading(false);
-            console.log("Error", error.response.status);
+            
             const errorCode = error.response.data.errorCode as ResponseError;
             if(errorCode == ResponseError.ACTIVATION_CODE_BANNED) {
                 toast.show({
@@ -112,7 +108,7 @@ export default function RegisterConfirmCodeScreen(){
     }
 
     function handleConfirmCode() {
-        
+
     }
 
     return(

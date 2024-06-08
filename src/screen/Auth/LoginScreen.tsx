@@ -45,6 +45,7 @@ export default function LoginScreen(){
 
             if(data.userInfo) {
                 dispatch(accountSliceActions.setAccount(data));
+                setLoading(false)
                 /*
                 navigation.dispatch(
                     CommonActions.reset({
@@ -56,6 +57,7 @@ export default function LoginScreen(){
                 );
                 */
             } else {
+                setLoading(false)
                 /*
                 navigation.dispatch(
                     CommonActions.reset({
