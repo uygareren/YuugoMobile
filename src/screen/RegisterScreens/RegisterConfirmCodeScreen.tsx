@@ -2,12 +2,14 @@ import { CommonActions, useNavigation, useRoute, type RouteProp } from "@react-n
 import { type NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Text, View, useTheme, useToast } from "native-base";
 import { useEffect, useRef, useState } from "react";
-import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
+import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import api, { ResponseError } from "../../api/api";
 import { Button } from "../../components/Button";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
+import TitleText from "../../components/TitleText";
+import { BackIcon } from "../../components/BackIcon";
 
 type RegisterConfirmCodeScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -19,7 +21,7 @@ export default function RegisterConfirmCodeScreen(){
 
     const navigation = useNavigation<RegisterConfirmCodeScreenNavigationProp>();
     const route = useRoute<RegisterConfirmCodeScreenRouteProp>();
-    const activationToken = route.params.activationToken;
+    const activationToken = route.params?.activationToken;
     
     const { t } = useI18n("RegisterConfirmCodeScreen");
     const theme = useTheme();
@@ -56,7 +58,7 @@ export default function RegisterConfirmCodeScreen(){
 
     const backgroundTimestampRef = useRef(Date.now());
     
-    const CELL_COUNT = 6;
+    const CELL_COUNT = 5;
     const [value, setValue] = useState('');
     const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
@@ -107,20 +109,25 @@ export default function RegisterConfirmCodeScreen(){
     }
 
     function handleConfirmCode() {
-        navigation.push("RegisterConfirmPassword", {jwt:"asdsa"})
+        navigation.push("RegisterConfirmPassword", { jwt:"asdsa" })
 
     }
 
     return(
-        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1, alignItems:"center", justifyContent:"center"}}>
-            <View mt="28px" mx="16px">
+        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
+            <View mx="16px">
+                <BackIcon box={{ mt: "16px" }} />
+                <TitleText alignSelf="center">{t("title")}</TitleText>
+                <Text color="gray.400" fontWeight="semibold" mt="8px">{t("codeConfirmSubText")}</Text>
+            </View>
+
+            <View mt="20px" mx="16px">
                 <CodeField
                     ref={ref}
                     {...props}
                     value={value}
                     onChangeText={setValue}
                     cellCount={CELL_COUNT}
-                    rootStyle={{ width: "100%", alignItems: "center" }}
                     keyboardType="number-pad"
                     textContentType="oneTimeCode"
                     autoComplete={Platform.select({ android: 'sms-otp', default: 'one-time-code' }) as any}
@@ -128,40 +135,27 @@ export default function RegisterConfirmCodeScreen(){
                     renderCell={({ index, symbol, isFocused }) => (
                         <Text
                             key={index}
-                            style={[styles.cell, isFocused && styles.focusCell]}
+                            style={[
+                                styles.cell,
+                                isFocused && {...styles.focusCell, borderColor: theme.colors.primary[500]},
+                                symbol ? {borderColor: theme.colors.primary[500]} : null,
+                            ]}
                             onLayout={getCellOnLayoutHandler(index)}>
                             {symbol || (isFocused ? <Cursor /> : null)}
                         </Text>
                     )}
                 />
-
-                <Text fontSize={16} color="darkText" fontWeight="300" mt="16px">{t("codeConfirmSubText")}</Text>
-
-                <View flexDir="row" justifyContent="flex-end" mt="20px">
-                    <Button title="Tekrar Kod Gönder" onPress={handleConfirmCode} />
+                <View mt="8px">
+                    <Text fontSize="13px">{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
+                        fontSize="15px" mr="16px" onPress={handleTryAgain}>{t("resend")}
+                        </Text>
+                    </Text>
                 </View>
 
-                <Button title="Devam Et" onPress={handleConfirmCode} loading={loading} mt="24px" />
+                <Button title={t("btnText")} onPress={handleConfirmCode} loading={loading} mt="24px" />
                 
             </View>
             
-            <View style={{ marginTop: 15, flexDirection: "row", alignItems: "center", borderWidth: 0, justifyContent: "flex-end" }}>
-                </View>
-
-
-                    <View style={{ marginTop: 25 }}>
-                    {counter > 0 ? (
-                        <Text style={styles.timerText}>{counter} saniye</Text>
-                    ) : (
-                        <TouchableOpacity onPress={handleTryAgain}
-                            style={{
-                                alignSelf: 'center', borderWidth: 1.5, borderColor: "black",
-                                paddingVertical: 6, paddingHorizontal: 16, borderRadius: 5,
-                            }}>
-                            <Text style={styles.tryAgainText}>Tekrar Dene</Text>
-                        </TouchableOpacity>
-                    )}
-                </View>
         </SafeAreaView>
     )
 }
@@ -178,8 +172,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: "white",
         borderWidth:1,
-        color: "gray",
-        fontWeight: "700",
+        color: "#585858",
+        fontWeight: "600",
     },
     focusCell: {
         backgroundColor: "white",

@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonCompProps> = ({
     const theme = useTheme();
 
     return(
-        <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"20px"} borderRadius={BUTTON_BORDER_RADIUS}
+        <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"20px"} borderRadius={BUTTON_BORDER_RADIUS} disabled={!isActive}
         style={style} backgroundColor={isActive ? "#db37ce" : LIGHT_GRAY }  onPress={onPress} isLoading={loading} _text={{style: textStyle}}>
             {title}
         </NButton>
