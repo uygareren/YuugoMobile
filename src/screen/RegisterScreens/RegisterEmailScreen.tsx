@@ -12,6 +12,7 @@ import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
+import TitleText from "../../components/TitleText";
 
 type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -83,8 +84,9 @@ export default function RegisterEmailScreen(){
 
             
             <View mt="16px" ml="16px">
-                <BackIcon title="Email Doğrula" />
-                <Text mt="16px" maxWidth="85%" fontSize="15px" fontWeight="300" >{t("emailConfirmSubText")}</Text>
+                <BackIcon />
+                <TitleText mt="8px">Kaydol</TitleText>
+                <Text color="gray.400" fontWeight="semibold" mt="8px">{t("emailConfirmSubText")}</Text>
             </View>
 
             <Formik initialValues={{
@@ -95,7 +97,7 @@ export default function RegisterEmailScreen(){
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit}) => (
                     console.log("error", errors),
-                    <View mt="32px" mx="16px">
+                    <View mt="20px" mx="16px">
                         <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
                         onBlur={handleBlur("email")}
                         required isInvalid={errors.email != undefined && touched.email as boolean}
@@ -104,7 +106,6 @@ export default function RegisterEmailScreen(){
                         <Button onPress={handleSubmit}
                             mt="20px" title="Devam Et"
                             loading={loading}/>
-                        
 
                     </View>
                 )}

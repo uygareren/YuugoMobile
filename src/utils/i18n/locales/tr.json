@@ -38,7 +38,7 @@
     },
     "RegisterConfirmPasswordScreen":{
         "passwordConfirm":"Parolayı Belirle",
-        "passwordConfirmSubText":"Kod Başarılı! Şimdi Giriş Parolanı Belirle!",
+        "passwordConfirmSubText":"Girdiğiniz kod başarılı! Hesabınız başarılı şekilde oluşturuldu. Lütfen giriş parolanızı belirleyiniz!",
         "password": "Şifreyi Belirle",
         "password2": "Şifreni Onayla"   
     },

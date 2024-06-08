@@ -12,7 +12,7 @@ import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import { setSecureStoreToken } from "../../utils/AsyncStorage";
 import i18n from "../../utils/i18n/i18n";
-
+import TitleText from "../../components/TitleText";
 
 type RegisterConfirmPasswordScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -37,7 +37,7 @@ export default function RegisterConfirmPasswordScreen(){
     const { t } = useI18n("RegisterConfirmPasswordScreen");
     const navigation = useNavigation<RegisterConfirmPasswordScreenNavigationProp>();
     const route = useRoute<RegisterConfirmPasswordScreenRouteProp>();
-    const jwt = route.params.jwt;
+    const jwt = route.params?.jwt;
     const toast = useToast();
     const theme = useTheme();
 
@@ -78,11 +78,9 @@ export default function RegisterConfirmPasswordScreen(){
     return(
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
             <View ml="16px" mt="16px">
-                <Text fontWeight="medium" fontSize="18px">{t("passwordConfirm")}</Text>
-
-                <Text mt="8px" fontSize="16px" fontWeight="300" color="darkText" >{t("passwordConfirmSubText")}</Text>
+                <TitleText>{t("passwordConfirm")}</TitleText>
+                <Text color="gray.400" fontWeight="semibold" mt="8px">{t("passwordConfirmSubText")}</Text>
             </View>
-
 
             <Formik initialValues={{
                 password1: "",

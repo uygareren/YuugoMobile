@@ -118,7 +118,7 @@ export default function RegisterConfirmCodeScreen(){
             <View mx="16px">
                 <BackIcon box={{ mt: "16px" }} />
                 <TitleText alignSelf="center">{t("title")}</TitleText>
-                <Text color="gray.400" fontWeight="semibold" mt="16px">{t("codeConfirmSubText")}</Text>
+                <Text color="gray.400" fontWeight="semibold" mt="8px">{t("codeConfirmSubText")}</Text>
             </View>
 
             <View mt="20px" mx="16px">
