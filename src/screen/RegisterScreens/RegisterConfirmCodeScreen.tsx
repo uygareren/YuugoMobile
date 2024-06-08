@@ -1,14 +1,13 @@
-import { type RouteProp, useNavigation, useRoute, CommonActions } from "@react-navigation/native";
+import { CommonActions, useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { type NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useTheme, View, Text, useToast } from "native-base";
+import { Text, View, useTheme, useToast } from "native-base";
 import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
-import * as yup from "yup";
+import api, { ResponseError } from "../../api/api";
 import { Button } from "../../components/Button";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import api, { ResponseError } from "../../api/api";
 
 type RegisterConfirmCodeScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -108,11 +107,12 @@ export default function RegisterConfirmCodeScreen(){
     }
 
     function handleConfirmCode() {
+        navigation.push("RegisterConfirmPassword", {jwt:"asdsa"})
 
     }
 
     return(
-        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
+        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1, alignItems:"center", justifyContent:"center"}}>
             <View mt="28px" mx="16px">
                 <CodeField
                     ref={ref}
@@ -141,7 +141,7 @@ export default function RegisterConfirmCodeScreen(){
                     <Button title="Tekrar Kod Gönder" onPress={handleConfirmCode} />
                 </View>
 
-                <Button title="Devam Et" onPress={handleSubmit} loading={loading} mt="24px" />
+                <Button title="Devam Et" onPress={handleConfirmCode} loading={loading} mt="24px" />
                 
             </View>
             

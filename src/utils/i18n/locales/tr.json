@@ -1,8 +1,14 @@
 {
-    "ValidationErrors.required": "Boş bırakmayınız",
-    "ValidationErrors.email": "Geçerli e-posta giriniz",
-    "ValidationErrors.password": "Şifrenizi giriniz",
-    "ValidationErros.passwordMinLength": "Şifreniz en az 6 karakter olmalıdır",
+    "ValidationErrors.required": "E-postanızı boş bırakmayınız!",
+    "ValidationErrors.email": "Geçerli e-posta giriniz!",
+    "ValidationErrors.password": "Şifrenizi giriniz!",
+    "ValidationErrors.passwordRequired": "E-postanızı boş bırakmayınız!",
+    "ValidationErros.passwordMinLength": "Şifreniz en az 6 karakter olmalıdır!",
+    "ValidationErrors.passwordUpperCase": "Parolanızda en az bir büyük harf olmalıdır!",
+    "ValidationErrors.passwordLowerCase": "Parolanızda en az bir küçük harf olmalıdır!",
+    "ValidationErrors.passwordNumber": "Parolanızda en az bir sayı olmalıdır!",
+    "ValidationErrors.passwordSpecialChar": "Parolanızda en az bir noktalama işareti olmalıdır!",
+    "ValidationErrors.passwordMatch": "Parolalar eşleşmiyor!",
 
     "Login": {
         "hello": "Merhaba",

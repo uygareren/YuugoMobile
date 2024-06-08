@@ -4,8 +4,8 @@ import { Formik } from "formik";
 import { useTheme } from "native-base";
 import { Dimensions, Text, View } from "react-native";
 import * as yup from "yup";
-import { Button } from "../../components/Button";
 import { BackIcon } from "../../components/BackIcon";
+import { Button } from "../../components/Button";
 import PasswordInput from "../../components/input/PasswordInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
@@ -18,9 +18,18 @@ type ForgetPasswordConfirmPasswordNavigationProp = NativeStackNavigationProp<
 >
 
 const schema = yup.object({
-    password1: yup.string().required(i18n.t(["translation", "ValidationErrors", "required"])),
-    password2: yup.string().required(i18n.t(["translation", "ValidationErrors", "required"])),
+    password1: yup.string()
+        .required(i18n.t("ValidationErrors.passwordRequired"))
+        .min(6, i18n.t("ValidationErrors.passwordMinLength"))
+        .matches(/[A-Z]/, i18n.t("ValidationErrors.passwordUpperCase"))
+        .matches(/[a-z]/, i18n.t("ValidationErrors.passwordLowerCase"))
+        .matches(/[0-9]/, i18n.t("ValidationErrors.passwordNumber"))
+        .matches(/[\W_]/, i18n.t("ValidationErrors.passwordSpecialChar")),
+    password2: yup.string()
+        .required(i18n.t("ValidationErrors.passwordRequired"))
+        .oneOf([yup.ref('password1')], i18n.t("ValidationErrors.passwordMatch"))
 }).required();
+
 
 export default function ForgetPasswordConfirmPassword(){
 

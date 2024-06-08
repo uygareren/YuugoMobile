@@ -1,17 +1,17 @@
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
-import { useTheme, View, Text, useToast } from "native-base";
+import { Text, View, useTheme, useToast } from "native-base";
+import { useState } from "react";
 import { SafeAreaView } from "react-native";
 import * as yup from "yup";
+import api, { ResponseError } from "../../api/api";
+import { BackIcon } from "../../components/BackIcon";
 import { Button } from "../../components/Button";
 import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
-import { BackIcon } from "../../components/BackIcon";
-import api, { ResponseError } from "../../api/api";
-import { useState } from "react";
 
 type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -19,7 +19,13 @@ type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
 >
 
 const schema = yup.object({
-    email: yup.string().required(i18n.t("ValidationErrors.required")).email(i18n.t("ValidationErrors.email")),
+    email: yup.string()
+        .required(i18n.t("ValidationErrors.required"))
+        .email(i18n.t("ValidationErrors.email"))
+        .matches(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            i18n.t("ValidationErrors.email")
+        ),
 }).required();
 
 export default function RegisterEmailScreen(){
@@ -68,6 +74,10 @@ export default function RegisterEmailScreen(){
         }
     }
 
+    function handleGoCodePage(){
+        navigation.push("RegisterConfirmCode", {activationToken:"45"});
+    }
+
     return(
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1}}>
 
@@ -81,7 +91,7 @@ export default function RegisterEmailScreen(){
                 email:"ertugruldirik35@gmail.com"
             }}
             validationSchema={schema}
-            onSubmit={handleConfirmEmail}
+            onSubmit={handleGoCodePage}
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit}) => (
                     console.log("error", errors),

@@ -16,8 +16,15 @@ type ForgetPasswordEmailScreenNavigationProp = NativeStackNavigationProp<
 >
 
 const schema = yup.object({
-    email: yup.string().required(i18n.t(["translation", "ValidationErrors", "required"])).email(i18n.t("ValidationErrors.email")),
+    email: yup.string()
+        .required(i18n.t("ValidationErrors.required"))
+        .email(i18n.t("ValidationErrors.email"))
+        .matches(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            i18n.t("ValidationErrors.email")
+        ),
 }).required();
+
 
 export default function ForgetPasswordEmailScreen(){
 

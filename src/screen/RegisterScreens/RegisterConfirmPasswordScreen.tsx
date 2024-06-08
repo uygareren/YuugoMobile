@@ -1,17 +1,17 @@
-import { CommonActions, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
-import { useTheme, Text, View, useToast } from "native-base";
+import { Text, View, useTheme, useToast } from "native-base";
+import { useState } from "react";
 import { SafeAreaView } from "react-native";
 import * as yup from "yup";
+import api from "../../api/api";
 import { Button } from "../../components/Button";
 import PasswordInput from "../../components/input/PasswordInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import i18n from "../../utils/i18n/i18n";
-import api from "../../api/api";
-import { useState } from "react";
 import { setSecureStoreToken } from "../../utils/AsyncStorage";
+import i18n from "../../utils/i18n/i18n";
 
 
 type RegisterConfirmPasswordScreenNavigationProp = NativeStackNavigationProp<
@@ -21,10 +21,17 @@ type RegisterConfirmPasswordScreenNavigationProp = NativeStackNavigationProp<
 type RegisterConfirmPasswordScreenRouteProp = RouteProp<RootStackParamList, 'RegisterConfirmPassword'>;
 
 const schema = yup.object({
-    password1: yup.string().required(i18n.t("ValidationErrors.required")).min(6, i18n.t("ValidationErros.passwordMinLength")),
-    password2: yup.string().required(i18n.t("ValidationErrors.required")),
+    password1: yup.string()
+        .required(i18n.t("ValidationErrors.passwordRequired"))
+        .min(6, i18n.t("ValidationErrors.passwordMinLength"))
+        .matches(/[A-Z]/, i18n.t("ValidationErrors.passwordUpperCase"))
+        .matches(/[a-z]/, i18n.t("ValidationErrors.passwordLowerCase"))
+        .matches(/[0-9]/, i18n.t("ValidationErrors.passwordNumber"))
+        .matches(/[\W_]/, i18n.t("ValidationErrors.passwordSpecialChar")),
+    password2: yup.string()
+        .required(i18n.t("ValidationErrors.passwordRequired"))
+        .oneOf([yup.ref('password1')], i18n.t("ValidationErrors.passwordMatch"))
 }).required();
-
 
 export default function RegisterConfirmPasswordScreen(){
     const { t } = useI18n("RegisterConfirmPasswordScreen");
