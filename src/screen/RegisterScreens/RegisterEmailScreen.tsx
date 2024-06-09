@@ -13,7 +13,8 @@ import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
-import { MARGIN_HORİZONTAL, TITLE_COLOR } from "../../utils/utils";
+import { MARGIN_HORİZONTAL } from "../../utils/utils";
+import TitleText from "../../components/TitleText";
 
 type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -85,11 +86,10 @@ export default function RegisterEmailScreen(){
 
     return(
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1, paddingHorizontal:MARGIN_HORİZONTAL}}>
-
             
-            <View mt="16px">
+            <View mt="16px" mx="16px">
                 <BackIcon />
-                <Text mt="16px" maxWidth="85%" fontSize="24px" fontWeight="900" color={TITLE_COLOR} >{t("emailConfirmSubText")}</Text>
+                <TitleText mt="16px" >{t("emailConfirmSubText")}</TitleText>
             </View>
 
             <Formik initialValues={{
@@ -99,7 +99,7 @@ export default function RegisterEmailScreen(){
             onSubmit={handleGoCodePage} // Change this to handleConfirmEmail
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
-                    <View mt="32px" >
+                    <View mt="32px" mx="16px" >
                         <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
                         onBlur={handleBlur("email")}
                         required isInvalid={errors.email != undefined && touched.email as boolean}
@@ -112,25 +112,16 @@ export default function RegisterEmailScreen(){
                                 value={checkBox} 
                                 onValueChange={setCheckBox} 
                             />
-                            <View flexDirection={"row"} flexWrap={"wrap"} marginLeft={0}>
-                                <Text style={{ color: TITLE_COLOR, fontWeight: "700" }}>
-                                    {t("checkBoxMessage1")}
-                                </Text>
-                                <Text style={{ color: TITLE_COLOR, fontWeight: "500" }}>
-                                    {t("checkBoxMessage2")}
-                                </Text>
-                                <Text style={{ color: TITLE_COLOR, fontWeight: "700", marginLeft:3 }}>
-                                    {t("checkBoxMessage3")}
-                                </Text>
-                                <Text style={{ color: TITLE_COLOR, fontWeight: "500" }}>
-                                    {t("checkBoxMessage4")}
+                            <View width="95%" marginLeft="8px">
+                                <Text>{t("checkBoxMessage")}
+                                    <Text color="primary.600" fontWeight="700">{t("checkBoxMessagePrivacy")}</Text>
+                                    {t("checkBoxMessageEnd")}
                                 </Text>
                             </View>
                         </View>
                         
                         <Button onPress={handleSubmit}
                             isActive={isValid && checkBox}
-                            textStyle={{fontSize:20, fontWeight:"800"}}
                             mt="20px" title={t("continue")}
                             loading={loading}/>
                     </View>

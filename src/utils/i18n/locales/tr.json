@@ -16,8 +16,8 @@
         "email": "E-Posta",
         "password": "Şifre",
         "forogtPassword": "Şifremi Unuttum?",
-        "registerQuestion": "Hesap Oluşturmadınız mı? ",
-        "register": "Kayıt Ol",
+        "registerQuestion": "Hesap oluşturmadınız mı? ",
+        "register": "Kayıt ol",
         "title": "Giriş Yap",
         "unknownError": "Bilinmeyen Hata",
         "loginError": "E-posta veya şifreniz yanlış"
@@ -26,10 +26,9 @@
         "email": "Mail",
         "emailConfirm":"Email Doğrula",
         "emailConfirmSubText" :"Email adresini gir!",
-        "checkBoxMessage1":"Yuugo",
-        "checkBoxMessage2":"'ya kaydolarak,",
-        "checkBoxMessage3":"Şartlar ve Gizlilik Politikamızı",
-        "checkBoxMessage4":"kabul etmiş olursunuz.",
+        "checkBoxMessage": "Yuugo'ya kaydolarak, ",
+        "checkBoxMessagePrivacy":"Şartlar ve Gizlilik Politikamızı",
+        "checkBoxMessageEnd":" kabul etmiş olursunuz.",
         "continue":"DEVAM ET"
 
 

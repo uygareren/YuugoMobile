@@ -119,7 +119,7 @@ export default function RegisterConfirmCodeScreen(){
             <View mx="16px">
                 <BackIcon box={{ mt: "16px" }} />
                 <TitleText fontSize="24px" fontWeight="900" mt={"16px"}>{t("title")}</TitleText>
-                <Text color="gray.400" fontWeight="bold" mt="8px" fontSize={"16px"}>{t("codeConfirmSubText")}</Text>
+                <Text color="gray.400" fontWeight="semibold" mt="8px" fontSize={"14.5px"}>{t("codeConfirmSubText")}</Text>
             </View>
 
             <View mt="20px" mx="16px">
@@ -147,14 +147,13 @@ export default function RegisterConfirmCodeScreen(){
                     )}
                 />
                 <View mt="16px">
-                    <Text fontSize="12px" fontWeight={"bold"}>{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
-                        fontSize="15px" mr="16px" onPress={handleTryAgain}>{t("resend")}
+                    <Text fontSize="13px" fontWeight={"bold"}>{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
+                        fontSize="14px" mr="16px" onPress={handleTryAgain}>{t("resend")}
                         </Text>
                     </Text>
                 </View>
 
                 <Button title={t("btnText")} isActive={value.length == 6} 
-                textStyle={{fontSize:20, fontWeight:"800"}}
                 onPress={handleConfirmCode} loading={loading} mt="32px" />
                 
             </View>

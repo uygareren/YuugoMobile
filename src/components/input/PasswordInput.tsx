@@ -2,7 +2,6 @@ import { FormControl, Icon, Input, Pressable } from "native-base";
 import { useState } from "react";
 import { KeyboardTypeOptions, ViewStyle, type NativeSyntheticEvent, type TextInputFocusEventData } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { TITLE_COLOR } from "../../utils/utils";
 
 type TextInputProps = {
     label: string
@@ -29,13 +28,13 @@ export default function PasswordInput({
             {/* <FormControl.Label>
                 <Text>{label}</Text>
             </FormControl.Label> */}
-            <Input keyboardType={keyboardType} value={value} mt="8px" maxLength={maxLength}
-             borderColor={"#d6d6d6"} style={{backgroundColor:"#f5f5f5"}} fontSize={20} fontWeight={"bold"} color={TITLE_COLOR}
-             placeholderTextColor={"#a19f9f"} placeholder={placeholder} _focus={{borderColor:"#d6d6d6"}}
-            onChangeText={onChangeText} onBlur={onBlur} bgColor="#f5f5f5"
+            <Input keyboardType={keyboardType} value={value} borderWidth="2px" borderRadius="20px"
+            borderColor={"#d6d6d6"} style={{backgroundColor:"#f5f5f5"}} fontSize="15px" fontWeight={"bold"} color="titleText"
+            placeholderTextColor={"#a19f9f"} _focus={{borderColor:"#d6d6d6"}}
+            maxLength={maxLength} placeholder={placeholder} bgColor="#f5f5f5"
             type={show ? "text" : "password"} InputRightElement={<Pressable onPress={() => setShow(!show)}>
                 <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />}
-                size={8} mr="2" color="muted.400" />
+                size="24px" mr="2" color="muted.400" />
             </Pressable>} 
             />
             <FormControl.ErrorMessage>

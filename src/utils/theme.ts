@@ -23,7 +23,7 @@ const ThemeData: ThemeUtil = {
                     ...props,
                     borderRadius: "10px",
                     _text: {
-                        fontWeight: "600"
+                        fontWeight: "600",
                     }
                 }
             },
@@ -48,7 +48,7 @@ const ThemeData: ThemeUtil = {
                     borderColor: "#D1D1D1",
                     borderRadius: "10px",
                     py: "13px",
-                    px: "10px",
+                    px: "12px",
                     placeholderTextColor: "#0C101590"
                     
                 }
@@ -156,8 +156,9 @@ const ThemeData: ThemeUtil = {
             "900": "#451575"
         },
         black: "#000",
-        lightText: "#111",
+        lightText: "#858383",
         darkText: "#131313",
+        titleText: "#403f3f",
     }
 }
 

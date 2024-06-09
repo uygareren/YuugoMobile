@@ -78,10 +78,10 @@ export default function RegisterConfirmPasswordScreen(){
 
     return(
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
-            <View ml="16px" mt="16px">
+            <View mx="16px" mt="16px">
                 <BackIcon box={{ mt: "16px" }} />
                 <TitleText fontSize="24px" fontWeight="900" mt={"16px"}>{t("passwordConfirm")}</TitleText>
-                <Text color="gray.400" fontWeight="bold" mt="8px" fontSize={"16px"}>{t("passwordConfirmSubText")}</Text>
+                <Text color="gray.400" fontWeight="semibold" mt="8px" fontSize={"14.5px"}>{t("passwordConfirmSubText")}</Text>
             </View>
 
             <Formik initialValues={{
@@ -104,7 +104,6 @@ export default function RegisterConfirmPasswordScreen(){
                             errorMessage={errors.password2} />
 
                         <Button onPress={handleSubmit} mt="32px" isActive={!!values.password1 && !!values.password2 && isValid}
-                        textStyle={{fontSize:20, fontWeight:"800"}}
                         title={t("continue")} loading={loading} />
 
                     </View>

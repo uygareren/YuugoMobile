@@ -10,7 +10,7 @@ import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
-import { MARGIN_HORİZONTAL, TITLE_COLOR } from "../../utils/utils";
+import { MARGIN_HORİZONTAL } from "../../utils/utils";
 
 type ForgetPasswordEmailScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList, "ForgetPasswordEmail"
@@ -43,7 +43,7 @@ export default function ForgetPasswordEmailScreen(){
 
             <View mt="16px">
                 <BackIcon />
-                <Text mt="16px" maxWidth="85%" fontSize="24px" fontWeight="900" color={TITLE_COLOR} >{t("emailConfirm")}</Text>
+                <Text mt="16px" maxWidth="85%" fontSize="24px" fontWeight="900" color="titleText" >{t("emailConfirm")}</Text>
             </View>
 
 

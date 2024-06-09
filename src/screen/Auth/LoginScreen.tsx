@@ -15,6 +15,7 @@ import { accountSliceActions } from "../../store/slices/accountSlice";
 import { type RootStackParamList } from "../../types/react-navigation";
 import { setSecureStoreToken } from "../../utils/AsyncStorage";
 import i18n from "../../utils/i18n/i18n";
+import TitleText from "../../components/TitleText";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -98,7 +99,7 @@ export default function LoginScreen(){
 
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
-            <Text pt="16px" fontSize="24px" pl="16px" fontWeight="medium" color="darkText">{t("title")}</Text>
+            <TitleText ml="16px" mt="16px">{t("title")}</TitleText>
                 <Formik initialValues={{
                 email: "ertugruldirik35@gmail.com",
                 password: "Asd123."
@@ -107,14 +108,14 @@ export default function LoginScreen(){
                 onSubmit={handleLogin}
                 >
                     {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
-                    <View mx="16px">
-                        <View mt="32px" style={{ rowGap: 12 }}>
+                    <View mx="16px" mt="28px">
+                        <View style={{ rowGap: 12 }}>
                             <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
                                 onBlur={handleBlur("email")} visibleIcon={errors.email == undefined && touched.email as boolean}
                                 required isInvalid={errors.email != undefined && touched.email as boolean}
-                                errorMessage={errors.email} />
+                                errorMessage={errors.email} placeholder={t("email")} />
                             <PasswordInput label={t("password")} value={values.password} onChangeText={handleChange("password")}
-                                onBlur={handleBlur("password")} placeholder="E-posta"
+                                onBlur={handleBlur("password")} placeholder={t("password")}
                                 required isInvalid={errors.password != undefined && touched.password as boolean}
                                 errorMessage={errors.password} />
                         </View>
@@ -123,9 +124,8 @@ export default function LoginScreen(){
                         fontSize="15px" mt="20px"
                         onPress={handleForgotPassword}>{t("forogtPassword")}</Text>
 
-                        <Button onPress={() => handleSubmit()} isActive={true} mt="20px" textStyle={{fontSize:20, fontWeight:"800"}}
-                         loading={loading} title={t("toLogin")} 
-                            mb="8px" />
+                        <Button onPress={() => handleSubmit()} isActive={true} mt="20px"
+                        loading={loading} title={t("toLogin")} mb="8px" />
                     </View>
                 )}
                     
