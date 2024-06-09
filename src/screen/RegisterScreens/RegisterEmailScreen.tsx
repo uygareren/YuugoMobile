@@ -86,7 +86,6 @@ export default function RegisterEmailScreen(){
 
     return(
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1, paddingHorizontal:MARGIN_HORİZONTAL}}>
-            
             <View mt="16px" mx="16px">
                 <BackIcon />
                 <TitleText mt="16px" >{t("emailConfirmSubText")}</TitleText>

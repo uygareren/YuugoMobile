@@ -45,10 +45,10 @@ export default function ForgetPasswordConfirmPassword(){
     return(
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1, paddingHorizontal:MARGIN_HORİZONTAL }}>
 
-            <View mt="16px">
+            <View mt="16px" mx="16px">
                 <BackIcon box={{ mt: "16px" }} />
                 <TitleText fontSize="24px" fontWeight="900" mt={"16px"}>{t("passwordConfirm")}</TitleText>
-                <Text color="gray.400" fontWeight="bold" mt="8px" fontSize={"16px"}>{t("passwordConfirmSubText")}</Text>
+                <Text color="gray.400" fontWeight="semibold" mt="8px" fontSize={"14.5px"}>{t("passwordConfirmSubText")}</Text>
             </View>
 
             <Formik initialValues={{
@@ -59,29 +59,25 @@ export default function ForgetPasswordConfirmPassword(){
             onSubmit={handleConfirmPassword}
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit, isValid}) => (
-                    <>  
-                    <View style={{marginTop:45, flex:3}}>
-                    <PasswordInput label={t("password")} value={values.password1} onChangeText={handleChange("password")}
-                        onBlur={handleBlur("password1")} placeholder="Parola"
-                        required isInvalid={errors.password1 != undefined && touched.password1 as boolean}
-                        errorMessage={errors.password1} />
+                    
+                    <View style={{rowGap: 16}} mt="32px" mx="16px">
+                    <PasswordInput label={t("password")} value={values.password1} onChangeText={handleChange("password1")}
+                            onBlur={handleBlur("password1")} placeholder={t("password")}
+                            required isInvalid={errors.password1 != undefined && touched.password1 as boolean}
+                            errorMessage={errors.password1} />
 
-                    <PasswordInput style={{marginTop:24}} label={t("password2")} value={values.password2} onChangeText={handleChange("password")}
-                        onBlur={handleBlur("password2")} placeholder="Parola Doğrula"
-                        required isInvalid={errors.password2 != undefined && touched.password2 as boolean}
-                        errorMessage={errors.password2} />
+                        <PasswordInput label={t("password2")} value={values.password2} onChangeText={handleChange("password2")}
+                            onBlur={handleBlur("password2")} placeholder={t("password2")}
+                            required isInvalid={errors.password2 != undefined && touched.password2 as boolean}
+                            errorMessage={errors.password2} />
 
                         <Button onPress={handleSubmit} mt="32px" isActive={!!values.password1 && !!values.password2 && isValid}
-                        textStyle={{fontSize:20, fontWeight:"800"}}
                         title={t("continue")} loading={false} />
 
 
                     </View>
-                    </>
                 )}
-
             </Formik>
-
         </SafeAreaView>
     )
 

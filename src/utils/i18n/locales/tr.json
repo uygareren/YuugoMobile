@@ -30,8 +30,6 @@
         "checkBoxMessagePrivacy":"Şartlar ve Gizlilik Politikamızı",
         "checkBoxMessageEnd":" kabul etmiş olursunuz.",
         "continue":"DEVAM ET"
-
-
     },
     "RegisterConfirmCodeScreen":{
         "codeConfirm":"Kodu Doğrula",
@@ -44,8 +42,8 @@
     "RegisterConfirmPasswordScreen":{
         "passwordConfirm":"Parolayı Belirle",
         "passwordConfirmSubText":"Girdiğiniz kod başarılı! Hesabınız başarılı şekilde oluşturuldu. Lütfen giriş parolanızı belirleyiniz!",
-        "password": "Şifreyi Belirle",
-        "password2": "Şifreni Onayla",
+        "password": "Yeni Şifre",
+        "password2": "Şifre Doğrula",
         "continue":"DEVAM ET"
     },
     "ForgetPasswordEmailScreen": {
@@ -53,8 +51,6 @@
         "emailConfirm":"Şifremi Unuttum",
         "emailConfirmSubText" :"Şifreni yenilemek için email adresini gir!",
         "continue":"DEVAM ET"
-
-
     },
     "ForgetPasswordCodeScreen": {
         "email": "Mail",

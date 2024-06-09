@@ -1,37 +1,36 @@
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Text, View, useTheme } from "native-base";
+import { CommonActions, useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
+import { type NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Text, View, useTheme, useToast } from "native-base";
 import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet } from "react-native";
-import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from "react-native-confirmation-code-field";
+import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
+import api, { ResponseError } from "../../api/api";
 import { BackIcon } from "../../components/BackIcon";
 import { Button } from "../../components/Button";
 import TitleText from "../../components/TitleText";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import i18n from "../../utils/i18n/i18n";
-import { MARGIN_HORİZONTAL } from "../../utils/utils";
 
 type ForgetPasswordCodeScreenNavigationProp = NativeStackNavigationProp<
-    RootStackParamList, "ForgetPasswordCode"
+    RootStackParamList,
+    "ForgetPasswordCode"
 >
+type ForgetPasswordCodeScreenRouteProp = RouteProp<RootStackParamList, 'ForgetPasswordCode'>;
 
-export default function ForgetPasswordCodeScreen() {
-    const { t } = useI18n("ForgetPasswordCodeScreen");
+export default function ForgetPasswordCodeScreen(){
+
     const navigation = useNavigation<ForgetPasswordCodeScreenNavigationProp>();
+    const route = useRoute<ForgetPasswordCodeScreenRouteProp>();
+    const activationToken = route.params?.activationToken;
+    
+    const { t } = useI18n("ForgetPasswordCodeScreen");
     const theme = useTheme();
-    const { width } = Dimensions.get("screen");
+    const toast = useToast();
 
+    const [loading, setLoading] = useState(false);
     const [counter, setCounter] = useState(90);
     const counterRef = useRef(counter);
     counterRef.current = counter;
-
-    const [code, setCode] = useState('');
-    const [error, setError] = useState('');
-
-    const CELL_COUNT = 6;
-    const ref = useBlurOnFulfill({ value: code, cellCount: CELL_COUNT });
-    const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value: code, setValue: setCode });
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -47,50 +46,88 @@ export default function ForgetPasswordCodeScreen() {
         return () => appStateListener.remove();
     }, []);
 
-    const handleAppStateChange = (nextAppState: any) => {
+    const handleAppStateChange = (nextAppState:any) => {
         if (nextAppState === "active") {
             const now = Date.now();
             const elapsed = Math.floor((now - backgroundTimestampRef.current) / 1000);
-            setCounter((prevCounter: any) => Math.max(prevCounter - elapsed, 0));
+            setCounter((prevCounter) => Math.max(prevCounter - elapsed, 0));
         } else if (nextAppState === "background") {
             backgroundTimestampRef.current = Date.now();
         }
     };
 
     const backgroundTimestampRef = useRef(Date.now());
+    
+    const CELL_COUNT = 6;
+    const [value, setValue] = useState('');
+    const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
+    const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
 
     function handleTryAgain() {
         setCounter(90);
     }
 
-    function handleConfirmCode() {
-        if (code.length !== CELL_COUNT) {
-            setError(i18n.t(["translation", "ValidationErrors", "required"]));
-        } else {
-            setError('');
-            navigation.push("ForgetPasswordConfirmPassword");
-            console.log("Code entered:", code);
-            // Perform the confirm code action here
+    async function handleSubmit() {
+        try {
+            setLoading(true);
+            const resp = await api.post("/auth/verify/forgot_password", {
+                activationToken, accessCode: value
+            });
+
+            setLoading(false);
+            
+            navigation.dispatch(
+                CommonActions.reset({
+                    routes: [
+                        { 
+                            name: "RegisterConfirmPassword", params: {
+                                jwt: resp.data.data.jwt
+                            }
+                        }
+                    ],
+                    index: 0
+                })
+            );
+        } catch (error: any) {
+            setLoading(false);
+            
+            const errorCode = error.response.data.errorCode as ResponseError;
+            if(errorCode == ResponseError.ACTIVATION_CODE_BANNED) {
+                toast.show({
+                    title: t("loginError"),
+                });
+            } else if(errorCode == ResponseError.WRONG_CONFIRMATION_CODE) {
+                toast.show({
+                    title: t("loginError"),
+                });
+            } else {
+                toast.show({
+                    title: t("unknownError"),
+                });
+            }
         }
     }
 
-    return (
-        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1,paddingHorizontal:MARGIN_HORİZONTAL }}>
-           
-           <View>
+    function handleConfirmCode() {
+        console.log("debug")
+        navigation.push("RegisterConfirmPassword", { jwt:"asdsa" })
+    }
+
+    return(
+        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
+            <View mx="16px">
                 <BackIcon box={{ mt: "16px" }} />
                 <TitleText fontSize="24px" fontWeight="900" mt={"16px"}>{t("title")}</TitleText>
-                <Text color="gray.400" fontWeight="bold" mt="8px" fontSize={"16px"}>{t("codeConfirmSubText")}</Text>
+                <Text color="gray.400" fontWeight="semibold" mt="8px" fontSize={"14.5px"}>{t("codeConfirmSubText")}</Text>
             </View>
 
-            <View style={{ marginTop: 45 }}>
+            <View mt="20px" mx="16px">
                 <CodeField
                     ref={ref}
                     {...props}
-                    value={code}
-                    onChangeText={setCode}
+                    value={value}
+                    onChangeText={setValue}
                     cellCount={CELL_COUNT}
-                    rootStyle={{ width: "100%", alignItems: "center" }}
                     keyboardType="number-pad"
                     textContentType="oneTimeCode"
                     autoComplete={Platform.select({ android: 'sms-otp', default: 'one-time-code' }) as any}
@@ -98,30 +135,30 @@ export default function ForgetPasswordCodeScreen() {
                     renderCell={({ index, symbol, isFocused }) => (
                         <Text
                             key={index}
-                            style={[styles.cell, isFocused && styles.focusCell]}
+                            style={[
+                                styles.cell,
+                                isFocused && {...styles.focusCell, borderColor: theme.colors.primary[500]},
+                                symbol ? {borderColor: theme.colors.primary[500]} : null,
+                            ]}
                             onLayout={getCellOnLayoutHandler(index)}>
                             {symbol || (isFocused ? <Cursor /> : null)}
                         </Text>
                     )}
                 />
-                {error ? (
-                    <Text style={{ color: 'red', textAlign: 'center', marginTop: 10 }}>
-                        {error}
-                    </Text>
-                ) : null}
                 <View mt="16px">
-                    <Text fontSize="12px" fontWeight={"bold"}>{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
-                        fontSize="15px" mr="16px" onPress={handleTryAgain}>{t("resend")}
+                    <Text fontSize="13px" fontWeight={"bold"}>{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
+                        fontSize="14px" mr="16px" onPress={handleTryAgain}>{t("resend")}
                         </Text>
                     </Text>
                 </View>
-                <Button title={t("continue")} isActive={code.length == 6} 
-                textStyle={{fontSize:20, fontWeight:"800"}}
-                onPress={handleConfirmCode} loading={false} mt="32px" />
+
+                <Button title={t("continue")} isActive={value.length == 6} 
+                onPress={handleConfirmCode} loading={loading} mt="32px" />
                 
             </View>
+            
         </SafeAreaView>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -161,4 +198,3 @@ const styles = StyleSheet.create({
         fontWeight: "600",
     }
 });
-
