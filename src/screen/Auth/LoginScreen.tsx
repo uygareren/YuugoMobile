@@ -114,7 +114,7 @@ export default function LoginScreen(){
                                 onBlur={handleBlur("email")} visibleIcon={errors.email == undefined && touched.email as boolean}
                                 required isInvalid={errors.email != undefined && touched.email as boolean}
                                 errorMessage={errors.email} placeholder={t("email")} />
-                            <PasswordInput label={t("password")} value={values.password} onChangeText={handleChange("password")}
+                            <PasswordInput value={values.password} onChangeText={handleChange("password")}
                                 onBlur={handleBlur("password")} placeholder={t("password")}
                                 required isInvalid={errors.password != undefined && touched.password as boolean}
                                 errorMessage={errors.password} />
