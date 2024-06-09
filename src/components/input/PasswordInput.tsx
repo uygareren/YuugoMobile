@@ -4,7 +4,6 @@ import { KeyboardTypeOptions, ViewStyle, type NativeSyntheticEvent, type TextInp
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 type TextInputProps = {
-    label: string
     value: string
     placeholder:string,
     onChangeText: (e: string) => void
@@ -19,7 +18,7 @@ type TextInputProps = {
 }
 
 export default function PasswordInput({ 
-    label, value, onChangeText, style={}, placeholder, errorMessage="", required=false, isInvalid=false, onBlur, keyboardType, maxLength,
+    value, onChangeText, style={}, placeholder, errorMessage="", required=false, isInvalid=false, onBlur, keyboardType, maxLength,
 }: TextInputProps) {
     const [show, setShow] = useState(false);
 
@@ -32,6 +31,7 @@ export default function PasswordInput({
             borderColor={"#d6d6d6"} style={{backgroundColor:"#f5f5f5"}} fontSize="15px" fontWeight={"bold"} color="titleText"
             placeholderTextColor={"#a19f9f"} _focus={{borderColor:"#d6d6d6"}}
             maxLength={maxLength} placeholder={placeholder} bgColor="#f5f5f5"
+            onChangeText={onChangeText} onBlur={onBlur}
             type={show ? "text" : "password"} InputRightElement={<Pressable onPress={() => setShow(!show)}>
                 <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />}
                 size="24px" mr="2" color="muted.400" />

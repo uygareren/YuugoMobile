@@ -93,12 +93,12 @@ export default function RegisterConfirmPasswordScreen(){
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit, isValid}) => (
                     <View style={{rowGap: 16}} mt="32px" mx="16px">
-                        <PasswordInput label={t("password")} value={values.password1} onChangeText={handleChange("password1")}
+                        <PasswordInput value={values.password1} onChangeText={handleChange("password1")}
                             onBlur={handleBlur("password1")} placeholder="Parola"
                             required isInvalid={errors.password1 != undefined && touched.password1 as boolean}
                             errorMessage={errors.password1} />
 
-                        <PasswordInput label={t("password2")} value={values.password2} onChangeText={handleChange("password2")}
+                        <PasswordInput value={values.password2} onChangeText={handleChange("password2")}
                             onBlur={handleBlur("password2")} placeholder="Parola Doğrula"
                             required isInvalid={errors.password2 != undefined && touched.password2 as boolean}
                             errorMessage={errors.password2} />

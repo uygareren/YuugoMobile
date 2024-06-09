@@ -80,8 +80,8 @@ export default function ForgetPasswordCodeScreen(){
                 CommonActions.reset({
                     routes: [
                         { 
-                            name: "RegisterConfirmPassword", params: {
-                                jwt: resp.data.data.jwt
+                            name: "ForgetPasswordConfirmPassword", params: {
+                                activationToken
                             }
                         }
                     ],
@@ -106,11 +106,6 @@ export default function ForgetPasswordCodeScreen(){
                 });
             }
         }
-    }
-
-    function handleConfirmCode() {
-        console.log("debug")
-        navigation.push("RegisterConfirmPassword", { jwt:"asdsa" })
     }
 
     return(
@@ -153,8 +148,8 @@ export default function ForgetPasswordCodeScreen(){
                 </View>
 
                 <Button title={t("continue")} isActive={value.length == 6} 
-                onPress={handleConfirmCode} loading={loading} mt="32px" />
-                
+                onPress={handleSubmit} loading={loading} mt="32px" />
+
             </View>
             
         </SafeAreaView>

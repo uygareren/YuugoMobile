@@ -44,7 +44,8 @@
         "passwordConfirmSubText":"Girdiğiniz kod başarılı! Hesabınız başarılı şekilde oluşturuldu. Lütfen giriş parolanızı belirleyiniz!",
         "password": "Yeni Şifre",
         "password2": "Şifre Doğrula",
-        "continue":"DEVAM ET"
+        "continue":"DEVAM ET",
+        "success": "Şifreniz güncellendi"
     },
     "ForgetPasswordEmailScreen": {
         "email": "Mail",

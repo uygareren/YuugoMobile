@@ -15,7 +15,7 @@ import i18n from "../../utils/i18n/i18n";
 import { MARGIN_HORİZONTAL } from "../../utils/utils";
 import TitleText from "../../components/TitleText";
 
-type RegisterEmailScreenNavigationProp = NativeStackNavigationProp<
+type ForgetPasswordEmailScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
     "RegisterEmail"
 >
@@ -32,7 +32,7 @@ const schema = yup.object({
 
 export default function ForgetPasswordEmailScreen(){
     const { t } = useI18n("ForgetPasswordEmailScreen");
-    const navigation = useNavigation<RegisterEmailScreenNavigationProp>();
+    const navigation = useNavigation<ForgetPasswordEmailScreenNavigationProp>();
     const toast = useToast();
     const theme = useTheme();
 
@@ -41,7 +41,7 @@ export default function ForgetPasswordEmailScreen(){
     async function handleConfirmEmail(values: { email: string }) {
         setLoading(true);
         try {
-            const resp = await api.post("/auth/register/email", values);
+            const resp = await api.post("/auth/forgot-password", values);
             setLoading(false);
 
             navigation.dispatch(
@@ -90,7 +90,7 @@ export default function ForgetPasswordEmailScreen(){
             validationSchema={schema}
             onSubmit={handleConfirmEmail} // Change this to handleConfirmEmail
             >
-                {({errors, touched, values, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
+                {({errors, touched, values, handleChange, handleBlur, handleSubmit, isValid}) => (
                     <View mt="32px" mx="16px" >
                         <TextInput label={t("email")} value={values.email} onChangeText={handleChange("email")}
                         onBlur={handleBlur("email")}

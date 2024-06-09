@@ -12,5 +12,7 @@ export type RootStackParamList = {
     ForgetPasswordCode: {
         activationToken: string
     },
-    ForgetPasswordConfirmPassword: undefined
+    ForgetPasswordConfirmPassword: {
+        activationToken: string
+    }
 };
