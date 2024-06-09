@@ -38,6 +38,7 @@ export default function RegisterEmailScreen(){
 
     const [loading, setLoading] = useState(false);
     const [checkBox, setCheckBox] = useState(false);
+    console.log("checkBox", checkBox);
 
     async function handleConfirmEmail(values: { email: string }) {
         setLoading(true);
@@ -95,7 +96,7 @@ export default function RegisterEmailScreen(){
                 email:"ertugruldirik35@gmail.com"
             }}
             validationSchema={schema}
-            onSubmit={handleConfirmEmail} // Change this to handleConfirmEmail
+            onSubmit={handleGoCodePage} // Change this to handleConfirmEmail
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
                     <View mt="32px" >
@@ -128,7 +129,7 @@ export default function RegisterEmailScreen(){
                         </View>
                         
                         <Button onPress={handleSubmit}
-                            isActive={isValid && dirty && checkBox}
+                            isActive={isValid && checkBox}
                             textStyle={{fontSize:20, fontWeight:"800"}}
                             mt="20px" title={t("continue")}
                             loading={loading}/>

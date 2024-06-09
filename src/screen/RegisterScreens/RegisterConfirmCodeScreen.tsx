@@ -5,11 +5,11 @@ import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import api, { ResponseError } from "../../api/api";
+import { BackIcon } from "../../components/BackIcon";
 import { Button } from "../../components/Button";
+import TitleText from "../../components/TitleText";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import TitleText from "../../components/TitleText";
-import { BackIcon } from "../../components/BackIcon";
 
 type RegisterConfirmCodeScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -58,7 +58,7 @@ export default function RegisterConfirmCodeScreen(){
 
     const backgroundTimestampRef = useRef(Date.now());
     
-    const CELL_COUNT = 5;
+    const CELL_COUNT = 6;
     const [value, setValue] = useState('');
     const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
@@ -109,6 +109,7 @@ export default function RegisterConfirmCodeScreen(){
     }
 
     function handleConfirmCode() {
+        console.log("debug")
         navigation.push("RegisterConfirmPassword", { jwt:"asdsa" })
 
     }
@@ -117,8 +118,8 @@ export default function RegisterConfirmCodeScreen(){
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
             <View mx="16px">
                 <BackIcon box={{ mt: "16px" }} />
-                <TitleText alignSelf="center">{t("title")}</TitleText>
-                <Text color="gray.400" fontWeight="semibold" mt="8px">{t("codeConfirmSubText")}</Text>
+                <TitleText fontSize="24px" fontWeight="900" mt={"16px"}>{t("title")}</TitleText>
+                <Text color="gray.400" fontWeight="bold" mt="8px" fontSize={"16px"}>{t("codeConfirmSubText")}</Text>
             </View>
 
             <View mt="20px" mx="16px">
@@ -145,14 +146,16 @@ export default function RegisterConfirmCodeScreen(){
                         </Text>
                     )}
                 />
-                <View mt="8px">
-                    <Text fontSize="13px">{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
+                <View mt="16px">
+                    <Text fontSize="12px" fontWeight={"bold"}>{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
                         fontSize="15px" mr="16px" onPress={handleTryAgain}>{t("resend")}
                         </Text>
                     </Text>
                 </View>
 
-                <Button title={t("btnText")} onPress={handleConfirmCode} loading={loading} mt="24px" />
+                <Button title={t("btnText")} isActive={value.length == 6} 
+                textStyle={{fontSize:20, fontWeight:"800"}}
+                onPress={handleConfirmCode} loading={loading} mt="32px" />
                 
             </View>
             
@@ -166,19 +169,22 @@ const styles = StyleSheet.create({
         height: Dimensions.get("screen").width * 0.115,
         lineHeight: 38,
         fontSize: 24,
-        borderColor: 'gray',
+        borderWidth:3,
+        borderColor: "#d6d6d6",
         textAlign: 'center',
         margin: 5,
         borderRadius: 8,
         backgroundColor: "white",
-        borderWidth:1,
-        color: "#585858",
-        fontWeight: "600",
+        fontWeight: "700",
+        alignItems:"center",
+        justifyContent:"center"
     },
     focusCell: {
         backgroundColor: "white",
         color: "white",
         fontWeight: "700",
+        borderWidth:3,
+        borderColor:"#d6d6d6",
         fontSize: 24,
     },
     timerText: {

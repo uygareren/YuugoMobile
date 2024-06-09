@@ -1,20 +1,20 @@
-import { CommonActions, useNavigation } from "@react-navigation/native";
-import { SafeAreaView} from "react-native";
-import { type RootStackParamList } from "../../types/react-navigation";
+import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Text, View, useTheme, useToast } from "native-base";
-import { useI18n } from "../../hooks/useI18n";
-import TextInput from "../../components/input/TextInput";
 import { Formik } from "formik";
-import * as yup from "yup";
-import i18n from "../../utils/i18n/i18n";
-import { useDispatch } from "react-redux";
-import PasswordInput from "../../components/input/PasswordInput";
+import { Text, View, useTheme, useToast } from "native-base";
 import { useState } from "react";
+import { SafeAreaView } from "react-native";
+import { useDispatch } from "react-redux";
+import * as yup from "yup";
 import api, { ResponseError } from "../../api/api";
-import { accountSliceActions } from "../../store/slices/accountSlice";
-import { setSecureStoreToken } from "../../utils/AsyncStorage";
 import { Button } from "../../components/Button";
+import PasswordInput from "../../components/input/PasswordInput";
+import TextInput from "../../components/input/TextInput";
+import { useI18n } from "../../hooks/useI18n";
+import { accountSliceActions } from "../../store/slices/accountSlice";
+import { type RootStackParamList } from "../../types/react-navigation";
+import { setSecureStoreToken } from "../../utils/AsyncStorage";
+import i18n from "../../utils/i18n/i18n";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -114,7 +114,7 @@ export default function LoginScreen(){
                                 required isInvalid={errors.email != undefined && touched.email as boolean}
                                 errorMessage={errors.email} />
                             <PasswordInput label={t("password")} value={values.password} onChangeText={handleChange("password")}
-                                onBlur={handleBlur("password")}
+                                onBlur={handleBlur("password")} placeholder="E-posta"
                                 required isInvalid={errors.password != undefined && touched.password as boolean}
                                 errorMessage={errors.password} />
                         </View>
@@ -123,7 +123,8 @@ export default function LoginScreen(){
                         fontSize="15px" mt="20px"
                         onPress={handleForgotPassword}>{t("forogtPassword")}</Text>
 
-                        <Button onPress={() => handleSubmit()} mt="20px" loading={loading} title={t("toLogin")} 
+                        <Button onPress={() => handleSubmit()} isActive={true} mt="20px" textStyle={{fontSize:20, fontWeight:"800"}}
+                         loading={loading} title={t("toLogin")} 
                             mb="8px" />
                     </View>
                 )}

@@ -46,18 +46,25 @@
         "passwordConfirm":"Parolayı Belirle",
         "passwordConfirmSubText":"Girdiğiniz kod başarılı! Hesabınız başarılı şekilde oluşturuldu. Lütfen giriş parolanızı belirleyiniz!",
         "password": "Şifreyi Belirle",
-        "password2": "Şifreni Onayla"   
+        "password2": "Şifreni Onayla",
+        "continue":"DEVAM ET"
     },
     "ForgetPasswordEmailScreen": {
         "email": "Mail",
         "emailConfirm":"Şifremi Unuttum",
-        "emailConfirmSubText" :"Şifreni yenilemek için email adresini gir!"
+        "emailConfirmSubText" :"Şifreni yenilemek için email adresini gir!",
+        "continue":"DEVAM ET"
+
 
     },
     "ForgetPasswordCodeScreen": {
         "email": "Mail",
-        "codeConfirm":"Kod Onayla",
-        "codeConfirmSubText" :"Şifreni yenilemek için emailinize gelen kodu girin!"
+        "title":"Kod Onayla",
+        "codeConfirmSubText" :"Şifreni yenilemek için emailinize gelen kodu girin!",
+        "didNotGetCode": "Kod gelmedi mi? ",
+        "resend": "Tekrar Gönder",
+        "continue":"DEVAM ET"
+
 
     }
 }

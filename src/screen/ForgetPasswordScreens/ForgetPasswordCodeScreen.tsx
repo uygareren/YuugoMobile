@@ -1,15 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useTheme } from "native-base";
+import { Text, View, useTheme } from "native-base";
 import { useEffect, useRef, useState } from "react";
-import { AppState, Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AppState, Dimensions, Platform, SafeAreaView, StyleSheet } from "react-native";
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from "react-native-confirmation-code-field";
 import { BackIcon } from "../../components/BackIcon";
 import { Button } from "../../components/Button";
+import TitleText from "../../components/TitleText";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
-import { BUTTON_RADIUS } from "../../utils/utils";
+import { MARGIN_HORİZONTAL } from "../../utils/utils";
 
 type ForgetPasswordCodeScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList, "ForgetPasswordCode"
@@ -74,18 +75,14 @@ export default function ForgetPasswordCodeScreen() {
     }
 
     return (
-        <View style={{ backgroundColor: theme.colors.white, flex: 1, paddingHorizontal: 16, justifyContent: "center" }}>
-            <View style={{ position: "absolute", top: 64, paddingHorizontal: 16, width: width }}>
-                <View style={{ flexDirection: "row", marginTop: 16, alignItems: "center" }}>
-                    <BackIcon />
-                    <View style={{ marginLeft: 8 }}>
-                        <Text style={{ fontSize: 24, color: theme.colors.black, fontWeight: "500" }}>{t("codeConfirm")}</Text>
-                    </View>
-                </View>
-                <View style={{ marginTop: 16 }}>
-                    <Text style={{ fontSize: 16, fontWeight: "300", color: theme.colors.black }}>{t("codeConfirmSubText")}</Text>
-                </View>
+        <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1,paddingHorizontal:MARGIN_HORİZONTAL }}>
+           
+           <View>
+                <BackIcon box={{ mt: "16px" }} />
+                <TitleText fontSize="24px" fontWeight="900" mt={"16px"}>{t("title")}</TitleText>
+                <Text color="gray.400" fontWeight="bold" mt="8px" fontSize={"16px"}>{t("codeConfirmSubText")}</Text>
             </View>
+
             <View style={{ marginTop: 45 }}>
                 <CodeField
                     ref={ref}
@@ -112,34 +109,18 @@ export default function ForgetPasswordCodeScreen() {
                         {error}
                     </Text>
                 ) : null}
-                <View style={{ marginTop: 15, flexDirection: "row", alignItems: "center", borderWidth: 0, justifyContent: "flex-end" }}>
-                    <Text style={{ fontSize: 13, fontWeight: "500", color: "black" }}>Sorun mu yaşıyorsun? </Text>
-                    <TouchableOpacity onPress={handleTryAgain}>
-                        <Text style={{ fontSize: 13, fontWeight: "700", color: "green" }}>Tekrar kod gönder</Text>
-                    </TouchableOpacity>
+                <View mt="16px">
+                    <Text fontSize="12px" fontWeight={"bold"}>{t("didNotGetCode")}<Text fontWeight="bold" color="primary.500"
+                        fontSize="15px" mr="16px" onPress={handleTryAgain}>{t("resend")}
+                        </Text>
+                    </Text>
                 </View>
-                <Button onPress={handleConfirmCode} title="Devam et"
-                    style={{
-                        marginTop: 32, paddingVertical: 16, alignItems: "center", justifyContent: "center",
-                        borderRadius: BUTTON_RADIUS, backgroundColor: "blue"
-                    }}
-                    textStyle={{ color: theme.colors.white, fontWeight: "600", fontSize: 16 }}
-                    loading={false} />
-                <View style={{ marginTop: 25 }}>
-                    {counter > 0 ? (
-                        <Text style={styles.timerText}>{counter} saniye</Text>
-                    ) : (
-                        <TouchableOpacity onPress={handleTryAgain}
-                            style={{
-                                alignSelf: 'center', borderWidth: 1.5, borderColor: "black",
-                                paddingVertical: 6, paddingHorizontal: 16, borderRadius: 5,
-                            }}>
-                            <Text style={styles.tryAgainText}>Tekrar Dene</Text>
-                        </TouchableOpacity>
-                    )}
-                </View>
+                <Button title={t("continue")} isActive={code.length == 6} 
+                textStyle={{fontSize:20, fontWeight:"800"}}
+                onPress={handleConfirmCode} loading={false} mt="32px" />
+                
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -149,19 +130,22 @@ const styles = StyleSheet.create({
         height: Dimensions.get("screen").width * 0.115,
         lineHeight: 38,
         fontSize: 24,
-        borderColor: 'gray',
+        borderWidth:3,
+        borderColor: "#d6d6d6",
         textAlign: 'center',
         margin: 5,
         borderRadius: 8,
         backgroundColor: "white",
-        borderWidth: 1,
-        color: "gray",
         fontWeight: "700",
+        alignItems:"center",
+        justifyContent:"center"
     },
     focusCell: {
         backgroundColor: "white",
         color: "white",
         fontWeight: "700",
+        borderWidth:3,
+        borderColor:"#d6d6d6",
         fontSize: 24,
     },
     timerText: {
@@ -177,3 +161,4 @@ const styles = StyleSheet.create({
         fontWeight: "600",
     }
 });
+

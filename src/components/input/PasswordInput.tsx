@@ -1,11 +1,13 @@
-import { FormControl, Icon, Input, Pressable, Text, WarningOutlineIcon } from "native-base";
+import { FormControl, Icon, Input, Pressable } from "native-base";
 import { useState } from "react";
-import { type NativeSyntheticEvent, type TextInputFocusEventData, ViewStyle, KeyboardTypeOptions } from "react-native";
+import { KeyboardTypeOptions, ViewStyle, type NativeSyntheticEvent, type TextInputFocusEventData } from "react-native";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { TITLE_COLOR } from "../../utils/utils";
 
 type TextInputProps = {
     label: string
     value: string
+    placeholder:string,
     onChangeText: (e: string) => void
     style?: ViewStyle
     helperText?: string
@@ -18,23 +20,25 @@ type TextInputProps = {
 }
 
 export default function PasswordInput({ 
-    label, value, onChangeText, style={}, errorMessage="", required=false, isInvalid=false, onBlur, keyboardType, maxLength,
+    label, value, onChangeText, style={}, placeholder, errorMessage="", required=false, isInvalid=false, onBlur, keyboardType, maxLength,
 }: TextInputProps) {
     const [show, setShow] = useState(false);
 
     return (
         <FormControl style={style} isInvalid={isInvalid}>
-            <FormControl.Label>
+            {/* <FormControl.Label>
                 <Text>{label}</Text>
-            </FormControl.Label>
+            </FormControl.Label> */}
             <Input keyboardType={keyboardType} value={value} mt="8px" maxLength={maxLength}
-            onChangeText={onChangeText} onBlur={onBlur} bgColor="white"
+             borderColor={"#d6d6d6"} style={{backgroundColor:"#f5f5f5"}} fontSize={20} fontWeight={"bold"} color={TITLE_COLOR}
+             placeholderTextColor={"#a19f9f"} placeholder={placeholder} _focus={{borderColor:"#d6d6d6"}}
+            onChangeText={onChangeText} onBlur={onBlur} bgColor="#f5f5f5"
             type={show ? "text" : "password"} InputRightElement={<Pressable onPress={() => setShow(!show)}>
                 <Icon as={<MaterialIcons name={show ? "visibility" : "visibility-off"} />}
-                size={5} mr="2" color="muted.400" />
+                size={8} mr="2" color="muted.400" />
             </Pressable>} 
             />
-            <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+            <FormControl.ErrorMessage>
               {errorMessage}
             </FormControl.ErrorMessage>
         </FormControl>
