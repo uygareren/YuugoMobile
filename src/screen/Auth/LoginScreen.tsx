@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
 import { Text, View, useTheme, useToast } from "native-base";
@@ -47,7 +47,7 @@ export default function LoginScreen(){
             if(data.userInfo) {
                 dispatch(accountSliceActions.setAccount(data));
                 setLoading(false)
-                /*
+                
                 navigation.dispatch(
                     CommonActions.reset({
                         routes: [
@@ -56,11 +56,11 @@ export default function LoginScreen(){
                         index: 0
                     })
                 );
-                */
+                
             } else {
                 setLoading(false);
                 dispatch(accountSliceActions.setJwt(data.jwt));
-                /*
+                
                 navigation.dispatch(
                     CommonActions.reset({
                         routes: [
@@ -69,7 +69,6 @@ export default function LoginScreen(){
                         index: 0
                     })
                 );
-                */
             }
 
         } catch (error: any) {

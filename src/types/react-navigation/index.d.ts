@@ -9,7 +9,7 @@ export type RootStackParamList = {
         jwt: string
     },
     RegisterInfo: {
-
+        stepper: 0
     },
 
     ForgetPasswordEmail: undefined,
