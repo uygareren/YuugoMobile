@@ -1,45 +1,51 @@
 import { Dimensions, SafeAreaView } from "react-native";
-import { useSelector } from "react-redux";
 import { useState } from "react";
-import { Box, Progress, Text } from "native-base";
+import { Progress, Text } from "native-base";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../types/react-navigation";
+import { StepperInfo } from "./StepperComp/StepperInfo";
+import { StepperAvatar } from "./StepperComp/StepperAvatar";
+import { StepperHoby } from "./StepperComp/StepperHoby";
+import { StepperLanguage } from "./StepperComp/StepperLanguage";
 
 type RegisterInfoScreenRouteProp = RouteProp<RootStackParamList, 'RegisterInfo'>;
 
 export default function RegisterInfoScreen() {
-    // const jwt = useSelector<RootStateType>(state => state.account.jwt);
     const route = useRoute<RegisterInfoScreenRouteProp>();
-    const [stepper, setStepper] = useState(route.params?.stepper && 0);
+    const [stepper, setStepper] = useState<number>(route.params?.stepper && 0);
     const maxW = Dimensions.get("screen").width;
+
+    function handleFinishStep() {
+
+    }
 
     const RenderStepView = () => {
         if(stepper == 0) {
             // User Info
             return (
-                <Text>1</Text>
+                <StepperInfo onNext={() => setStepper(1)} />
             )
         } else if(stepper == 1) {
             // Like Interestings Fobys
             return (
-                <Text>2</Text>
+                <StepperHoby onNext={() => setStepper(2)} />
             )
         } else if(stepper == 2) {
             // Select languages with levels
             return (
-                <Text>3</Text>
+                <StepperLanguage onNext={() => setStepper(3)} />
             )
         } else {
             // SELECT Avatar
             return ( //
-                <Text>4</Text>
+                <StepperAvatar onNext={handleFinishStep} />
             )
         }
     }
 
     return (
         <SafeAreaView>
-            <Progress bg="coolGray.300" w={(maxW - 32) + "px"} value={stepper * 20} mt="16px" mx="16px" />
+            <Progress bg="coolGray.300" w={(maxW - 32) + "px"} value={stepper * 20} my="16px" mx="16px"  />
             <RenderStepView />
         </SafeAreaView>
     )
