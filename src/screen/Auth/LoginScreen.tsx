@@ -58,7 +58,8 @@ export default function LoginScreen(){
                 );
                 */
             } else {
-                setLoading(false)
+                setLoading(false);
+                dispatch(accountSliceActions.setJwt(data.jwt));
                 /*
                 navigation.dispatch(
                     CommonActions.reset({

@@ -8,11 +8,16 @@ export type RootStackParamList = {
     RegisterConfirmPassword: {
         jwt: string
     },
+    RegisterInfo: {
+
+    },
+
     ForgetPasswordEmail: undefined,
     ForgetPasswordCode: {
         activationToken: string
     },
     ForgetPasswordConfirmPassword: {
         activationToken: string
-    }
+    },
+
 };

@@ -37,6 +37,9 @@ export const accountSlice = createSlice({
         setAccount: (state, action) => {
             state.userInfo = action.payload;
         },
+        setJwt: (state, action) => {
+            state.jwt = action.payload;
+        },
         clearAccount: (state) => {
             state.userInfo = null;
             state.jwt = null;

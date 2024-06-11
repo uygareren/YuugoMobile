@@ -18,6 +18,7 @@ import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/Fo
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
 import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConfirmCodeScreen';
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
+import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,15 +30,16 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <Stack.Navigator>
                             <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
+                            
+                            <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
+                            <Stack.Screen component={RegisterConfirmPasswordScreen} name="RegisterConfirmPassword" options={{headerShown:false}} />
+                            <Stack.Screen component={RegisterConfirmCodeScreen} name="RegisterConfirmCode" options={{headerShown:false}} />
+                            <Stack.Screen component={RegisterInfoScreen} name="RegisterInfo" options={{headerShown:false}} />
+
                             <Stack.Screen component={ForgetPasswordConfirmPassword} name="ForgetPasswordConfirmPassword" options={{headerShown:false}} />
                             <Stack.Screen component={ForgetPasswordCodeScreen} name="ForgetPasswordCode" options={{headerShown:false}} />
                             <Stack.Screen component={ForgetPasswordEmailScreen} name="ForgetPasswordEmail" options={{headerShown:false}} />
-                            
-                            <Stack.Screen component={RegisterConfirmPasswordScreen} name="RegisterConfirmPassword" options={{headerShown:false}} />
-                            <Stack.Screen component={RegisterConfirmCodeScreen} name="RegisterConfirmCode" options={{headerShown:false}} />
 
-                            <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
-                            <Stack.Screen component={Screen2} name="Screen2" options={{headerShown:false}} />
                         </Stack.Navigator>
                     </NavigationContainer>
                 </I18nProvider>
