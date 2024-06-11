@@ -47,7 +47,6 @@ export default function ForgetPasswordConfirmPassword(){
 
     const [loading, setLoading] = useState(false);
 
-    console.log("activationToken", route.params);
     async function handleConfirmPassword(values: { password1: string, password2: string }){
         try {
             setLoading(true);

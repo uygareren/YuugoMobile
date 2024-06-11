@@ -37,7 +37,9 @@
         "didNotGetCode": "Kod gelmedi mi? ",
         "resend": "Tekrar Gönder",
         "title": "Onay Kodu",
-        "btnText": "Devam Et"
+        "btnText": "Devam Et",
+        "againCode": "E-postanıza yeni kod gönderildi",
+        "againCodeError": "Daha sonra tekrar istek gönderiniz"
     },
     "RegisterConfirmPasswordScreen":{
         "passwordConfirm":"Parolayı Belirle",
@@ -59,8 +61,8 @@
         "codeConfirmSubText" :"Şifreni yenilemek için emailinize gelen kodu girin!",
         "didNotGetCode": "Kod gelmedi mi? ",
         "resend": "Tekrar Gönder",
-        "continue":"DEVAM ET"
-
-
+        "continue":"DEVAM ET",
+        "againCode": "E-postanıza yeni kod gönderildi",
+        "againCodeError": "Daha sonra tekrar istek gönderiniz"
     }
 }

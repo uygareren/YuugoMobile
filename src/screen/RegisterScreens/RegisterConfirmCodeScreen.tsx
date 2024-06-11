@@ -64,7 +64,24 @@ export default function RegisterConfirmCodeScreen(){
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
 
     function handleTryAgain() {
-        setCounter(90);
+        try {
+            const resp = api.post("/auth/verify/again/register", {
+                activationToken
+            });
+            
+        } catch (error: any) {
+            const errorCode = error.response.data.errorCode as ResponseError;
+
+            if(errorCode == ResponseError.ACTIVATION_CODE_BANNED) {
+                toast.show({
+                    title: t("againCodeError"),
+                });
+            } else {
+                toast.show({
+                    title: t("unknownError"),
+                });
+            }
+        }
     }
 
     async function handleSubmit() {
