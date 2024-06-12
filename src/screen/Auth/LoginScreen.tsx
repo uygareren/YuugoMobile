@@ -100,7 +100,7 @@ export default function LoginScreen(){
     return(
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
             <TitleText ml="16px" mt="16px">{t("title")}</TitleText>
-                <Formik initialValues={{
+            <Formik initialValues={{
                 email: "ertugruldirik35@gmail.com",
                 password: "Asd123."
             }}

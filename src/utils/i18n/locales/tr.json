@@ -64,5 +64,10 @@
         "continue":"DEVAM ET",
         "againCode": "E-postanıza yeni kod gönderildi",
         "againCodeError": "Daha sonra tekrar istek gönderiniz"
+    },
+    "RegisterInfo": {
+        "name": "İsmi",
+        "surname": "Soyisim",
+        "toCountinue": "Devam Et"
     }
 }

@@ -12,7 +12,7 @@ type RegisterInfoScreenRouteProp = RouteProp<RootStackParamList, 'RegisterInfo'>
 
 export default function RegisterInfoScreen() {
     const route = useRoute<RegisterInfoScreenRouteProp>();
-    const [stepper, setStepper] = useState<number>(route.params?.stepper && 0);
+    const [stepper, setStepper] = useState<number>(0); // route.params.stepper
     const maxW = Dimensions.get("screen").width;
 
     function handleFinishStep() {
