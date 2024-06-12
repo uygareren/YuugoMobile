@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 type TextInputProps = {
     label?: string
-    value: string
+    value: string 
     onChangeText: (e: string) => void
     style?: ViewStyle
     helperText?: string

@@ -1,5 +1,7 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { Text, View } from 'native-base';
+import DatePicker from 'react-native-date-picker'
+import { Pressable, Text, View } from 'native-base';
+import { useState } from "react";
+import { formatDate } from "../../utils/utils";
 
 type Props = {
     value: Date
@@ -10,14 +12,30 @@ type Props = {
 }
 
 export default function DateTimeInput({ value, onChangeValue, maximumDate, minimumDate, label="" }: Props) {
+    const [visible, setVisible] = useState(false);
+
+    function handleClose() {
+        setVisible(false);
+    }
+
+    function handleOpen() {
+        setVisible(true);
+    }
+
     return (
         <View>
-            <Text marginBottom="8px">{label}</Text>
-            <View right={"20px"}>
-                <DateTimePicker value={value} mode="date" display="default" onChange={(event, date) => onChangeValue(date as Date)}
-                    timeZoneName="Europe/Istanbul" themeVariant="dark" style={{ alignSelf: "flex-start" }}
-                />
-            </View>
+            <Pressable onPress={handleOpen} borderWidth="2px" borderRadius="20px" borderColor={"#d6d6d6"}
+            py="13px" px="12px" bgColor="white"
+            backgroundColor="#f5f5f5">
+                <Text color="#0C1015">{formatDate(value)}</Text>
+            </Pressable>
+            <DatePicker date={value} mode="date" onConfirm={(date) => {
+                handleClose()
+                onChangeValue(date as Date);
+            }}
+                onCancel={handleClose} open={visible} modal
+                maximumDate={maximumDate} minimumDate={minimumDate}
+            />
         </View>
     )
 } 

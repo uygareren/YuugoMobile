@@ -1,6 +1,6 @@
 import { Dimensions, SafeAreaView } from "react-native";
 import { useState } from "react";
-import { Progress, Text } from "native-base";
+import { Progress, Text, useTheme } from "native-base";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../types/react-navigation";
 import { StepperInfo } from "./StepperComp/StepperInfo";
@@ -14,6 +14,7 @@ export default function RegisterInfoScreen() {
     const route = useRoute<RegisterInfoScreenRouteProp>();
     const [stepper, setStepper] = useState<number>(0); // route.params.stepper
     const maxW = Dimensions.get("screen").width;
+    const theme = useTheme();
 
     function handleFinishStep() {
 
@@ -44,7 +45,7 @@ export default function RegisterInfoScreen() {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
             <Progress bg="coolGray.300" w={(maxW - 32) + "px"} value={stepper * 20} my="16px" mx="16px"  />
             <RenderStepView />
         </SafeAreaView>
