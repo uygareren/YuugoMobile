@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Dimensions, FlatList, TouchableOpacity } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
+import TitleText from "../../../components/TitleText";
 
 type StepperInfoProps = {
     onNext: () => void
@@ -15,9 +16,7 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
     const [loading, setLoading] = useState(false);
     const {width, height} = Dimensions.get("screen");
 
-
     const [selectedCountry, setSelectedCountry] = useState<number | null>(null);
-
 
     const mockLanguageData = [
         { id: 1, title: "Turkish" },
@@ -65,37 +64,32 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
 
     return (
         <View mx={"16px"}>
-            <View mt="28px">
+            <TitleText>{t("selectLanguage")}</TitleText>
+            
                
-                        <View mt="28px">
-                            <View style={{ rowGap: 12 }}>
-                                <Text style={{fontWeight:"800", color:theme.colors.black, fontSize:22, marginLeft:6}}>
-                                    {t("selectLanguage")}
-                                </Text>
-                            </View>
+                <View mt="28px">
+                    
+                    <FlatList
+                    showsVerticalScrollIndicator={false}
+                        data={mockLanguageData}
+                        keyExtractor={(item) => item.id.toString()}
+                        renderItem={RenderLanguage}
+                        contentContainerStyle={{  }}
+                    />
+                
+                    
+                    <Button
+                        onPress={handleSaved as () => void}
+                        isActive={selectedCountry ? true : false}
+                        mt="20px"
+                        loading={loading}
+                        title={t("toCountinue")}
+                        mb="8px"
+                        textStyle={{fontSize:20}}
 
-                            <View style={{height:height*0.6}}>
-                                    <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                        data={mockLanguageData}
-                                        keyExtractor={(item) => item.id.toString()}
-                                        renderItem={RenderLanguage}
-                                        contentContainerStyle={{ paddingBottom: 20, marginTop:32 }}
-                                    />
-                                </View>
-                            
-                            <Button
-                                onPress={handleSaved as () => void}
-                                isActive={selectedCountry ? true : false}
-                                mt="20px"
-                                loading={loading}
-                                title={t("toCountinue")}
-                                mb="8px"
-                                textStyle={{fontSize:20}}
-
-                            />
-                        </View>
-            </View>
+                    />
+                </View>
+            
         </View>
     )
 }

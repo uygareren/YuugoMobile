@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Dimensions, FlatList, TouchableOpacity } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
+import TitleText from "../../../components/TitleText";
 
 type StepperInfoProps = {
     onNext: () => void;
@@ -28,6 +29,8 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
         onNext();
     }
 
+    // Select most 4
+
     const mockTopicData = [
         { id: 1, topicTitle: "Spor" },
         { id: 2, topicTitle: "Sanat" },
@@ -39,16 +42,6 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
         { id: 8, topicTitle: "Müzik" },
         { id: 9, topicTitle: "Felsefe" },
         { id: 10, topicTitle: "Bilim" },
-        { id: 11, topicTitle: "Gezi" },
-        { id: 12, topicTitle: "Doğa" },
-        { id: 13, topicTitle: "Eğitim" },
-        { id: 14, topicTitle: "Moda" },
-        { id: 15, topicTitle: "Yemek" },
-        { id: 16, topicTitle: "Tasarım" },
-        { id: 17, topicTitle: "Ekonomi" },
-        { id: 18, topicTitle: "Siyaset" },
-        { id: 19, topicTitle: "Kültür" },
-        { id: 20, topicTitle: "Psikoloji" },
     ];
 
     function handleSelectTopic(id: number) {
@@ -85,43 +78,27 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
     };
 
     return (
-        <ScrollView mx={"16px"} showsVerticalScrollIndicator={false}>
-            <View mt="28px">
-                <Text
-                    style={{
-                        fontWeight: "800",
-                        color: theme.colors.black,
-                        fontSize: 22,
-                        marginLeft: 6,
-                    }}
-                >
-                    {t("topicTitle")}
-                </Text>
-                
-                <View style={{height:height*0.55, marginTop:32}}>
-                    <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={mockTopicData}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={RenderTopic}
-                        numColumns={2}
-                        columnWrapperStyle={{ justifyContent: "space-between" }}
-                    />
-                </View>
-                
-
-                <View style={{marginTop:32}}>
-                    <Button
-                        onPress={handleSaved}
-                        isActive={selectedTopics.length > 0 }
-                        mt="20px"
-                        loading={loading}
-                        title={t("toCountinue")}
-                        mb="8px"
-                        textStyle={{fontSize:20}}
-                    />
-                </View>
+        <View mx={"16px"} justifyContent="space-between" flex={1}>
+            <TitleText>{t("topicTitle")}</TitleText>
+            <View>
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={mockTopicData}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={RenderTopic}
+                    numColumns={2}
+                    columnWrapperStyle={{ justifyContent: "space-between" }}
+                />
             </View>
-        </ScrollView>
+            <Button
+                onPress={handleSaved}
+                isActive={selectedTopics.length > 0 }
+                mt="20px"
+                loading={loading}
+                title={t("toCountinue")}
+                mb="16px"
+                textStyle={{fontSize:20}}
+            />
+        </View>
     );
 }

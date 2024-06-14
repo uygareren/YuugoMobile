@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import i18n from "../../../utils/i18n/i18n";
+import TitleText from "../../../components/TitleText";
 
 type StepperInfoProps = {
     onNext: () => void
@@ -76,7 +77,7 @@ export default function StepperCountry({ onNext }: StepperInfoProps) {
 
     return (
         <View style={{ flex: 1, marginHorizontal: 16 }}>
-            <View style={{ flex: 1, marginTop: 28 }}>
+            <TitleText>Ülkeni Seç</TitleText>
                 <Formik
                     initialValues={{ birthDate: new Date() }}
                     validationSchema={schema}
@@ -84,20 +85,13 @@ export default function StepperCountry({ onNext }: StepperInfoProps) {
                 >
                     {({ errors, touched, values, setFieldValue, handleSubmit, isValid, dirty }) => (
                         <View style={{ flex: 1, marginTop: 28 }}>
-                            <View style={{ rowGap: 12 }}>
-                                <Text style={{ fontWeight: "800", color: theme.colors.black, fontSize: 22, marginLeft: 6 }}>Ülkeni Seç</Text>
-                                <View style={{height:height*0.55, marginTop:32}}>
-                                    <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                        data={mockCountryData}
-                                        keyExtractor={(item) => item.id.toString()}
-                                        renderItem={RenderCountries}
-                                    />
-                                </View>
-                                
-                            </View>
                             
-                            <View style={{marginTop:32}}>
+                            <FlatList
+                            showsVerticalScrollIndicator={false}
+                                data={mockCountryData}
+                                keyExtractor={(item) => item.id.toString()}
+                                renderItem={RenderCountries}
+                            />
                             <Button
                                 onPress={handleSubmit as () => void}
                                 isActive={selectedCountry ? true : false}
@@ -107,11 +101,9 @@ export default function StepperCountry({ onNext }: StepperInfoProps) {
                                 mb="8px"
                                 textStyle={{ fontSize: 20 }}
                             />
-                            </View>
                         </View>
                     )}
                 </Formik>
-            </View>
         </View>
     );
 }

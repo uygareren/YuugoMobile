@@ -33,7 +33,7 @@ export const StepperInfo = ({ onNext }: StepperInfoProps) => {
 
     return (
         <View mx="16px">
-            <TitleText></TitleText>
+            <TitleText>Kullanıcı Bilgileri</TitleText>
             <View mt="28px">
                 <View style={{ rowGap: 12 }}>
                     <TextInput 

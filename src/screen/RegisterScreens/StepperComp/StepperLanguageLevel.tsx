@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FlatList, TouchableOpacity } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
+import TitleText from "../../../components/TitleText";
 
 type StepperInfoProps = {
     onNext: () => void
@@ -87,34 +88,26 @@ export default function StepperLanguageLevel({ onNext }: StepperInfoProps) {
 
     return (
         <View mx={"16px"}>
+            <TitleText>{t("languageLevel")}</TitleText>
             <View mt="28px">
-               
-                <View mt="28px">
-                    <View style={{ rowGap: 12 }}>
-                        <Text style={{fontWeight:"800", color:theme.colors.black, fontSize:22, marginLeft:6}}>
-                            {t("languageLevel")}
-                        </Text>
+                
+                <FlatList
+                    data={mockLanguageLevelData}
+                    keyExtractor={(item) => item.id}
+                    renderItem={RenderLanguageLevel}
+                />
 
-                        <FlatList
-                            data={mockLanguageLevelData}
-                            keyExtractor={(item) => item.id}
-                            renderItem={RenderLanguageLevel}
-                        />
+                <View style={{marginTop:32}}>
+                    <Button
+                        onPress={handleSaved as () => void}
+                        isActive={selectedLevel ? true : false}
+                        mt="20px"
+                        loading={loading}
+                        title={t("toCountinue")}
+                        mb="8px"
+                        textStyle={{fontSize:20}}
 
-                    </View>
-
-                    <View style={{marginTop:32}}>
-                        <Button
-                            onPress={handleSaved as () => void}
-                            isActive={selectedLevel ? true : false}
-                            mt="20px"
-                            loading={loading}
-                            title={t("toCountinue")}
-                            mb="8px"
-                            textStyle={{fontSize:20}}
-
-                        />
-                    </View>
+                    />
                 </View>
             </View>
         </View>

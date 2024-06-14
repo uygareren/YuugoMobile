@@ -6,6 +6,7 @@ import { Button } from "../../../components/Button";
 import DateTimeInput from "../../../components/input/DateTimeInput";
 import { useI18n } from "../../../hooks/useI18n";
 import i18n from "../../../utils/i18n/i18n";
+import TitleText from "../../../components/TitleText";
 
 type StepperInfoProps = {
     onNext: () => void
@@ -34,38 +35,30 @@ export default function StepperDatetime({ onNext }: StepperInfoProps) {
 
     return (
         <View mx={"16px"}>
-            <View mt="28px">
-                <Formik
-                    initialValues={{ birthDate: new Date() }}
-                    validationSchema={schema}
-                    onSubmit={handleSaved}
-                >
-                    {({ errors, touched, values, setFieldValue, handleSubmit, isValid, dirty }) => (
-                        <View mt="28px">
-                            <View style={{ rowGap: 12 }}>
-                                <Text style={{fontWeight:"800", color:theme.colors.black, fontSize:22, marginLeft:6}}>
-                                    {t("dateTime")}
-                                </Text>
-                                <DateTimeInput
-                                    value={values.birthDate}
-                                    onChangeValue={(date) => setFieldValue("birthDate", date)}
-                                />
-                                
-                            </View>
-                            <Button
-                                onPress={handleSubmit as () => void}
-                                isActive={!datesAreEqual(new Date(), values.birthDate)}
-                                mt="20px"
-                                loading={loading}
-                                title={t("toCountinue")}
-                                mb="8px"
-                                textStyle={{fontSize:20}}
-
+            <TitleText>{t("dateTime")}</TitleText>
+            
+            <Formik initialValues={{ birthDate: new Date() }} validationSchema={schema} onSubmit={handleSaved}>
+                {({ errors, touched, values, setFieldValue, handleSubmit, isValid, dirty }) => (
+                    <View mt="28px">
+                        <View style={{ rowGap: 12 }}>
+                            <DateTimeInput
+                                value={values.birthDate}
+                                onChangeValue={(date) => setFieldValue("birthDate", date)}
                             />
+                            
                         </View>
-                    )}
-                </Formik>
-            </View>
+                        <Button
+                            onPress={handleSubmit as () => void}
+                            isActive={!datesAreEqual(new Date(), values.birthDate)}
+                            mt="20px"
+                            loading={loading}
+                            title={t("toCountinue")}
+                            mb="8px"
+                        />
+                    </View>
+                )}
+            </Formik>
+        
         </View>
     )
 }

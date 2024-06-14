@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Dimensions } from "react-native";
 import { Button } from "../../../components/Button";
 import { useState } from "react";
+import TitleText from "../../../components/TitleText";
 
 const avatars = [
     {
@@ -79,6 +80,7 @@ export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
 
     return (
         <View mx="16px" flex={1}>
+            <TitleText>Kişisel Bilgileriniz</TitleText>
             <FlatList 
                 numColumns={3}
                 showsVerticalScrollIndicator={false}
