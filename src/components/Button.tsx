@@ -22,9 +22,9 @@ export const Button: React.FC<ButtonCompProps> = ({
     const theme = useTheme();
 
     return(
-        <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"17px"} borderRadius="20px"
-        style={style} backgroundColor={isActive ? "#db37ce" : theme.colors.lightText }  onPress={onPress} isLoading={loading} 
-        _text={{style: {...textStyle as TextStyle, fontSize: 15, fontWeight: "800" }}}>
+        <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"17px"} borderRadius="20px" disabled={!isActive}
+         backgroundColor={isActive ? "#db37ce" : theme.colors.lightText }  onPress={onPress} isLoading={loading} 
+        _text={{style: {fontSize: 15, fontWeight: "800", ...textStyle as TextStyle}}}>
             {title}
         </NButton>
     )

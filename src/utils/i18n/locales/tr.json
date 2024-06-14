@@ -69,5 +69,29 @@
         "name": "İsmi",
         "surname": "Soyisim",
         "toCountinue": "Devam Et"
+    },
+    "RegisterUsername": {
+        "username": "Kullanıcı Adı",
+        "toCountinue": "Devam Et"
+    },
+    "RegisterDatetime": {
+        "dateTime": "Doğum Tarihiniz Nedir?",
+        "toCountinue": "Devam Et"
+    },
+    "RegisterSelectLanguage": {
+        "selectLanguage": "Hangi Dili Öğrenmek İstiyorsunuz?",
+        "toCountinue": "Devam Et"
+    },
+    "RegisterSLanguageLevel": {
+        "languageLevel": "Seviyen Nedir?",
+        "toCountinue": "Devam Et"
+    },
+    "RegisterTopic": {
+        "topicTitle": "İlgelendiğin Sohbet Konuları Nelerdir?",
+        "toCountinue": "Devam Et"
+    },
+    "RegisterGender": {
+        "genderTitle": "Cinsiyetin Nedir?",
+        "toCountinue": "Devam Et"
     }
 }
