@@ -66,8 +66,8 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
                         />
                     }
                     numColumns={2}
-                    contentContainerStyle={{ rowGap: 16 }}
-                    columnWrapperStyle={{ justifyContent: "space-between", marginTop: 28 }}
+                    contentContainerStyle={{ rowGap: 16, marginTop: 28 }}
+                    columnWrapperStyle={{ justifyContent: "space-between" }}
                 />
             <Button
                 onPress={handleSaved}

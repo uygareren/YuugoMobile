@@ -4,87 +4,35 @@ import { FlatList, TouchableOpacity } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
+import { SelectCard } from "../../../components/cards/SelectCard";
 
 type StepperInfoProps = {
-    onNext: () => void
-}
-
-type RenderLanguageLevelType = {
-    item : {
-        id: string,
-        title: string
-    }
+    onNext: (genderId: number) => void
 }
 
 export default function StepperGender({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterGender");
-    const [loading, setLoading] = useState(false);
 
-    const [selectedGender, setSelectedGender] = useState("");
+    const [selectedGender, setSelectedGender] = useState(0);
 
-    function handleSaved(values: any) {
-        onNext();
+    function handleSaved() {
+        onNext(selectedGender);
     }
 
-    const mockGenderData = [
-        { 
-            id:"1",
-            title:"Erkek"
-        },
-        { 
-            id:"2",
-            title:"Kadın"
-        }
-    ]
-
-    function handleSelectLanguageLevel(id:string){
-        if(id == selectedGender){
-            setSelectedGender("")
-        }else{
-            setSelectedGender(id);
-        }
-
+    function handleSelectGender(id: number){
+        setSelectedGender(id);
     }
-
-    const RenderLanguageLevel = ({ item }: RenderLanguageLevelType) => {
-        return (
-            <TouchableOpacity
-                onPress={() => handleSelectLanguageLevel(item.id)}
-                style={{
-                    borderWidth: 1,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    paddingVertical: 16,
-                    borderBottomWidth: 6,
-                    borderColor: item.id == selectedGender ? "#db37ce" : "gray",
-                    backgroundColor: item.id == selectedGender ? "#fac5f5" : "white",
-                    borderRadius: 8,
-                    marginTop: 16
-                }}
-            >
-                <Text style={{ fontWeight: "600", fontSize: 18 }}>{item.title}</Text>
-            </TouchableOpacity>
-        );
-    };
 
     return (
         <View mx={"16px"}>
             <TitleText>{t("genderTitle")}</TitleText>
             <View mt="28px">
-                <View style={{ rowGap: 12 }}>
-
-                    <FlatList
-                        data={mockGenderData}
-                        keyExtractor={(item) => item.id}
-                        renderItem={RenderLanguageLevel}
-                    />
-                    
-                </View>
+                <SelectCard text={t("male")} isSelected={selectedGender == 1} onPress={() => handleSelectGender(1)} />
+                <SelectCard text={t("female")} isSelected={selectedGender == 1} onPress={() => handleSelectGender(2)} />
                 <Button
                     onPress={handleSaved as () => void}
                     isActive={true}
                     mt="20px"
-                    loading={loading}
                     title={t("toCountinue")}
                     mb="8px"
                     textStyle={{fontSize:20}}

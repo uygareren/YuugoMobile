@@ -12,7 +12,7 @@ import api from "../../../api/api";
 import { SvgUri } from "react-native-svg";
 
 type StepperInfoProps = {
-    onNext: () => void
+    onNext: (countryId: number) => void
 }
 
 const schema = yup.object({
@@ -21,14 +21,12 @@ const schema = yup.object({
 
 export default function StepperCountry({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterInfo");
-    const {width, height} = Dimensions.get("screen");
 
-    const [loading, setLoading] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState<number | null>(null);
     const [country, setCountry] = useState<{id: number, name: string, image: string, flag: string}[]>([]);
 
     function handleSaved() {
-        onNext();
+        onNext(selectedCountry as number);
     }
 
     useEffect(() => {
@@ -68,7 +66,6 @@ export default function StepperCountry({ onNext }: StepperInfoProps) {
                 onPress={handleSaved}
                 isActive={selectedCountry ? true : false}
                 mt="20px"
-                loading={loading}
                 title={t("toCountinue")}
                 mb="16px"
                 textStyle={{ fontSize: 20 }}

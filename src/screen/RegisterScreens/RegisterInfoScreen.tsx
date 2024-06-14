@@ -22,30 +22,76 @@ export default function RegisterInfoScreen() {
     const maxW = Dimensions.get("screen").width;
     const theme = useTheme();
 
+    const [userInfo, setUserInfo] = useState<{
+        name?: string, surname?: string, birthDate?: Date, isWoman?: boolean, countryId?: number
+    }>({});
+
     function handleFinishStep() {
 
     }
 
+    function onNextInfo(name: string, surname: string) {
+        setStepper(1);
+        setUserInfo(prevState => {
+            return {
+                ...prevState,
+                name,
+                surname
+            }
+        });
+    }
+
+    function onNextGender(genderId: number) {
+        setStepper(2);
+        setUserInfo(prevState => {
+            return {
+                ...prevState,
+                isWoman: genderId == 1 ? false : true
+            }
+        });
+    }
+
+    function onNextBirthDate(birthDate: Date) {
+        setStepper(3);
+        setUserInfo(prevState => {
+            return {
+                ...prevState,
+                birthDate
+            }
+        });
+    }
+
+    function onNextCountry(countryId: number) {
+        setStepper(4);
+        setUserInfo(prevState => {
+            return {
+                ...prevState,
+                countryId
+            }
+        });
+    }
+
+
     const RenderStepView = () => {
         if(stepper == 0) {
             return (
-                <StepperUsername onNext={() => setStepper(1)} />
+                <StepperInfo onNext={onNextInfo} />
             )
         } else if(stepper == 1) {
             return (
-                <StepperGender onNext={() => setStepper(2)} />
+                <StepperGender onNext={onNextGender} />
             )
         } else if(stepper == 2) {
             return (
-                <StepperDatetime onNext={() => setStepper(3)} />
+                <StepperDatetime onNext={onNextBirthDate} />
             )
         } else if(stepper == 3) {
             return (
-                <StepperCountry onNext={() => setStepper(4)} />
+                <StepperCountry onNext={onNextCountry} />
             )
         } else if(stepper == 4) {
             return (
-                <StepperInfo onNext={() => setStepper(5)} />
+                <StepperUsername onNext={() => setStepper(5)} userInfo={userInfo} />
             )
         } else if(stepper == 5) {
             return (

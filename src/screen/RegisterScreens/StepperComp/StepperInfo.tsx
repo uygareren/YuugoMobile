@@ -8,7 +8,7 @@ import { useI18n } from "../../../hooks/useI18n";
 import { RootStateType } from "../../../store/store";
 
 type StepperInfoProps = {
-    onNext: () => void
+    onNext: (name: string, surname: string) => void
 } 
 
 export const StepperInfo = ({ onNext }: StepperInfoProps) => {
@@ -18,15 +18,8 @@ export const StepperInfo = ({ onNext }: StepperInfoProps) => {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
 
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        // Get Countrys 
-    }, []);
-
     function handleSaved() {
-        setLoading(false);
-        onNext();
+        onNext(name, surname);
     }
 
     const isActive = Boolean(name && surname);
@@ -53,7 +46,6 @@ export const StepperInfo = ({ onNext }: StepperInfoProps) => {
                     onPress={handleSaved} 
                     isActive={isActive} 
                     mt="20px"
-                    loading={loading} 
                     title={t("toCountinue")} 
                     mb="8px" 
                     textStyle={{fontSize:20}}

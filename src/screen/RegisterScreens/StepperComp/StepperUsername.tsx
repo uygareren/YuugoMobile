@@ -9,26 +9,42 @@ import i18n from "../../../utils/i18n/i18n";
 import TitleText from "../../../components/TitleText";
 
 type StepperInfoProps = {
-    onNext: () => void
+    onNext: () => void,
+    userInfo: {
+        name?: string | undefined;
+        surname?: string | undefined;
+        birthDate?: Date | undefined;
+        isWoman?: boolean | undefined;
+        countryId?: number | undefined;
+    }
 } 
 
 const schema = yup.object({
     username: yup.string().required(i18n.t("ValidationErrors.required"))
 }).required();
 
-export default function StepperUsername({onNext}: StepperInfoProps){
+export default function StepperUsername({onNext, userInfo}: StepperInfoProps){
 
     const {t} = useI18n("RegisterUsername");
 
     const [loading, setLoading] = useState(false);
 
-    function handleSaved(){
+    function handleSaved(values: any){
+        setLoading(true);
+        try {
+            const requestData = {
+                ...userInfo,
+                username: values.username
+            }
+        } catch (error) {
+            
+        }
         onNext();
     }
 
     return(
         <View mx={"16px"}>
-            <TitleText>Kullanıcı Bilgileri</TitleText>
+            <TitleText>{t("title")}</TitleText>
             
             <Formik initialValues={{
                 username: "",

@@ -9,7 +9,7 @@ import i18n from "../../../utils/i18n/i18n";
 import TitleText from "../../../components/TitleText";
 
 type StepperInfoProps = {
-    onNext: () => void
+    onNext: (birthDate: Date) => void
 }
 
 const schema = yup.object({
@@ -18,11 +18,10 @@ const schema = yup.object({
 
 export default function StepperDatetime({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterDatetime");
-    const [loading, setLoading] = useState(false);
     const [birthDate, setBirthDate] = useState(new Date);
 
     function handleSaved() {
-        onNext();
+        onNext(birthDate);
     }
 
     return (
@@ -39,7 +38,6 @@ export default function StepperDatetime({ onNext }: StepperInfoProps) {
                     onPress={() => handleSaved()}
                     isActive={birthDate != null}
                     mt="20px"
-                    loading={loading}
                     title={t("toCountinue")}
                     mb="8px"
                 />

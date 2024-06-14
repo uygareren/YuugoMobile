@@ -74,7 +74,8 @@
     },
     "RegisterUsername": {
         "username": "Kullanıcı Adı",
-        "toCountinue": "Devam Et"
+        "toCountinue": "Devam Et",
+        "title": "Kullanıcı Bilgileri"
     },
     "RegisterDatetime": {
         "dateTime": "Doğum Tarihiniz Nedir?",
@@ -94,6 +95,8 @@
     },
     "RegisterGender": {
         "genderTitle": "Cinsiyetin Nedir?",
-        "toCountinue": "Devam Et"
+        "toCountinue": "Devam Et",
+        "male": "Erkek",
+        "female": "Kadın"
     }
 }
