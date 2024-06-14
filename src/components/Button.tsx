@@ -16,14 +16,14 @@ interface ButtonCompProps {
 }
 
 export const Button: React.FC<ButtonCompProps> = ({
-    onPress, style, isActive, textStyle={}, loading=false, title, mt="0px", mb="0px", ml="0px", mr="0px"
+    onPress, style, isActive=true, textStyle={}, loading=false, title, mt="0px", mb="0px", ml="0px", mr="0px"
 }) => {
 
     const theme = useTheme();
 
     return(
         <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"17px"} borderRadius="20px"
-        style={style} backgroundColor={isActive ? "#db37ce" : theme.colors.lightText }  onPress={onPress} isLoading={loading} 
+        style={style} backgroundColor={isActive ? "#db37ce" : theme.colors.lightText } onPress={onPress} isLoading={loading} 
         _text={{style: {...textStyle as TextStyle, fontSize: 15, fontWeight: "800" }}}>
             {title}
         </NButton>
