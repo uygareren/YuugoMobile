@@ -68,7 +68,9 @@
     "RegisterInfo": {
         "name": "İsmi",
         "surname": "Soyisim",
-        "toCountinue": "Devam Et"
+        "toCountinue": "Devam Et",
+        "title": "Kullanıcı Bilgileri",
+        "titleOfCountry": "Ülkeni Seç"
     },
     "RegisterUsername": {
         "username": "Kullanıcı Adı",

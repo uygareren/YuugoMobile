@@ -1,10 +1,11 @@
 import { ScrollView, Text, View, theme } from "native-base";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dimensions, FlatList, TouchableOpacity } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
 import { SelectCard } from "../../../components/cards/SelectCard";
+import api from "../../../api/api";
 
 type StepperInfoProps = {
     onNext: () => void;
@@ -24,25 +25,22 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
     
     const [loading, setLoading] = useState(false);
     const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
+    const [topics, setTopics] = useState<{id: number, name: string}[]>([]);
 
     function handleSaved() {
         onNext();
     }
 
-    // Select most 4
+    useEffect(() => {
+        init();
+    }, []);
 
-    const mockTopicData = [
-        { id: 1, topicTitle: "Spor" },
-        { id: 2, topicTitle: "Sanat" },
-        { id: 3, topicTitle: "Tarih" },
-        { id: 4, topicTitle: "Teknoloji" },
-        { id: 5, topicTitle: "Sağlık" },
-        { id: 6, topicTitle: "Edebiyat" },
-        { id: 7, topicTitle: "Sinema" },
-        { id: 8, topicTitle: "Müzik" },
-        { id: 9, topicTitle: "Felsefe" },
-        { id: 10, topicTitle: "Bilim" },
-    ];
+    async function init() {
+        const resp = await api.get("/user/interests/type?lang=tr");
+
+        setTopics(resp.data.data);
+    }
+
 
     function handleSelectTopic(id: number) {
         setSelectedTopics((prevSelectedTopics) =>
@@ -55,23 +53,22 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
     return (
         <View mx={"16px"} justifyContent="space-between" flex={1}>
             <TitleText>{t("topicTitle")}</TitleText>
-            <View>
+            
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={mockTopicData}
+                    data={topics}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item, index}) => <SelectCard
                             isSelected={selectedTopics.includes(item.id)}
                             onPress={() => handleSelectTopic(item.id)}
-                            text={item.topicTitle}
-                            containerStyle={{ width: (width * 0.5) - 32 }}
+                            text={item.name}
+                            containerStyle={{ width: (width * 0.5) - 32, height: width * 0.25, alignItems: "center" }}
                         />
                     }
                     numColumns={2}
                     contentContainerStyle={{ rowGap: 16 }}
-                    columnWrapperStyle={{ justifyContent: "space-between" }}
+                    columnWrapperStyle={{ justifyContent: "space-between", marginTop: 28 }}
                 />
-            </View>
             <Button
                 onPress={handleSaved}
                 isActive={selectedTopics.length > 0 }

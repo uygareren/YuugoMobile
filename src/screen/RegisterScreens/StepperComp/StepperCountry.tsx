@@ -1,6 +1,6 @@
 import { Formik } from "formik";
-import { Text, View, theme } from "native-base";
-import { useState } from "react";
+import { Image, Text, View, theme } from "native-base";
+import { useEffect, useState } from "react";
 import { Dimensions, FlatList, TouchableOpacity } from "react-native";
 import * as yup from "yup";
 import { Button } from "../../../components/Button";
@@ -8,6 +8,8 @@ import { useI18n } from "../../../hooks/useI18n";
 import i18n from "../../../utils/i18n/i18n";
 import TitleText from "../../../components/TitleText";
 import { SelectCard } from "../../../components/cards/SelectCard";
+import api from "../../../api/api";
+import { SvgUri } from "react-native-svg";
 
 type StepperInfoProps = {
     onNext: () => void
@@ -18,32 +20,25 @@ const schema = yup.object({
 }).required();
 
 export default function StepperCountry({ onNext }: StepperInfoProps) {
-    const { t } = useI18n("RegisterDatetime");
+    const { t } = useI18n("RegisterInfo");
     const {width, height} = Dimensions.get("screen");
 
     const [loading, setLoading] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState<number | null>(null);
-
-
-    const mockCountryData = [
-        { id: 1, title: "Turkey" },
-        { id: 2, title: "United States" },
-        { id: 3, title: "Germany" },
-        { id: 4, title: "France" },
-        { id: 5, title: "Japan" },
-        { id: 6, title: "Brazil" },
-        { id: 7, title: "Canada" },
-        { id: 8, title: "India" },
-        { id: 9, title: "Australia" },
-        { id: 10, title: "Italy" },
-        { id: 10, title: "Italy" },
-        { id: 10, title: "Italy" },
-        { id: 10, title: "Italy" },
-        { id: 10, title: "Italy" }
-    ];
+    const [country, setCountry] = useState<{id: number, name: string, image: string, flag: string}[]>([]);
 
     function handleSaved() {
         onNext();
+    }
+
+    useEffect(() => {
+        init();
+    }, []);
+
+    async function init() {
+        const resp = await api.get("/user/country");
+
+        setCountry(resp.data.data);
     }
 
     function handleSelectCountry(id:number){
@@ -53,18 +48,17 @@ export default function StepperCountry({ onNext }: StepperInfoProps) {
             setSelectedCountry(id);
         }
     }
-
     return (
         <View style={{ flex: 1, marginHorizontal: 16 }}>
-            <TitleText>Ülkeni Seç</TitleText>
+            <TitleText>{t("titleOfCountry")}</TitleText>
             <FlatList
             showsVerticalScrollIndicator={false}
-                data={mockCountryData}
+                data={country}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({item, index}) => (
                     <SelectCard
                         isSelected={item.id == selectedCountry}
-                        text={item.title}
+                        text={item.flag + " " + item.name}
                         onPress={() => handleSelectCountry(item.id)}
                     />
                 )}

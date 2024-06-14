@@ -18,7 +18,7 @@ type RegisterInfoScreenRouteProp = RouteProp<RootStackParamList, 'RegisterInfo'>
 
 export default function RegisterInfoScreen() {
     const route = useRoute<RegisterInfoScreenRouteProp>();
-    const [stepper, setStepper] = useState<number>(3); // route.params.stepper
+    const [stepper, setStepper] = useState<number>(7); // route.params.stepper
     const maxW = Dimensions.get("screen").width;
     const theme = useTheme();
 
@@ -29,23 +29,23 @@ export default function RegisterInfoScreen() {
     const RenderStepView = () => {
         if(stepper == 0) {
             return (
-                <StepperInfo onNext={() => setStepper(1)} />
+                <StepperUsername onNext={() => setStepper(1)} />
             )
         } else if(stepper == 1) {
             return (
-                <StepperUsername onNext={() => setStepper(2)} />
+                <StepperGender onNext={() => setStepper(2)} />
             )
         } else if(stepper == 2) {
             return (
-                <StepperGender onNext={() => setStepper(3)} />
+                <StepperDatetime onNext={() => setStepper(3)} />
             )
         } else if(stepper == 3) {
             return (
-                <StepperDatetime onNext={() => setStepper(4)} />
+                <StepperCountry onNext={() => setStepper(4)} />
             )
         } else if(stepper == 4) {
-                return (
-                <StepperCountry onNext={() => setStepper(5)} />
+            return (
+                <StepperInfo onNext={() => setStepper(5)} />
             )
         } else if(stepper == 5) {
             return (

@@ -23,7 +23,7 @@ export const SelectCard = ({ isSelected, onPress, children=undefined, text, cont
                 ...containerStyle
             }}
         >
-            <Text fontWeight="300" fontSize={"18px"} color="black" >
+            <Text fontWeight="300" fontSize={"18px"} textAlign="center" color="black" >
                 {text}
             </Text>
             {children}
