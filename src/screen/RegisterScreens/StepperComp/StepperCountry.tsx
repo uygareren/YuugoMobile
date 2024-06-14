@@ -7,6 +7,7 @@ import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import i18n from "../../../utils/i18n/i18n";
 import TitleText from "../../../components/TitleText";
+import { SelectCard } from "../../../components/cards/SelectCard";
 
 type StepperInfoProps = {
     onNext: () => void
@@ -41,8 +42,7 @@ export default function StepperCountry({ onNext }: StepperInfoProps) {
         { id: 10, title: "Italy" }
     ];
 
-    function handleSaved(values: any) {
-        console.log(values);
+    function handleSaved() {
         onNext();
     }
 
@@ -54,56 +54,32 @@ export default function StepperCountry({ onNext }: StepperInfoProps) {
         }
     }
 
-    const RenderCountries = ({ item }: any) => {
-        return (
-            <TouchableOpacity
-                onPress={() => handleSelectCountry(item.id)}
-                style={{
-                    borderWidth: 1,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    paddingVertical: 16,
-                    borderBottomWidth: 6,
-                    borderColor: item.id == selectedCountry ? "#db37ce" : "gray",
-                    backgroundColor: item.id == selectedCountry ? "#fac5f5" : "white",
-                    borderRadius: 8,
-                    marginTop: 16
-                }}
-            >
-                <Text style={{ fontWeight: "600", fontSize: 18 }}>{item.title}</Text>
-            </TouchableOpacity>
-        );
-    };
-
     return (
         <View style={{ flex: 1, marginHorizontal: 16 }}>
             <TitleText>Ülkeni Seç</TitleText>
-                <Formik
-                    initialValues={{ birthDate: new Date() }}
-                    validationSchema={schema}
-                    onSubmit={handleSaved}
-                >
-                    {({ errors, touched, values, setFieldValue, handleSubmit, isValid, dirty }) => (
-                        <View style={{ flex: 1, marginTop: 28 }}>
-                            
-                            <FlatList
-                            showsVerticalScrollIndicator={false}
-                                data={mockCountryData}
-                                keyExtractor={(item) => item.id.toString()}
-                                renderItem={RenderCountries}
-                            />
-                            <Button
-                                onPress={handleSubmit as () => void}
-                                isActive={selectedCountry ? true : false}
-                                mt="20px"
-                                loading={loading}
-                                title={t("toCountinue")}
-                                mb="8px"
-                                textStyle={{ fontSize: 20 }}
-                            />
-                        </View>
-                    )}
-                </Formik>
+            <FlatList
+            showsVerticalScrollIndicator={false}
+                data={mockCountryData}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({item, index}) => (
+                    <SelectCard
+                        isSelected={item.id == selectedCountry}
+                        text={item.title}
+                        onPress={() => handleSelectCountry(item.id)}
+                    />
+                )}
+                contentContainerStyle={{ marginTop: 28, rowGap: 16 }}
+            />
+            <Button
+                onPress={handleSaved}
+                isActive={selectedCountry ? true : false}
+                mt="20px"
+                loading={loading}
+                title={t("toCountinue")}
+                mb="16px"
+                textStyle={{ fontSize: 20 }}
+            />
+        
         </View>
     );
 }

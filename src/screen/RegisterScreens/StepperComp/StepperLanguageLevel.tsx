@@ -4,19 +4,11 @@ import { FlatList, TouchableOpacity } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
+import { SelectCard } from "../../../components/cards/SelectCard";
 
 type StepperInfoProps = {
     onNext: () => void
 }
-
-type RenderLanguageLevelType = {
-    item : {
-        id: string,
-        title: string
-    }
-    
-}
-
 
 export default function StepperLanguageLevel({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterSLanguageLevel");
@@ -50,7 +42,6 @@ export default function StepperLanguageLevel({ onNext }: StepperInfoProps) {
             id:"5",
             title:"C1"
         },
-
     ]
 
     function handleSelectLanguageLevel(id:string){
@@ -63,53 +54,31 @@ export default function StepperLanguageLevel({ onNext }: StepperInfoProps) {
 
     }
 
-    const RenderLanguageLevel = ({item}:RenderLanguageLevelType) => {
-        console.log("item", item);
-        return(
-            <TouchableOpacity onPress={() => handleSelectLanguageLevel(item.id)} 
-            style={{
-                borderWidth: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingVertical: 16,
-                borderBottomWidth: 6,
-                borderColor: item.id == selectedLevel ? "#db37ce" : "gray",
-                backgroundColor: item.id == selectedLevel ? "#fac5f5" : "white",
-                borderRadius: 8,
-                marginTop: 16
-            }}
-            >
-                <Text style={{ fontWeight: "600", fontSize: 18 }}>{item.title}</Text>
-            </TouchableOpacity>
-        )
-    }
-
-   
-
     return (
-        <View mx={"16px"}>
-            <TitleText>{t("languageLevel")}</TitleText>
-            <View mt="28px">
-                
-                <FlatList
-                    data={mockLanguageLevelData}
-                    keyExtractor={(item) => item.id}
-                    renderItem={RenderLanguageLevel}
-                />
-
-                <View style={{marginTop:32}}>
-                    <Button
-                        onPress={handleSaved as () => void}
-                        isActive={selectedLevel ? true : false}
-                        mt="20px"
-                        loading={loading}
-                        title={t("toCountinue")}
-                        mb="8px"
-                        textStyle={{fontSize:20}}
-
+        <View mx={"16px"} flex={1} justifyContent="space-between">
+            <TitleText>{t("languageLevel")}</TitleText>    
+            <FlatList
+                data={mockLanguageLevelData}
+                keyExtractor={(item) => item.id}
+                renderItem={({item, index}) => (
+                    <SelectCard
+                        isSelected={item.id == selectedLevel}
+                        text={item.title}
+                        onPress={() => handleSelectLanguageLevel(item.id)}
                     />
-                </View>
-            </View>
+                )}
+                contentContainerStyle={{ rowGap: 16, marginTop: 28 }}
+            />
+            <Button
+                onPress={handleSaved as () => void}
+                isActive={selectedLevel ? true : false}
+                mt="20px"
+                loading={loading}
+                title={t("toCountinue")}
+                mb="16px"
+                textStyle={{fontSize:20}}
+
+            />
         </View>
     )
 }

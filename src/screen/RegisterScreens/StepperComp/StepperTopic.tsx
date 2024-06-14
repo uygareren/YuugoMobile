@@ -4,6 +4,7 @@ import { Dimensions, FlatList, TouchableOpacity } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
+import { SelectCard } from "../../../components/cards/SelectCard";
 
 type StepperInfoProps = {
     onNext: () => void;
@@ -25,7 +26,6 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
     const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
 
     function handleSaved() {
-        console.log(selectedTopics);
         onNext();
     }
 
@@ -52,31 +52,6 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
         );
     }
 
-    const RenderTopic = ({ item }: RenderTopicType) => {
-        const isSelected = selectedTopics.includes(item.id);
-        return (
-            <TouchableOpacity
-                onPress={() => handleSelectTopic(item.id)}
-                style={{
-                    borderWidth: 1,
-                    borderBottomWidth:6,
-                    padding: 12,
-                    alignItems: "center",
-                    width: width * 0.4,
-                    justifyContent: "center",
-                    borderRadius: 8,
-                    margin: 8,
-                    borderColor: isSelected ? "#db37ce" : "grey",
-                    backgroundColor: isSelected ? "#fac5f5" : "white",
-                }}
-            >
-                <Text style={{ fontWeight: "300", fontSize: 18, color: "black" }}>
-                    {item.topicTitle}
-                </Text>
-            </TouchableOpacity>
-        );
-    };
-
     return (
         <View mx={"16px"} justifyContent="space-between" flex={1}>
             <TitleText>{t("topicTitle")}</TitleText>
@@ -85,8 +60,15 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
                     showsVerticalScrollIndicator={false}
                     data={mockTopicData}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={RenderTopic}
+                    renderItem={({item, index}) => <SelectCard
+                            isSelected={selectedTopics.includes(item.id)}
+                            onPress={() => handleSelectTopic(item.id)}
+                            text={item.topicTitle}
+                            containerStyle={{ width: (width * 0.5) - 32 }}
+                        />
+                    }
                     numColumns={2}
+                    contentContainerStyle={{ rowGap: 16 }}
                     columnWrapperStyle={{ justifyContent: "space-between" }}
                 />
             </View>
