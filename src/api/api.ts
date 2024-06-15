@@ -14,6 +14,11 @@ export enum ResponseError {
     WRONG_CONFIRMATION_CODE = 1005,
     
     ACC_NOT_ACTIVE = 1006,
+
+    NOT_UPDATED = 1007,
+    NOT_DELETED = 1008,
+
+    HAS_ALREADY_USERNAME = 1009,    
 }
 
 const api = axios.create({

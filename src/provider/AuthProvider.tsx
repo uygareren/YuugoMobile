@@ -23,8 +23,6 @@ export default function AuthProvider({ children }: any) {
     }, []);
 
     async function main() {
-        setLoading(false);
-        return false;
         try {
             const jwt = await getJwtToken();
 
@@ -32,7 +30,7 @@ export default function AuthProvider({ children }: any) {
                 setLoading(false);
                 return -1;    
             }
-
+            
             const resp = await api.post("/auth", null,  {
                 headers: {
                     authorization: `Bearer ${jwt}`
@@ -40,23 +38,50 @@ export default function AuthProvider({ children }: any) {
             });
 
             const data = resp.data.data;
-            console.log("data", data);
+            
             if(data.userInfo) {
-                dispatch(accountSliceActions.setAccount(data));
-                navigation.dispatch(
-                    CommonActions.reset({
-                        routes: [
-                            { name: "Home" }
-                        ],
-                        index: 0
-                    })
-                );
+                let stepper = 0;
+                if(data.userInfo.languages == null) {
+                    dispatch(accountSliceActions.setJwt(jwt));
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [
+                                { name: "RegisterInfo", params: { stepper: 5 } }
+                            ],
+                            index: 0
+                        })
+                    );
+                } else if(data.userInfo.isActiveAccount == 0) { // Not Insert Toopics
+                    dispatch(accountSliceActions.setJwt(jwt));
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [
+                                { name: "RegisterInfo", params: { stepper: 7 } }
+                            ],
+                            index: 0
+                        })
+                    );
+                } else {
+                    dispatch(accountSliceActions.setAccount(data));
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [
+                                { name: "Home" }
+                            ],
+                            index: 0
+                        })
+                    );
+                }
+
+                
                 setLoading(false);
             } else {
+                dispatch(accountSliceActions.setJwt(jwt));
+                console.log("iinnn");
                 navigation.dispatch(
                     CommonActions.reset({
                         routes: [
-                            { name: "RegisterInfo" }
+                            { name: "RegisterInfo", params: { stepper: 0 } }
                         ],
                         index: 0
                     })
@@ -65,7 +90,7 @@ export default function AuthProvider({ children }: any) {
             }           
             
         } catch (error: any) {
-            await removeSecureStoreToken();
+            // await removeSecureStoreToken();
             setLoading(false);
         }
     }

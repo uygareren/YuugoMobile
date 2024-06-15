@@ -30,8 +30,8 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
-                                <Stack.Screen component={RegisterInfoScreen} name="RegisterInfo" options={{headerShown:false}} />
                                 <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
+                                <Stack.Screen component={RegisterInfoScreen} name="RegisterInfo" options={{headerShown:false}} />
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
                                 <Stack.Screen component={RegisterConfirmPasswordScreen} name="RegisterConfirmPassword" options={{headerShown:false}} />

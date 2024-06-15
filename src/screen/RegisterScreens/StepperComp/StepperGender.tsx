@@ -27,8 +27,9 @@ export default function StepperGender({ onNext }: StepperInfoProps) {
         <View mx={"16px"}>
             <TitleText>{t("genderTitle")}</TitleText>
             <View mt="28px">
-                <SelectCard text={t("male")} isSelected={selectedGender == 1} onPress={() => handleSelectGender(1)} />
-                <SelectCard text={t("female")} isSelected={selectedGender == 1} onPress={() => handleSelectGender(2)} />
+                <SelectCard text={t("male")} isSelected={selectedGender == 1} onPress={() => handleSelectGender(1)} 
+                containerStyle={{ marginBottom: 16 }} />
+                <SelectCard text={t("female")} isSelected={selectedGender == 2} onPress={() => handleSelectGender(2)} />
                 <Button
                     onPress={handleSaved as () => void}
                     isActive={true}

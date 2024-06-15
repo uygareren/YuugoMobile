@@ -125,12 +125,6 @@ export default function RegisterConfirmCodeScreen(){
         }
     }
 
-    function handleConfirmCode() {
-        console.log("debug")
-        navigation.push("RegisterConfirmPassword", { jwt:"asdsa" })
-
-    }
-
     return(
         <SafeAreaView style={{backgroundColor: theme.colors.white, flex:1 }}>
             <View mx="16px">
@@ -171,7 +165,7 @@ export default function RegisterConfirmCodeScreen(){
                 </View>
 
                 <Button title={t("btnText")} isActive={value.length == 6} 
-                onPress={handleConfirmCode} loading={loading} mt="32px" />
+                onPress={handleSubmit} loading={loading} mt="32px" />
                 
             </View>
             

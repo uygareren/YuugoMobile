@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { View } from "native-base";
+import { View, useToast } from "native-base";
 import { useState } from "react";
 import * as yup from "yup";
 import { Button } from "../../../components/Button";
@@ -7,6 +7,9 @@ import TextInput from "../../../components/input/TextInput";
 import { useI18n } from "../../../hooks/useI18n";
 import i18n from "../../../utils/i18n/i18n";
 import TitleText from "../../../components/TitleText";
+import { RootStateType } from "../../../store/store";
+import { useSelector } from "react-redux";
+import api, { ResponseError } from "../../../api/api";
 
 type StepperInfoProps = {
     onNext: () => void,
@@ -24,20 +27,40 @@ const schema = yup.object({
 }).required();
 
 export default function StepperUsername({onNext, userInfo}: StepperInfoProps){
-
+    const jwt = useSelector<RootStateType>(state => state.account.jwt);
     const {t} = useI18n("RegisterUsername");
+    const toast = useToast();
 
     const [loading, setLoading] = useState(false);
 
-    function handleSaved(values: any){
+    async function handleSaved(values: any){
         setLoading(true);
         try {
             const requestData = {
                 ...userInfo,
                 username: values.username
             }
-        } catch (error) {
-            
+
+            const resp = await api.post("/user/info", requestData, {
+                headers: {
+                    authorization: `Bearer ${jwt}`
+                }
+            });
+            setLoading(false);
+            onNext();
+        } catch (error: any) {
+            setLoading(false);
+
+            const errorCode = error.response.data.errorCode as ResponseError;
+            if(errorCode == ResponseError.HAS_ALREADY_USERNAME) {
+                toast.show({
+                    title: t("errorUsername"),
+                });
+            } else {
+                toast.show({
+                    title: t("unknownError"),
+                });
+            }
         }
         onNext();
     }

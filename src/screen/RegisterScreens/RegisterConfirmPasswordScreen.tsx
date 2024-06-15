@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { CommonActions, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
 import { Text, View, useTheme, useToast } from "native-base";
@@ -14,6 +14,8 @@ import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import { setSecureStoreToken } from "../../utils/AsyncStorage";
 import i18n from "../../utils/i18n/i18n";
+import { useDispatch } from "react-redux";
+import { accountSliceActions } from "../../store/slices/accountSlice";
 
 type RegisterConfirmPasswordScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -41,9 +43,10 @@ export default function RegisterConfirmPasswordScreen(){
     const jwt = route.params?.jwt;
     const toast = useToast();
     const theme = useTheme();
+    const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
-
+    
     async function handleConfirmPassword(values: { password1: string, password2: string }){
         setLoading(true);
         try {
@@ -56,17 +59,18 @@ export default function RegisterConfirmPasswordScreen(){
             });
             
             await setSecureStoreToken(jwt);
+            dispatch(accountSliceActions.setJwt(jwt));
+
             setLoading(false);
-            /*
+            
             navigation.dispatch(
                 CommonActions.reset({
                     routes: [
-                        { name: "RegisterInfo" }
+                        { name: "RegisterInfo", params: { stepper: 0 } }
                     ],
                     index: 0
                 })
             );
-            */
 
         } catch (error: any) {
             setLoading(false);

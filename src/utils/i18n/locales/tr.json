@@ -29,7 +29,9 @@
         "checkBoxMessage": "Yuugo'ya kaydolarak, ",
         "checkBoxMessagePrivacy":"Şartlar ve Gizlilik Politikamızı",
         "checkBoxMessageEnd":" kabul etmiş olursunuz.",
-        "continue":"DEVAM ET"
+        "continue":"DEVAM ET",
+        "hasAlreadyEmail": "Daha önce girdiğiniz e-posta adresi kaydedildi",
+        "loginError": "Daha sonra tekrar kayıt olmayı deneyiniz"
     },
     "RegisterConfirmCodeScreen":{
         "codeConfirm":"Kodu Doğrula",
@@ -75,7 +77,9 @@
     "RegisterUsername": {
         "username": "Kullanıcı Adı",
         "toCountinue": "Devam Et",
-        "title": "Kullanıcı Bilgileri"
+        "title": "Kullanıcı Bilgileri",
+        "errorUsername": "Daha önce böyle bir kullanıcı adı kaydedildi",
+        "unknownError": "Bilinmeyen Hata"
     },
     "RegisterDatetime": {
         "dateTime": "Doğum Tarihiniz Nedir?",

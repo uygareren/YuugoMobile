@@ -1,6 +1,6 @@
 import { Text, View, theme } from "native-base";
 import { useEffect, useState } from "react";
-import { Dimensions, FlatList, TouchableOpacity } from "react-native";
+import { FlatList } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
@@ -8,7 +8,7 @@ import { SelectCard } from "../../../components/cards/SelectCard";
 import api from "../../../api/api";
 
 type StepperInfoProps = {
-    onNext: () => void
+    onNext: (languageId: number) => void
 }
 
 export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
@@ -28,8 +28,8 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
         setLanguages(resp.data.data);
     }
 
-    function handleSaved(values: any) {
-        onNext();
+    function handleSaved() {
+        onNext(selectedLanguage as number);
     }
 
     function handleSelectLangauge(id:number){
