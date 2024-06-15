@@ -8,6 +8,7 @@ import TitleText from "../../../components/TitleText";
 import api from "../../../api/api";
 import { accountSliceActions } from "../../../store/slices/accountSlice";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import { useI18n } from "../../../hooks/useI18n";
 
 const avatars = [
     {
@@ -68,11 +69,12 @@ type StepperAvatarProps = {
 export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
     const jwt = useSelector<RootStateType>(state => state.account.jwt);
     const navigation = useNavigation<any>();
+    const dispatch = useDispatch();
+    const {t} = useI18n("RegisterInfo");
     const maxW = Dimensions.get("screen").width;
+
     const [selected, setSelected] = useState(null); 
     const [loading, setLoading] = useState(false);
-
-    const dispatch = useDispatch();
 
     async function handleSaved() {
         try {
@@ -122,8 +124,8 @@ export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
 
     return (
         <View mx="16px" flex={1}>
-            <TitleText>Kişisel Bilgileriniz</TitleText>
-            <FlatList 
+            <TitleText>{t("titleOfAvatar")}</TitleText>
+            <FlatList
                 numColumns={3}
                 showsVerticalScrollIndicator={false}
                 columnWrapperStyle={{ gap: 16, marginBottom: 16, marginTop: 28 }}
@@ -131,7 +133,7 @@ export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
                 renderItem={({item, index}) => <Avatar image={item.image} />}
             />
 
-            <Button title="Devam Et" onPress={handleSaved} mb="16px" isActive={selected != null} loading={loading} />
+            <Button title={t("toCountinue")} onPress={handleSaved} mb="16px" isActive={selected != null} loading={loading} />
         </View>
     )
 }

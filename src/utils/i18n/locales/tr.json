@@ -72,7 +72,8 @@
         "surname": "Soyisim",
         "toCountinue": "Devam Et",
         "title": "Kullanıcı Bilgileri",
-        "titleOfCountry": "Ülkeni Seç"
+        "titleOfCountry": "Ülkeni Seç",
+        "titleOfAvatar": "Profil Resminizi Seçiniz"
     },
     "RegisterUsername": {
         "username": "Kullanıcı Adı",
