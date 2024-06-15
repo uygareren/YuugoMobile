@@ -1,3 +1,5 @@
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+
 export type RootStackParamList = {
     Login: undefined;
     RegisterEmail:undefined,
@@ -19,4 +21,12 @@ export type RootStackParamList = {
         activationToken: string
     },
 
+    Tab: BottomTabNavigationProp<TabParamList>
+
 };
+
+export type TabParamList = {
+    Home: undefined;
+    Explore: undefined;
+    Profile: undefined;
+}

@@ -19,6 +19,7 @@ import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScree
 import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConfirmCodeScreen';
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
+import TabNavigator from './src/navigators/TabNavigator';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -41,6 +42,7 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={ForgetPasswordCodeScreen} name="ForgetPasswordCode" options={{headerShown:false}} />
                                 <Stack.Screen component={ForgetPasswordEmailScreen} name="ForgetPasswordEmail" options={{headerShown:false}} />
 
+                                <Stack.Screen component={TabNavigator} name="Tab" />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>
