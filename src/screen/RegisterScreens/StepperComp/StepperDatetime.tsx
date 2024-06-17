@@ -7,9 +7,10 @@ import DateTimeInput from "../../../components/input/DateTimeInput";
 import { useI18n } from "../../../hooks/useI18n";
 import i18n from "../../../utils/i18n/i18n";
 import TitleText from "../../../components/TitleText";
+import { formatDate } from "../../../utils/utils";
 
 type StepperInfoProps = {
-    onNext: (birthDate: Date) => void
+    onNext: (birthDate: string) => void
 }
 
 const schema = yup.object({
@@ -21,7 +22,7 @@ export default function StepperDatetime({ onNext }: StepperInfoProps) {
     const [birthDate, setBirthDate] = useState(new Date);
 
     function handleSaved() {
-        onNext(birthDate);
+        onNext(formatDate(birthDate));
     }
 
     return (

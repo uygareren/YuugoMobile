@@ -23,7 +23,7 @@ export default function RegisterInfoScreen() {
     const theme = useTheme();
 
     const [userInfo, setUserInfo] = useState<{
-        name?: string, surname?: string, birthDate?: Date, isWoman?: boolean, countryId?: number
+        name?: string, surname?: string, birthDate?: string, isWoman?: boolean, countryId?: number
     }>({});
     const [selectLanguage, setSelectLanguage] = useState(0); 
 
@@ -52,7 +52,7 @@ export default function RegisterInfoScreen() {
         });
     }
 
-    function onNextBirthDate(birthDate: Date) {
+    function onNextBirthDate(birthDate: string) {
         setStepper(3);
         setUserInfo(prevState => {
             return {

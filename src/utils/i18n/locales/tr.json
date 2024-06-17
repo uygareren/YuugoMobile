@@ -103,5 +103,10 @@
         "toCountinue": "Devam Et",
         "male": "Erkek",
         "female": "Kadın"
+    },
+    "language": {
+        "turkish": "Türkçe",
+        "german": "Almanca",
+        "english": "İngilizce"
     }
 }

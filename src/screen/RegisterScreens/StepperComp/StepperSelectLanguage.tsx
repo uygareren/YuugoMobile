@@ -6,6 +6,7 @@ import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
 import { SelectCard } from "../../../components/cards/SelectCard";
 import api from "../../../api/api";
+import { SvgUri } from "react-native-svg";
 
 type StepperInfoProps = {
     onNext: (languageId: number) => void
@@ -13,8 +14,9 @@ type StepperInfoProps = {
 
 export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterSelectLanguage");
+    const i18nFlags = useI18n("language")
     const [loading, setLoading] = useState(false);
-    const [languages, setLanguages] = useState<{id: number, languageName: string}[]>([]);
+    const [languages, setLanguages] = useState<{id: number, languageName: string, image: string}[]>([]);
 
     const [selectedLanguage, setSelectedLangauge] = useState<number | null>(null);
 
@@ -51,9 +53,11 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
                 renderItem={({item, index}) => (
                     <SelectCard
                         isSelected={item.id == selectedLanguage}
-                        text={item.languageName}
+                        text={i18nFlags.t(item.languageName)}
                         onPress={() => handleSelectLangauge(item.id)}
-                    />
+                    >
+                        <SvgUri style={{marginLeft: 8}} uri={item.image} width="24" height="24"  />
+                    </SelectCard>
                 )}
                 contentContainerStyle={{ rowGap: 16, marginTop: 28 }}
             />

@@ -16,7 +16,7 @@ type StepperInfoProps = {
     userInfo: {
         name?: string | undefined;
         surname?: string | undefined;
-        birthDate?: Date | undefined;
+        birthDate?: string | undefined;
         isWoman?: boolean | undefined;
         countryId?: number | undefined;
     }
