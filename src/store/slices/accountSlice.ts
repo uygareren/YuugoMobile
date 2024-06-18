@@ -20,7 +20,7 @@ type InitialStateType = {
         gender: string;
         avatarUrl: string;
     
-        languages: {id: number, languageName: string, levels: string}[];
+        languages: {id: number, languageName: string, level: string}[];
     } | null,
     jwt: string | null;
 }
@@ -35,10 +35,21 @@ export const accountSlice = createSlice({
     name: "account",
     reducers: {
         setAccount: (state, action) => {
-            state.userInfo = action.payload;
+            state.jwt = action.payload.jwt;
+            state.userInfo = action.payload.userInfo;
         },
         setJwt: (state, action) => {
             state.jwt = action.payload;
+        },
+        addLanguage: (state, action) => {
+            state.userInfo?.languages.push(action.payload);
+        },
+        updateLanguage: (state, action) => {
+            const { index, title } = action.payload;
+            
+            if (state.userInfo && state.userInfo.languages) {
+                state.userInfo.languages[index].level = title;
+            }
         },
         clearAccount: (state) => {
             state.userInfo = null;

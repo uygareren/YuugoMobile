@@ -12,3 +12,26 @@ export const formatDate = (date: Date) => {
     // dd/mm/yyyy formatında string oluşturuyoruz
     return `${day}/${month}/${year}`;
 }
+
+export const mockLanguageLevelData = [
+    { 
+        id:"A1",
+        title:"A1"
+    },
+    { 
+        id:"A2",
+        title:"A2"
+    },
+    { 
+        id:"B1",
+        title:"B1"
+    },
+    { 
+        id:"B2",
+        title:"B2"
+    },
+    { 
+        id:"C1",
+        title:"C1"
+    },
+]

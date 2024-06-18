@@ -7,6 +7,7 @@ import TitleText from "../../../components/TitleText";
 import { SelectCard } from "../../../components/cards/SelectCard";
 import api from "../../../api/api";
 import { SvgUri } from "react-native-svg";
+import { useGetLanguagesQuery } from "../../../store/services/utilSerivce";
 
 type StepperInfoProps = {
     onNext: (languageId: number) => void
@@ -15,20 +16,9 @@ type StepperInfoProps = {
 export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterSelectLanguage");
     const i18nFlags = useI18n("language")
-    const [loading, setLoading] = useState(false);
-    const [languages, setLanguages] = useState<{id: number, languageName: string, image: string}[]>([]);
+    const { data: languages, isLoading } = useGetLanguagesQuery(null);
 
     const [selectedLanguage, setSelectedLangauge] = useState<number | null>(null);
-
-    useEffect(() => {
-        init();
-    }, []);
-
-    async function init() {
-        const resp = await api.get("/user/language");
-
-        setLanguages(resp.data.data);
-    }
 
     function handleSaved() {
         onNext(selectedLanguage as number);
@@ -66,7 +56,7 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
                 onPress={handleSaved as () => void}
                 isActive={selectedLanguage ? true : false}
                 mt="20px"
-                loading={loading}
+                loading={isLoading}
                 title={t("toCountinue")}
                 mb="16px"
                 textStyle={{fontSize:20}}

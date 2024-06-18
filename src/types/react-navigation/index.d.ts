@@ -21,7 +21,8 @@ export type RootStackParamList = {
         activationToken: string
     },
 
-    Tab: BottomTabNavigationProp<TabParamList>
+    Tab: BottomTabNavigationProp<TabParamList>,
+    AddNewLanguage: undefined
 
 };
 

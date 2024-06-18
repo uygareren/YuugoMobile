@@ -108,5 +108,9 @@
         "turkish": "Türkçe",
         "german": "Almanca",
         "english": "İngilizce"
+    },
+    "ProfileScreen": {
+        "addLanguageBtn": "Yeni Dil Ekle",
+        "historyChatBtn": "Sohbet Konuşmalarım"
     }
 }

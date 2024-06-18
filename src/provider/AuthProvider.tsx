@@ -66,7 +66,7 @@ export default function AuthProvider({ children }: any) {
                     navigation.dispatch(
                         CommonActions.reset({
                             routes: [
-                                { name: "Home" }
+                                { name: "Tab" }
                             ],
                             index: 0
                         })

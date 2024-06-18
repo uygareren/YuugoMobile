@@ -8,6 +8,7 @@ import { SelectCard } from "../../../components/cards/SelectCard";
 import api from "../../../api/api";
 import { RootStateType } from "../../../store/store";
 import { useSelector } from "react-redux";
+import { mockLanguageLevelData } from "../../../utils/utils";
 
 type StepperInfoProps = {
     onNext: () => void;
@@ -37,40 +38,14 @@ export default function StepperLanguageLevel({ onNext, selectedLanguage }: Stepp
         } catch (error) {
             setLoading(false);    
         }
-
     }
 
-    const mockLanguageLevelData = [
-        { 
-            id:"A1",
-            title:"A1"
-        },
-        { 
-            id:"A2",
-            title:"A2"
-        },
-        { 
-            id:"B1",
-            title:"B1"
-        },
-        { 
-            id:"B2",
-            title:"B2"
-        },
-        { 
-            id:"C1",
-            title:"C1"
-        },
-    ]
-
     function handleSelectLanguageLevel(id:string){
-
         if(id == selectedLevel){
             setSelectedLevel("")
         }else{
             setSelectedLevel(id);
         }
-
     }
 
     return (
@@ -96,7 +71,6 @@ export default function StepperLanguageLevel({ onNext, selectedLanguage }: Stepp
                 title={t("toCountinue")}
                 mb="16px"
                 textStyle={{fontSize:20}}
-
             />
         </View>
     )

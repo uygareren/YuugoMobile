@@ -20,6 +20,8 @@ import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConf
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
 import TabNavigator from './src/navigators/TabNavigator';
+import ProfileScreen from './src/screen/Tabs/ProfileScreen';
+import AddNewLanguageScreen from './src/screen/AddNewLanguageScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,17 +34,18 @@ function App(): React.JSX.Element {
                         <AuthProvider>
                             <Stack.Navigator>
                                 <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
-                                <Stack.Screen component={RegisterInfoScreen} name="RegisterInfo" options={{headerShown:false}} />
+                                <Stack.Screen component={TabNavigator} name="Tab" options={{ headerShown:false }} />
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
                                 <Stack.Screen component={RegisterConfirmPasswordScreen} name="RegisterConfirmPassword" options={{headerShown:false}} />
                                 <Stack.Screen component={RegisterConfirmCodeScreen} name="RegisterConfirmCode" options={{headerShown:false}} />
+                                <Stack.Screen component={RegisterInfoScreen} name="RegisterInfo" options={{headerShown:false}} />
 
                                 <Stack.Screen component={ForgetPasswordConfirmPassword} name="ForgetPasswordConfirmPassword" options={{headerShown:false}} />
                                 <Stack.Screen component={ForgetPasswordCodeScreen} name="ForgetPasswordCode" options={{headerShown:false}} />
                                 <Stack.Screen component={ForgetPasswordEmailScreen} name="ForgetPasswordEmail" options={{headerShown:false}} />
 
-                                <Stack.Screen component={TabNavigator} name="Tab" />
+                                <Stack.Screen component={AddNewLanguageScreen} name="AddNewLanguage" options={{headerShown:false}} />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>

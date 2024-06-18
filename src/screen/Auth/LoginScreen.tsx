@@ -51,7 +51,7 @@ export default function LoginScreen(){
                 navigation.dispatch(
                     CommonActions.reset({
                         routes: [
-                            { name: "Home" }
+                            { name: "Tab" }
                         ],
                         index: 0
                     })
