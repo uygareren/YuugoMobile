@@ -7,18 +7,20 @@ import type { RootStackParamList } from './src/types/react-navigation';
 
 // Providers
 import { Provider } from 'react-redux';
-import I18nProvider from './src/provider/I18nProvider';
 import AuthProvider from './src/provider/AuthProvider';
+import I18nProvider from './src/provider/I18nProvider';
 
 // Screens
 import LoginScreen from './src/screen/Auth/LoginScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
-import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
 import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConfirmCodeScreen';
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
+import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
+import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
+import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -30,6 +32,8 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
+                                <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
+                                <Stack.Screen component={AccountScreen} name="Account" options={{headerShown:false}} />
                                 <Stack.Screen component={RegisterInfoScreen} name="RegisterInfo" options={{headerShown:false}} />
                                 <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 

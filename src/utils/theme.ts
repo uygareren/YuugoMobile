@@ -37,6 +37,13 @@ const ThemeData: ThemeUtil = {
                 }
             },
         },
+        Icon: {
+            baseStyle() {
+                return {
+                    color: "rgba(12, 16, 21, 0.7)"
+                }
+            }
+        },
         Input: { // @ts-ignore
             baseStyle(props) {
                 return {
@@ -105,6 +112,7 @@ const ThemeData: ThemeUtil = {
         body: "Poppins",
         mono: "Poppins",
     },
+    
     // @ts-ignore
     colors: {
         primary: {
@@ -159,6 +167,7 @@ const ThemeData: ThemeUtil = {
         lightText: "#858383",
         darkText: "#131313",
         titleText: "#403f3f",
+        lightBlack: "rgba(12, 16, 21, 0.7)"
     }
 }
 
