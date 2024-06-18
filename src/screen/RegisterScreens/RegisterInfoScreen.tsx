@@ -18,13 +18,14 @@ type RegisterInfoScreenRouteProp = RouteProp<RootStackParamList, 'RegisterInfo'>
 
 export default function RegisterInfoScreen() {
     const route = useRoute<RegisterInfoScreenRouteProp>();
-    const [stepper, setStepper] = useState<number>(7); // route.params.stepper
+    const [stepper, setStepper] = useState<number>(route.params.stepper); // route.params.stepper
     const maxW = Dimensions.get("screen").width;
     const theme = useTheme();
 
     const [userInfo, setUserInfo] = useState<{
-        name?: string, surname?: string, birthDate?: Date, isWoman?: boolean, countryId?: number
+        name?: string, surname?: string, birthDate?: string, isWoman?: boolean, countryId?: number
     }>({});
+    const [selectLanguage, setSelectLanguage] = useState(0); 
 
     function handleFinishStep() {
 
@@ -51,7 +52,7 @@ export default function RegisterInfoScreen() {
         });
     }
 
-    function onNextBirthDate(birthDate: Date) {
+    function onNextBirthDate(birthDate: string) {
         setStepper(3);
         setUserInfo(prevState => {
             return {
@@ -71,6 +72,10 @@ export default function RegisterInfoScreen() {
         });
     }
 
+    function onNextLanguage(languageId: number) {
+        setStepper(6);
+        setSelectLanguage(languageId);
+    }
 
     const RenderStepView = () => {
         if(stepper == 0) {
@@ -95,12 +100,12 @@ export default function RegisterInfoScreen() {
             )
         } else if(stepper == 5) {
             return (
-                <StepperSelectLanguage onNext={() => setStepper(6)} />
+                <StepperSelectLanguage onNext={onNextLanguage} />
             )
         }
         else if(stepper == 6) {
             return (
-                <StepperLanguageLevel onNext={() => setStepper(7)} />
+                <StepperLanguageLevel onNext={() => setStepper(7)} selectedLanguage={selectLanguage} />
             )
         }
         else if(stepper == 7) {
@@ -122,7 +127,7 @@ export default function RegisterInfoScreen() {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.white }}>
-            {stepper != 0 ? (
+            {stepper != 0 && stepper != 5 && stepper != 7 && stepper != 8 ? (
                 <View flexDirection="row" alignItems="center" px="16px" mt="8px">
                     <TouchableOpacity onPress={() => handleGoBack()}>
                         <Feather name="arrow-left" color="black" size={24} style={{}}/>

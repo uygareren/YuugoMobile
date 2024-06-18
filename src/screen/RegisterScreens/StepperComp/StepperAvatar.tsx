@@ -1,10 +1,14 @@
-import { FlatList, Image, Pressable, Text, View } from "native-base"
+import { FlatList, Image, Pressable, View } from "native-base"
 import { RootStateType } from "../../../store/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dimensions } from "react-native";
 import { Button } from "../../../components/Button";
 import { useState } from "react";
 import TitleText from "../../../components/TitleText";
+import api from "../../../api/api";
+import { accountSliceActions } from "../../../store/slices/accountSlice";
+import { CommonActions, useNavigation } from "@react-navigation/native";
+import { useI18n } from "../../../hooks/useI18n";
 
 const avatars = [
     {
@@ -64,8 +68,48 @@ type StepperAvatarProps = {
 } 
 export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
     const jwt = useSelector<RootStateType>(state => state.account.jwt);
+    const navigation = useNavigation<any>();
+    const dispatch = useDispatch();
+    const {t} = useI18n("RegisterInfo");
     const maxW = Dimensions.get("screen").width;
+
     const [selected, setSelected] = useState(null); 
+    const [loading, setLoading] = useState(false);
+
+    async function handleSaved() {
+        try {
+            setLoading(true);
+
+            await api.put("user/avatar", {
+                avatarUrl: selected
+            }, {
+                headers: {
+                    authorization: `Bearer ${jwt}`
+                }
+            });
+
+            const resp = await api.post("/auth", null,  {
+                headers: {
+                    authorization: `Bearer ${jwt}`
+                }
+            });
+
+            const data = resp.data.data;
+
+            dispatch(accountSliceActions.setAccount(data));
+
+            navigation.dispatch(
+                CommonActions.reset({
+                    routes: [
+                        { name: "Home" }
+                    ],
+                    index: 0
+                })
+            );
+        } catch (error: any) {
+            setLoading(false);
+        }
+    }
 
     const Avatar = ({ image }: any) => {
         const size = (maxW * 0.33 - 21) + "px";
@@ -80,16 +124,16 @@ export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
 
     return (
         <View mx="16px" flex={1}>
-            <TitleText>Kişisel Bilgileriniz</TitleText>
-            <FlatList 
+            <TitleText>{t("titleOfAvatar")}</TitleText>
+            <FlatList
                 numColumns={3}
                 showsVerticalScrollIndicator={false}
-                columnWrapperStyle={{ gap: 16, marginBottom: 16 }}
+                columnWrapperStyle={{ gap: 16, marginBottom: 16, marginTop: 28 }}
                 data={avatars}
                 renderItem={({item, index}) => <Avatar image={item.image} />}
             />
 
-            <Button title="Devam Et" onPress={onNext} mb="16px" isActive />
+            <Button title={t("toCountinue")} onPress={handleSaved} mb="16px" isActive={selected != null} loading={loading} />
         </View>
     )
 }

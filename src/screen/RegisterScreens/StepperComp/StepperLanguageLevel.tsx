@@ -5,41 +5,60 @@ import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
 import { SelectCard } from "../../../components/cards/SelectCard";
+import api from "../../../api/api";
+import { RootStateType } from "../../../store/store";
+import { useSelector } from "react-redux";
 
 type StepperInfoProps = {
-    onNext: () => void
+    onNext: () => void;
+    selectedLanguage: number;
 }
 
-export default function StepperLanguageLevel({ onNext }: StepperInfoProps) {
+export default function StepperLanguageLevel({ onNext, selectedLanguage }: StepperInfoProps) {
+    const jwt = useSelector<RootStateType>(state => state.account.jwt);
     const { t } = useI18n("RegisterSLanguageLevel");
 
     const [loading, setLoading] = useState(false);
     const [selectedLevel, setSelectedLevel] = useState("");
 
-    function handleSaved(values: any) {
-        console.log(values);
-        onNext();
+    async function handleSaved() {
+        setLoading(true);
+        try {
+            const resp = await api.post("/user/language", {
+                languageId: selectedLanguage,
+                level: selectedLevel
+            }, {
+                headers: {
+                    authorization: `Bearer ${jwt}`
+                }
+            });
+            setLoading(false);
+            onNext();
+        } catch (error) {
+            setLoading(false);    
+        }
+
     }
 
     const mockLanguageLevelData = [
         { 
-            id:"1",
+            id:"A1",
             title:"A1"
         },
         { 
-            id:"2",
+            id:"A2",
             title:"A2"
         },
         { 
-            id:"3",
+            id:"B1",
             title:"B1"
         },
         { 
-            id:"4",
+            id:"B2",
             title:"B2"
         },
         { 
-            id:"5",
+            id:"C1",
             title:"C1"
         },
     ]

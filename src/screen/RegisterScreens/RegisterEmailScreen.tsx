@@ -65,7 +65,7 @@ export default function RegisterEmailScreen(){
             const errorCode = error.response.data.errorCode as ResponseError;
             if(errorCode == ResponseError.HAS_ALREADY_ACC) {
                 toast.show({
-                    title: t("loginError"),
+                    title: t("hasAlreadyEmail"),
                 });
             } else if(errorCode == ResponseError.ACTIVATION_CODE_BANNED) {
                 toast.show({
@@ -77,10 +77,6 @@ export default function RegisterEmailScreen(){
                 });
             }
         }
-    }
-
-    function handleGoCodePage(){
-        navigation.push("RegisterConfirmCode", {activationToken:"45"});
     }
 
 
@@ -95,7 +91,7 @@ export default function RegisterEmailScreen(){
                 email:"ertugruldirik35@gmail.com"
             }}
             validationSchema={schema}
-            onSubmit={handleGoCodePage} // Change this to handleConfirmEmail
+            onSubmit={handleConfirmEmail} // Change this to handleConfirmEmail
             >
                 {({errors, touched, values, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
                     <View mt="32px" mx="16px" >

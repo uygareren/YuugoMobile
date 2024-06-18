@@ -11,6 +11,7 @@ import AuthProvider from './src/provider/AuthProvider';
 import I18nProvider from './src/provider/I18nProvider';
 
 // Screens
+import TabNavigator from './src/navigators/TabNavigator';
 import LoginScreen from './src/screen/Auth/LoginScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
@@ -45,6 +46,7 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={ForgetPasswordCodeScreen} name="ForgetPasswordCode" options={{headerShown:false}} />
                                 <Stack.Screen component={ForgetPasswordEmailScreen} name="ForgetPasswordEmail" options={{headerShown:false}} />
 
+                                <Stack.Screen component={TabNavigator} name="Tab" />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>

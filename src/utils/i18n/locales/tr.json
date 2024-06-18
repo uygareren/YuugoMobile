@@ -29,7 +29,9 @@
         "checkBoxMessage": "Yuugo'ya kaydolarak, ",
         "checkBoxMessagePrivacy":"Şartlar ve Gizlilik Politikamızı",
         "checkBoxMessageEnd":" kabul etmiş olursunuz.",
-        "continue":"DEVAM ET"
+        "continue":"DEVAM ET",
+        "hasAlreadyEmail": "Daha önce girdiğiniz e-posta adresi kaydedildi",
+        "loginError": "Daha sonra tekrar kayıt olmayı deneyiniz"
     },
     "RegisterConfirmCodeScreen":{
         "codeConfirm":"Kodu Doğrula",
@@ -70,12 +72,15 @@
         "surname": "Soyisim",
         "toCountinue": "Devam Et",
         "title": "Kullanıcı Bilgileri",
-        "titleOfCountry": "Ülkeni Seç"
+        "titleOfCountry": "Ülkeni Seç",
+        "titleOfAvatar": "Profil Resminizi Seçiniz"
     },
     "RegisterUsername": {
         "username": "Kullanıcı Adı",
         "toCountinue": "Devam Et",
-        "title": "Kullanıcı Bilgileri"
+        "title": "Kullanıcı Bilgileri",
+        "errorUsername": "Daha önce böyle bir kullanıcı adı kaydedildi",
+        "unknownError": "Bilinmeyen Hata"
     },
     "RegisterDatetime": {
         "dateTime": "Doğum Tarihiniz Nedir?",
@@ -116,5 +121,10 @@
         "blocked":"Engellediklerim",
         "closeAccount": "Hesabımı Kapat",
         "sortDiscover":"Keşfetimi Sırala"
+    },
+    "language": {
+        "turkish": "Türkçe",
+        "german": "Almanca",
+        "english": "İngilizce"
     }
 }

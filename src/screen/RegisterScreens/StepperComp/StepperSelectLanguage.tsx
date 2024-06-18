@@ -1,20 +1,22 @@
 import { Text, View, theme } from "native-base";
 import { useEffect, useState } from "react";
-import { Dimensions, FlatList, TouchableOpacity } from "react-native";
+import { FlatList } from "react-native";
 import { Button } from "../../../components/Button";
 import { useI18n } from "../../../hooks/useI18n";
 import TitleText from "../../../components/TitleText";
 import { SelectCard } from "../../../components/cards/SelectCard";
 import api from "../../../api/api";
+import { SvgUri } from "react-native-svg";
 
 type StepperInfoProps = {
-    onNext: () => void
+    onNext: (languageId: number) => void
 }
 
 export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterSelectLanguage");
+    const i18nFlags = useI18n("language")
     const [loading, setLoading] = useState(false);
-    const [languages, setLanguages] = useState<{id: number, languageName: string}[]>([]);
+    const [languages, setLanguages] = useState<{id: number, languageName: string, image: string}[]>([]);
 
     const [selectedLanguage, setSelectedLangauge] = useState<number | null>(null);
 
@@ -28,8 +30,8 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
         setLanguages(resp.data.data);
     }
 
-    function handleSaved(values: any) {
-        onNext();
+    function handleSaved() {
+        onNext(selectedLanguage as number);
     }
 
     function handleSelectLangauge(id:number){
@@ -51,9 +53,11 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
                 renderItem={({item, index}) => (
                     <SelectCard
                         isSelected={item.id == selectedLanguage}
-                        text={item.languageName}
+                        text={i18nFlags.t(item.languageName)}
                         onPress={() => handleSelectLangauge(item.id)}
-                    />
+                    >
+                        <SvgUri style={{marginLeft: 8}} uri={item.image} width="24" height="24"  />
+                    </SelectCard>
                 )}
                 contentContainerStyle={{ rowGap: 16, marginTop: 28 }}
             />

@@ -106,6 +106,14 @@ const ThemeData: ThemeUtil = {
             normal: "Poppins-Bold",
             italic: "Poppins-BoldItalic",
         },
+        800: {
+            normal: "Poppins-ExtraBold",
+            italic: "Poppins-ExtraBold"
+        },
+        900: {
+            normal: "Poppins-ExtraBold",
+            italic: "Poppins-ExtraBold"
+        }
     },
     fonts: {
         heading: "Poppins",
