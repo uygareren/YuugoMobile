@@ -104,6 +104,24 @@
         "male": "Erkek",
         "female": "Kadın"
     },
+    "SettingsScreen":{
+        "settings":"Ayarlar",
+        "account":"Hesabım",
+        "changeLanguage":"Dil Değiştir",
+        "ticket": "Bilet",
+        "kvkk":"KVKK Sözleşmesi",
+        "mailNotification":"Mail Bildirimi",
+        "logout":"Çıkış Yap"
+    },
+    "AccountScreen":{
+        "account": "Hesabım",
+        "updateProfile":"Profil Güncelle",
+        "updatePassword": "Parola Güncelle",
+        "complaiment": "Şikayetlerim",
+        "blocked":"Engellediklerim",
+        "closeAccount": "Hesabımı Kapat",
+        "sortDiscover":"Keşfetimi Sırala"
+    },
     "language": {
         "turkish": "Türkçe",
         "german": "Almanca",

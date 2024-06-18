@@ -20,6 +20,8 @@ export type RootStackParamList = {
     ForgetPasswordConfirmPassword: {
         activationToken: string
     },
+    Settings: undefined,
+    Account:undefined
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined
