@@ -31,13 +31,7 @@ export default function SettingsScreen() {
 
     return (
         <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
-           <Header title={t("settings")} leftIcon={
-            <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.leftIcon}>
-                <Entypo name="chevron-left" color={theme.colors.lightBlack} size={28} />
-            </TouchableOpacity>
-           }/>
+           <Header title={t("settings")}/>
 
             <View style={styles.profileContainer}>
                 <View style={styles.profileImageContainer}>
@@ -142,12 +136,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: MARGIN_HORİZONTAL,
     },
-    leftIcon: {
-        position: "absolute",
-        left: 0,
-        alignItems: "center",
-        justifyContent: "center",
-    },
+    
     profileContainer: {
         marginTop: 32,
         paddingVertical: 24,

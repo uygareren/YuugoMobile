@@ -1,17 +1,26 @@
-import { View } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import { View, useTheme } from "native-base";
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import Entypo from "react-native-vector-icons/Entypo";
 
 type HeaderType = {
-    leftIcon?: React.ReactNode;
     rightIcon?: boolean;
     title:String
 };
 
-export const Header:React.FC<HeaderType> = ({title,leftIcon, rightIcon}) => {
+export const Header:React.FC<HeaderType> = ({title, rightIcon}) => {
+
+    const navigation = useNavigation();
+    const theme = useTheme();
+
     return(
         <View style={styles.header}>
-            {leftIcon}
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={styles.leftIcon}>
+                <Entypo name="chevron-left" color={theme.colors.lightBlack} size={28} />
+            </TouchableOpacity>
         <View style={styles.headerTitleContainer}>
             <Text style={styles.headerTitle}>{title}</Text>
         </View>
@@ -27,7 +36,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-   
+    leftIcon: {
+        position: "absolute",
+        left: 0,
+        alignItems: "center",
+        justifyContent: "center",
+    },
     rightIcon: {
         position: "absolute",
         right: 0,
