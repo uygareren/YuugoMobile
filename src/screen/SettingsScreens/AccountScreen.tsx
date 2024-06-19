@@ -73,7 +73,9 @@ export default function AccountScreen() {
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("Blocked")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#00ff33" }]}>
                         <FontAwesome6 name="ban" color="white" size={20} />

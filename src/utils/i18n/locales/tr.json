@@ -133,5 +133,9 @@
     },
     "ComplaimentScreen":{
         "title":"Şikayetlerim"
+    },
+    "BlockedScreen":{
+        "title":"Engellediklerim"
+
     }
 }

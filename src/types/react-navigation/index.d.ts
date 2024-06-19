@@ -22,7 +22,8 @@ export type RootStackParamList = {
     },
     Settings: undefined,
     Account:undefined,
-    Complaiment:undefined
+    Complaiment:undefined,
+    Blocked: undefined
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined
