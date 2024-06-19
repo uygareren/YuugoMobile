@@ -12,6 +12,7 @@ import I18nProvider from './src/provider/I18nProvider';
 
 // Screens
 import TabNavigator from './src/navigators/TabNavigator';
+import AddNewLanguageScreen from './src/screen/AddNewLanguageScreen';
 import LoginScreen from './src/screen/Auth/LoginScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
@@ -20,9 +21,8 @@ import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConf
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
 import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
-import ProfileScreen from './src/screen/Tabs/ProfileScreen';
-import AddNewLanguageScreen from './src/screen/AddNewLanguageScreen';
 import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
+import ComplaimentScreen from './src/screen/SettingsScreens/ComplaimentScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,6 +35,8 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
+                                <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
+
                                 <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
@@ -49,8 +51,8 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={TabNavigator} name="Tab" options={{ headerShown:false }} />
                                 <Stack.Screen component={AddNewLanguageScreen} name="AddNewLanguage" options={{headerShown:false}} />
 
-                                <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
                                 <Stack.Screen component={AccountScreen} name="Account" options={{headerShown:false}} />
+                                <Stack.Screen component={ComplaimentScreen} name="Complaiment" options={{headerShown:false}} />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>
