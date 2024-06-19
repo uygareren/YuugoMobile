@@ -43,7 +43,9 @@ export default function AccountScreen() {
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("UpdatePassword")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#2f00ff" }]}>
                         <MaterialIcons name="password" color="white" size={20} />

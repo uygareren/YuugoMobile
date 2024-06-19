@@ -25,6 +25,7 @@ import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
 import BlockedScreen from './src/screen/SettingsScreens/BlockedScreen';
 import ComplaimentScreen from './src/screen/SettingsScreens/ComplaimentScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
+import UpdatePasswordScreen from './src/screen/SettingsScreens/UpdatePasswordScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -55,6 +56,7 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={AccountScreen} name="Account" options={{headerShown:false}} />
                                 <Stack.Screen component={ComplaimentScreen} name="Complaiment" options={{headerShown:false}} />
                                 <Stack.Screen component={BlockedScreen} name="Blocked" options={{headerShown:false}} />
+                                <Stack.Screen component={UpdatePasswordScreen} name="UpdatePassword" options={{headerShown:false}} />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>

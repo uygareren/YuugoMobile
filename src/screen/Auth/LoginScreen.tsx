@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import api, { ResponseError } from "../../api/api";
 import { Button } from "../../components/Button";
+import TitleText from "../../components/TitleText";
 import PasswordInput from "../../components/input/PasswordInput";
 import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
@@ -15,7 +16,6 @@ import { accountSliceActions } from "../../store/slices/accountSlice";
 import { type RootStackParamList } from "../../types/react-navigation";
 import { setSecureStoreToken } from "../../utils/AsyncStorage";
 import i18n from "../../utils/i18n/i18n";
-import TitleText from "../../components/TitleText";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -129,7 +129,7 @@ export default function LoginScreen(){
                     </View>
                 )}
                     
-                </Formik>
+            </Formik>
 
                 <View alignSelf="center">
                     <Text fontSize="13px">{t("registerQuestion")}<Text fontWeight="bold" color="primary.500"

@@ -136,6 +136,12 @@
     },
     "BlockedScreen":{
         "title":"Engellediklerim"
-
+    },
+    "UpdatePasswordScreen":{
+        "title":"Parola Güncelle",
+        "currentPassword": "Güncel Parola",
+        "password1": "Yeni Parolayı Girin",
+        "password2": "Parolayı Onayla",
+        "update": "Güncelle" 
     }
 }
