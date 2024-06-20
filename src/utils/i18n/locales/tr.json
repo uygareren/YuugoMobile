@@ -132,10 +132,12 @@
         "historyChatBtn": "Sohbet Konuşmalarım"
     },
     "ComplaimentScreen":{
-        "title":"Şikayetlerim"
+        "title":"Şikayetlerim",
+        "who":"Kime: "
     },
     "BlockedScreen":{
-        "title":"Engellediklerim"
+        "title":"Engellediklerim",
+        "removeBlock": "Engeli Kaldır"
     },
     "UpdatePasswordScreen":{
         "title":"Parola Güncelle",
@@ -143,5 +145,9 @@
         "password1": "Yeni Parolayı Girin",
         "password2": "Parolayı Onayla",
         "update": "Güncelle" 
+    },
+    "UpdateProfileScreen": {
+        "title":"Profil Güncelle"
+
     }
 }
