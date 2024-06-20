@@ -1,45 +1,31 @@
-import { View } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import { Icon, View, Text } from "native-base";
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import Entypo from 'react-native-vector-icons/Entypo';
 
 type HeaderType = {
     leftIcon?: React.ReactNode;
-    rightIcon?: boolean;
+    rightIcon?: React.ReactNode;
     title:String
 };
 
 export const Header:React.FC<HeaderType> = ({title,leftIcon, rightIcon}) => {
+    const navigation = useNavigation();
+
     return(
-        <View style={styles.header}>
-            {leftIcon}
-        <View style={styles.headerTitleContainer}>
-            <Text style={styles.headerTitle}>{title}</Text>
+        <View flexDir="row" alignItems="center" justifyContent="space-between" mr="16px" mb="16px" >
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}>
+                <Icon as={<Entypo name="chevron-left" />} size="24px" />
+            </TouchableOpacity>    
+            <Text fontSize="20px" textAlign="center">{title}</Text>
+            <View >
+                {rightIcon}
+            </View>
         </View>
-            {rightIcon}
-    </View>
     )
 }
 
 const styles = StyleSheet.create({
-    header: {
-        height: 80,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-   
-    rightIcon: {
-        position: "absolute",
-        right: 0,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    headerTitleContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    headerTitle: {
-        fontSize: 24,
-        fontWeight: "900",
-    },
 })

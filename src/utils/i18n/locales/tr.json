@@ -127,8 +127,27 @@
         "german": "Almanca",
         "english": "İngilizce"
     },
+    "rankNames": {
+        "rank1": "Rank(1)",
+        "rank2": "Rank(2)",
+        "rank3": "Rank(3)",
+        "rank4": "Rank(4)",
+        "rank5": "Rank(5)"
+    },
     "ProfileScreen": {
         "addLanguageBtn": "Yeni Dil Ekle",
-        "historyChatBtn": "Sohbet Konuşmalarım"
+        "historyChatBtn": "Sohbet Konuşmalarım",
+        "myWords": "Kelimelerim"
+    },
+    "FriendScreen": {
+        "headerTitle": "Arkadaşlarım",
+        "searchFriend": "Arkadaşını Ara"
+    },
+    "FriendRequestScreen": {
+        "headerTitle": "Arkadaş İstekleri",
+        "searchFriend": "Arkadaşını Ara",
+        "accept": "Kabul Et",
+        "reject": "Reddet",
+        "addFriend": "Ekle"
     }
 }

@@ -42,33 +42,56 @@ export default function LoginScreen(){
             const resp = await api.post("/auth/login", values);
 
             const data = resp.data.data;
+            const jwt = data.jwt;
             await setSecureStoreToken(data.jwt);
-
+            
             if(data.userInfo) {
-                dispatch(accountSliceActions.setAccount(data));
-                setLoading(false)
+            
+                if(data.userInfo.languages == null) {
+                    dispatch(accountSliceActions.setJwt(jwt));
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [
+                                { name: "RegisterInfo", params: { stepper: 5 } }
+                            ],
+                            index: 0
+                        })
+                    );
+                } else if(data.userInfo.isActiveAccount == 0) { // Not Insert Toopics
+                    dispatch(accountSliceActions.setJwt(jwt));
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [
+                                { name: "RegisterInfo", params: { stepper: 7 } }
+                            ],
+                            index: 0
+                        })
+                    );
+                } else {
+                    dispatch(accountSliceActions.setAccount(data));
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            routes: [
+                                { name: "Tab" }
+                            ],
+                            index: 0
+                        })
+                    );
+                }
+
                 
-                navigation.dispatch(
-                    CommonActions.reset({
-                        routes: [
-                            { name: "Tab" }
-                        ],
-                        index: 0
-                    })
-                );
-                
-            } else {
                 setLoading(false);
-                dispatch(accountSliceActions.setJwt(data.jwt));
-                
+            } else {
+                dispatch(accountSliceActions.setJwt(jwt));
                 navigation.dispatch(
                     CommonActions.reset({
                         routes: [
-                            { name: "RegisterInfo" }
+                            { name: "RegisterInfo", params: { stepper: 0 } }
                         ],
                         index: 0
                     })
                 );
+                setLoading(false);
             }
 
         } catch (error: any) {

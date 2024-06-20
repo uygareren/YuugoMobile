@@ -21,9 +21,11 @@ import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/Register
 import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
 import ProfileScreen from './src/screen/Tabs/ProfileScreen';
-import AddNewLanguageScreen from './src/screen/AddNewLanguageScreen';
+import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
 import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
+import FriendScreen from './src/screen/ProfileScreens/FriendScreen';
+import FriendRequestScreen from './src/screen/ProfileScreens/FriendRequestScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -51,6 +53,8 @@ function App(): React.JSX.Element {
 
                                 <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
                                 <Stack.Screen component={AccountScreen} name="Account" options={{headerShown:false}} />
+                                <Stack.Screen component={FriendScreen} name="Friend" options={{headerShown:false}} />
+                                <Stack.Screen component={FriendRequestScreen} name="FriendRequest" options={{headerShown:false}} />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>
