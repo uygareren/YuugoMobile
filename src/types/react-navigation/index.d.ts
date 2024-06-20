@@ -21,7 +21,10 @@ export type RootStackParamList = {
         activationToken: string
     },
     Settings: undefined,
-    Account:undefined
+    Account:undefined,
+    Complaiment:undefined,
+    Blocked: undefined,
+    UpdatePassword: undefined
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined

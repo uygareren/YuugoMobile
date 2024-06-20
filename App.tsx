@@ -20,12 +20,14 @@ import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConf
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
 import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
-import ProfileScreen from './src/screen/Tabs/ProfileScreen';
-import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
 import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
+import BlockedScreen from './src/screen/SettingsScreens/BlockedScreen';
+import ComplaimentScreen from './src/screen/SettingsScreens/ComplaimentScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
 import FriendScreen from './src/screen/ProfileScreens/FriendScreen';
 import FriendRequestScreen from './src/screen/ProfileScreens/FriendRequestScreen';
+import UpdatePasswordScreen from './src/screen/SettingsScreens/UpdatePasswordScreen';
+import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -37,6 +39,8 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
+                                <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
+
                                 <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
@@ -51,10 +55,12 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={TabNavigator} name="Tab" options={{ headerShown:false }} />
                                 <Stack.Screen component={AddNewLanguageScreen} name="AddNewLanguage" options={{headerShown:false}} />
 
-                                <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
                                 <Stack.Screen component={AccountScreen} name="Account" options={{headerShown:false}} />
                                 <Stack.Screen component={FriendScreen} name="Friend" options={{headerShown:false}} />
                                 <Stack.Screen component={FriendRequestScreen} name="FriendRequest" options={{headerShown:false}} />
+                                <Stack.Screen component={ComplaimentScreen} name="Complaiment" options={{headerShown:false}} />
+                                <Stack.Screen component={BlockedScreen} name="Blocked" options={{headerShown:false}} />
+                                <Stack.Screen component={UpdatePasswordScreen} name="UpdatePassword" options={{headerShown:false}} />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>

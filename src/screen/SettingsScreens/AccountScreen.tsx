@@ -27,13 +27,7 @@ export default function AccountScreen() {
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.white }]}>
-            <Header title={t("account")} leftIcon={
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
-                    style={styles.backButton}>
-                    <Entypo name="chevron-left" color={theme.colors.lightBlack} size={28} />
-                </TouchableOpacity>
-            }/>
+            <Header title={t("account")}/>
 
             <TouchableOpacity style={styles.card}>
                 <View style={styles.cardContent}>
@@ -49,7 +43,9 @@ export default function AccountScreen() {
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("UpdatePassword")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#2f00ff" }]}>
                         <MaterialIcons name="password" color="white" size={20} />
@@ -63,7 +59,9 @@ export default function AccountScreen() {
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("Complaiment")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#fbff00" }]}>
                         <FontAwesome name="warning" color="white" size={20} />
@@ -77,7 +75,9 @@ export default function AccountScreen() {
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("Blocked")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#00ff33" }]}>
                         <FontAwesome6 name="ban" color="white" size={20} />

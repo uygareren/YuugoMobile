@@ -148,6 +148,26 @@
         "searchFriend": "Arkadaşını Ara",
         "accept": "Kabul Et",
         "reject": "Reddet",
-        "addFriend": "Ekle"
+        "addFriend": "Ekle",
+        "historyChatBtn": "Sohbet Konuşmalarım"
+    },
+    "ComplaimentScreen":{
+        "title":"Şikayetlerim",
+        "who":"Kime: "
+    },
+    "BlockedScreen":{
+        "title":"Engellediklerim",
+        "removeBlock": "Engeli Kaldır"
+    },
+    "UpdatePasswordScreen":{
+        "title":"Parola Güncelle",
+        "currentPassword": "Güncel Parola",
+        "password1": "Yeni Parolayı Girin",
+        "password2": "Parolayı Onayla",
+        "update": "Güncelle" 
+    },
+    "UpdateProfileScreen": {
+        "title":"Profil Güncelle"
+
     }
 }

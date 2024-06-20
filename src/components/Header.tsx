@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Icon, View, Text } from "native-base";
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Entypo from 'react-native-vector-icons/Entypo';
 
 type HeaderType = {
@@ -26,6 +26,3 @@ export const Header:React.FC<HeaderType> = ({title,leftIcon, rightIcon}) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-})
