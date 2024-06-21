@@ -29,6 +29,8 @@ export type RootStackParamList = {
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined
+    Friend: undefined
+    FriendRequest: undefined
 
 };
 

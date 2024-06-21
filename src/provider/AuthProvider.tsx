@@ -40,7 +40,7 @@ export default function AuthProvider({ children }: any) {
             const data = resp.data.data;
             
             if(data.userInfo) {
-                let stepper = 0;
+            
                 if(data.userInfo.languages == null) {
                     dispatch(accountSliceActions.setJwt(jwt));
                     navigation.dispatch(
@@ -77,7 +77,6 @@ export default function AuthProvider({ children }: any) {
                 setLoading(false);
             } else {
                 dispatch(accountSliceActions.setJwt(jwt));
-                console.log("iinnn");
                 navigation.dispatch(
                     CommonActions.reset({
                         routes: [

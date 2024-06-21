@@ -13,6 +13,20 @@ export const formatDate = (date: Date) => {
     return `${day}/${month}/${year}`;
 }
 
+export const getRankName = (point: number) => {
+    if(point < 150) {
+        return "rank1";
+    } else if(point < 300) {
+        return "rank2";
+    } else if(point < 600) {
+        return "rank3";
+    } else if(point < 1000) {
+        return "rank4";
+    } else {
+        return "rank5";
+    }
+}
+
 export const mockLanguageLevelData = [
     { 
         id:"A1",

@@ -1,19 +1,18 @@
-import { FlatList, Icon, View } from "native-base";
+import { FlatList, View } from "native-base";
 import { SafeAreaView } from "react-native";
-import { mockLanguageLevelData } from "../utils/utils";
-import { SelectCard } from "../components/cards/SelectCard";
+import { mockLanguageLevelData } from "../../utils/utils";
+import { SelectCard } from "../../components/cards/SelectCard";
 import { useDispatch, useSelector } from "react-redux";
-import { RootStateType } from "../store/store";
-import { useI18n } from "../hooks/useI18n";
+import { RootStateType } from "../../store/store";
+import { useI18n } from "../../hooks/useI18n";
 import { useState } from "react";
-import { Button } from "../components/Button";
+import { Button } from "../../components/Button";
 import { SvgUri } from "react-native-svg";
-import { useGetLanguagesQuery } from "../store/services/utilSerivce";
-import api from "../api/api";
+import { useGetLanguagesQuery } from "../../store/services/utilSerivce";
+import api from "../../api/api";
 import { useNavigation } from "@react-navigation/native";
-import { accountSliceActions } from "../store/slices/accountSlice";
-import FontAwesome6Icon from "react-native-vector-icons/FontAwesome6";
-import TitleText from "../components/TitleText";
+import { accountSliceActions } from "../../store/slices/accountSlice";
+import { Header } from "../../components/Header";
 
 export default function AddNewLanguageScreen() {
     const jwt = useSelector<RootStateType>(state => state.account.jwt);
@@ -76,14 +75,14 @@ export default function AddNewLanguageScreen() {
     function handlePage() {
         setPage(1);
     }
-
+    console.log(languages);
     const SetComponent = () => {
         if(page == 0) {
             return (
                 <View>
                     <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={languages?.filter((v) => oldLanguages.findIndex((value: any) => value.languageId == v.id))}
+                    data={languages?.filter((v) => oldLanguages.findIndex((value: any) => value.languageId == v.id) == -1)}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item, index}) => (
                         <SelectCard
@@ -122,9 +121,7 @@ export default function AddNewLanguageScreen() {
                     <Button
                         onPress={handleSaved as () => void}
                         isActive={selectedLevel ? true : false}
-                        mt="20px" loading={loading}
-                        title={t("toCountinue")}
-                        mb="16px"
+                        mt="20px" loading={loading} mb="16px" title={t("toCountinue")}
                     />
                 
                 </View>
@@ -134,12 +131,8 @@ export default function AddNewLanguageScreen() {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            
             <View px="16px" backgroundColor="white" flex={1}>
-                <View mt="16px">
-                    <Icon as={<FontAwesome6Icon name="chevron-left" />} color="gray.900" />
-                    <TitleText>{profileI18n.t("addLanguageBtn")}</TitleText>
-                </View>
+                <Header title={profileI18n.t("addLanguageBtn")} />
                 {SetComponent()}
             </View>
         </SafeAreaView>

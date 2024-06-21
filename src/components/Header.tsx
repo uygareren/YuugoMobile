@@ -1,59 +1,28 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, useTheme } from "native-base";
+import { Icon, View, Text } from "native-base";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import Entypo from "react-native-vector-icons/Entypo";
+import { TouchableOpacity } from "react-native";
+import Entypo from 'react-native-vector-icons/Entypo';
 
 type HeaderType = {
-    rightIcon?: boolean;
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
     title:String
 };
 
-export const Header:React.FC<HeaderType> = ({title, rightIcon}) => {
-
+export const Header:React.FC<HeaderType> = ({title,leftIcon, rightIcon}) => {
     const navigation = useNavigation();
-    const theme = useTheme();
 
     return(
-        <View style={styles.header}>
+        <View flexDir="row" alignItems="center" justifyContent="space-between" mr="16px" mb="16px" >
             <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.leftIcon}>
-                <Entypo name="chevron-left" color={theme.colors.lightBlack} size={28} />
-            </TouchableOpacity>
-        <View style={styles.headerTitleContainer}>
-            <Text style={styles.headerTitle}>{title}</Text>
+                onPress={() => navigation.goBack()}>
+                <Icon as={<Entypo name="chevron-left" />} size="24px" />
+            </TouchableOpacity>    
+            <Text fontSize="20px" textAlign="center">{title}</Text>
+            <View >
+                {rightIcon}
+            </View>
         </View>
-            {rightIcon}
-    </View>
     )
 }
-
-const styles = StyleSheet.create({
-    header: {
-        height: 80,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    leftIcon: {
-        position: "absolute",
-        left: 0,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    rightIcon: {
-        position: "absolute",
-        right: 0,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    headerTitleContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    headerTitle: {
-        fontSize: 24,
-        fontWeight: "900",
-    },
-})

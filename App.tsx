@@ -12,11 +12,13 @@ import I18nProvider from './src/provider/I18nProvider';
 
 // Screens
 import TabNavigator from './src/navigators/TabNavigator';
-import AddNewLanguageScreen from './src/screen/AddNewLanguageScreen';
 import LoginScreen from './src/screen/Auth/LoginScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
+import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
+import FriendRequestScreen from './src/screen/ProfileScreens/FriendRequestScreen';
+import FriendScreen from './src/screen/ProfileScreens/FriendScreen';
 import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConfirmCodeScreen';
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
 import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
@@ -55,6 +57,8 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={AddNewLanguageScreen} name="AddNewLanguage" options={{headerShown:false}} />
 
                                 <Stack.Screen component={AccountScreen} name="Account" options={{headerShown:false}} />
+                                <Stack.Screen component={FriendScreen} name="Friend" options={{headerShown:false}} />
+                                <Stack.Screen component={FriendRequestScreen} name="FriendRequest" options={{headerShown:false}} />
                                 <Stack.Screen component={ComplaimentScreen} name="Complaiment" options={{headerShown:false}} />
                                 <Stack.Screen component={BlockedScreen} name="Blocked" options={{headerShown:false}} />
                                 <Stack.Screen component={UpdatePasswordScreen} name="UpdatePassword" options={{headerShown:false}} />
