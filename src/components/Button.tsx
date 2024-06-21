@@ -24,7 +24,8 @@ export const Button: React.FC<ButtonCompProps> = ({
     return(
         <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"17px"} borderRadius="20px" disabled={!isActive}
          backgroundColor={isActive ? "#db37ce" : theme.colors.lightText }  onPress={onPress} isLoading={loading} 
-        _text={{style: { fontSize: 17, fontWeight: "800", ...textStyle as TextStyle}}}>
+        _text={{style: { fontSize: 17, fontWeight: "800", ...textStyle as TextStyle}}}
+        style={style}>
             {title}
         </NButton>
     )

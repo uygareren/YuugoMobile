@@ -25,6 +25,10 @@ import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScree
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
 import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
 import BlockedScreen from './src/screen/SettingsScreens/BlockedScreen';
+import CloseAccountConfirmPasswordScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountConfirmPasswordScreen';
+import CloseAccountConfirmScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountConfirmScreen';
+import CloseAccountScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountScreen';
+import CloseAccountSelectionScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountSelectionScreen';
 import ComplaimentScreen from './src/screen/SettingsScreens/ComplaimentScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
 import UpdatePasswordScreen from './src/screen/SettingsScreens/UpdatePasswordScreen';
@@ -63,6 +67,10 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={BlockedScreen} name="Blocked" options={{headerShown:false}} />
                                 <Stack.Screen component={UpdatePasswordScreen} name="UpdatePassword" options={{headerShown:false}} />
                                 <Stack.Screen component={UpdateProfileScreen} name="UpdateProfile" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountScreen} name="CloseAccount" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountSelectionScreen} name="CloseAccountSelection" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountConfirmPasswordScreen} name="CloseAccountConfirmPassword" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountConfirmScreen} name="CloseAccountConfirm" options={{headerShown:false}} />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>

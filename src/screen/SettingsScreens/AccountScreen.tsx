@@ -104,7 +104,9 @@ export default function AccountScreen() {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("CloseAccount")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#ff3300" }]}>
                         <MaterialCommunityIcons name="close-circle-outline" color="white" size={28} />
@@ -113,6 +115,9 @@ export default function AccountScreen() {
                         <Text style={styles.cardText}>{t("closeAccount")}</Text>
                     </View>
                 </View>
+                <TouchableOpacity style={styles.chevron}>
+                    <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                </TouchableOpacity>
             </TouchableOpacity>
 
         </SafeAreaView>
