@@ -24,7 +24,8 @@ export type RootStackParamList = {
     Account:undefined,
     Complaiment:undefined,
     Blocked: undefined,
-    UpdatePassword: undefined
+    UpdatePassword: undefined,
+    UpdateProfile: undefined
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined

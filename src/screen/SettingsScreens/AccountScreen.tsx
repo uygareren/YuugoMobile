@@ -29,7 +29,9 @@ export default function AccountScreen() {
         <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.white }]}>
             <Header title={t("account")}/>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("UpdateProfile")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#0366fc" }]}>
                         <FontAwesome6 name="user-pen" color="white" size={20} />
