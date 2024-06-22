@@ -93,7 +93,7 @@ export default function AccountScreen() {
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            {/* <TouchableOpacity style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#ff0000" }]}>
                         <MaterialIcons name="clear-all" color="white" size={28} />
@@ -102,7 +102,7 @@ export default function AccountScreen() {
                         <Text style={styles.cardText}>{t("sortDiscover")}</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <TouchableOpacity 
             onPress={() => navigation.push("CloseAccount")}

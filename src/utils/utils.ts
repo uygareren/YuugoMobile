@@ -3,6 +3,10 @@ export const BASE_API_URL = 'http://192.168.1.146:3000/api/v1';
 // MARGIN
 export const MARGIN_HORİZONTAL = 16;
 
+export const BLUE1 = "#0076CE";
+export const BLUE2 = "#025b9e";
+export const LIGHT_RED = '#c43355';
+
 export const formatDate = (date: Date) => {
     // Gün, Ay ve Yıl bilgilerini alıyoruz
     const day = String(date.getDate()).padStart(2, '0');

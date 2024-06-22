@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Text, View, useTheme } from "native-base";
+import { Actionsheet, Text, View, useTheme } from "native-base";
 import { useState } from "react";
 import { Dimensions, Image, SafeAreaView, StyleSheet, Switch, TouchableOpacity } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { Header } from "../../components/Header";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import { MARGIN_HORİZONTAL } from "../../utils/utils";
+import { BLUE1, BLUE2, LIGHT_RED, MARGIN_HORİZONTAL } from "../../utils/utils";
 
 type SettingsScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -26,6 +26,7 @@ export default function SettingsScreen() {
     const dispatch = useDispatch();
 
     const [mailEnabled, setMailEnabled] = useState(false);
+    const [isLogoutVisible, setIsLogoutVisible] = useState(false);
 
     const toggleSwitch = () => setMailEnabled(previousState => !previousState);
 
@@ -72,7 +73,7 @@ export default function SettingsScreen() {
                     </TouchableOpacity>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.card}>
+                {/* <TouchableOpacity style={styles.card}>
                     <View style={styles.cardContent}>
                         <View style={[styles.iconContainer, { backgroundColor: "#fc03ad" }]}>
                             <FontAwesome name="ticket" color="white" size={24} />
@@ -84,7 +85,7 @@ export default function SettingsScreen() {
                     <TouchableOpacity style={styles.chevronContainer}>
                         <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
                     </TouchableOpacity>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <TouchableOpacity style={styles.card}>
                     <View style={styles.cardContent}>
@@ -113,7 +114,9 @@ export default function SettingsScreen() {
                 </View>
                 
 
-                <TouchableOpacity style={[styles.card, {position:"absolute", bottom:32, left:0, right:0}]}>
+                <TouchableOpacity 
+                onPress={() => setIsLogoutVisible(true)}
+                style={[styles.card, {position:"absolute", bottom:32, left:0, right:0}]}>
                     <View style={styles.cardContent}>
                         <View style={[styles.iconContainer, { backgroundColor: "#fc0318" }]}>
                             <MaterialIcons name="logout" color="white" size={24} />
@@ -127,6 +130,25 @@ export default function SettingsScreen() {
                     </TouchableOpacity>
                 </TouchableOpacity>
             </View>
+
+              {/*  ActionSheets */}
+              <Actionsheet isOpen={isLogoutVisible} onClose={() => setIsLogoutVisible(false)}>
+                    <Actionsheet.Content style={styles.actionSheetContent}>
+                        <Actionsheet.Item style={[styles.actionSheetItem, {height: height * 0.3}]}>
+                        
+                            <TouchableOpacity 
+                            onPress={() => setIsLogoutVisible(false)}
+                            style={[styles.continueButton, {width: width * 0.8}]}>
+                                <Text style={styles.continueButtonText}>DEVAM</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.logoutButton}>
+                                <Text style={styles.logoutButtonText}>ÇIKIŞ</Text>
+                            </TouchableOpacity>
+                        
+                        </Actionsheet.Item>
+                    </Actionsheet.Content>
+                </Actionsheet>
         </SafeAreaView>
     )
 }
@@ -203,5 +225,39 @@ const styles = StyleSheet.create({
     },
     switch: {
         transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }]
-    }
+    },
+    actionSheetContent: {
+        height: Dimensions.get("screen").height * 0.3,
+      },
+      actionSheetItem: {
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      continueButton: {
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderColor: BLUE2,
+        borderBottomWidth: 5,
+        borderBottomColor: BLUE2,
+        alignItems: 'center',
+        paddingVertical: 12,
+        borderRadius: 12,
+        backgroundColor: BLUE1,
+      },
+      continueButtonText: {
+        fontSize: 18,
+        fontWeight: '900',
+        color: 'white',
+      },
+      logoutButton: {
+        marginTop: 32,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+      },
+      logoutButtonText: {
+        fontSize: 18,
+        fontWeight: '900',
+        color: LIGHT_RED,
+      },
 });
