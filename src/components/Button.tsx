@@ -1,6 +1,7 @@
 import { Button as NButton, useTheme } from "native-base";
 import React from "react";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { BLUE1, BLUE2 } from "../utils/utils";
 
 interface ButtonCompProps {
     onPress: () => void;
@@ -23,8 +24,10 @@ export const Button: React.FC<ButtonCompProps> = ({
 
     return(
         <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"17px"} borderRadius="20px" disabled={!isActive}
-         backgroundColor={isActive ? "#db37ce" : theme.colors.lightText }  onPress={onPress} isLoading={loading} 
-        _text={{style: { fontSize: 17, fontWeight: "800", ...textStyle as TextStyle}}}>
+         backgroundColor={isActive ? BLUE1 : "#a9aaab" }  onPress={onPress} isLoading={loading} 
+        _text={{style: { fontSize: 17, fontWeight: "800",  ...textStyle as TextStyle}}}
+        style={[{borderBottomWidth:8, borderLeftWidth:1, borderRightWidth:1,
+            borderColor: isActive ? BLUE2 : "#8a8a8a",},style ]}>
             {title}
         </NButton>
     )

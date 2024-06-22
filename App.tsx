@@ -16,21 +16,26 @@ import LoginScreen from './src/screen/Auth/LoginScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
+import FriendRequestScreen from './src/screen/ProfileScreens/FriendRequestScreen';
+import FriendScreen from './src/screen/ProfileScreens/FriendScreen';
 import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConfirmCodeScreen';
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
 import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
 import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
 import BlockedScreen from './src/screen/SettingsScreens/BlockedScreen';
+import CloseAccountConfirmPasswordScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountConfirmPasswordScreen';
+import CloseAccountConfirmScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountConfirmScreen';
+import CloseAccountScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountScreen';
+import CloseAccountSelectionScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountSelectionScreen';
 import ComplaimentScreen from './src/screen/SettingsScreens/ComplaimentScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
-import FriendScreen from './src/screen/ProfileScreens/FriendScreen';
-import FriendRequestScreen from './src/screen/ProfileScreens/FriendRequestScreen';
 import UpdatePasswordScreen from './src/screen/SettingsScreens/UpdatePasswordScreen';
 import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
 import WordsScreen from './src/screen/ProfileScreens/WordsScreen';
 import EditWordScreen from './src/screen/ProfileScreens/EditWordScreen';
 import UserProfileScreen from './src/screen/ProfileScreens/UserProfileScreen';
+import UpdateProfileScreen from './src/screen/SettingsScreens/UpdateProfileScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -69,6 +74,11 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={EditWordScreen} name="EditWord" options={{headerShown:false}} />
 
                                 <Stack.Screen component={UserProfileScreen} name="UserProfile" options={{headerShown:false}} />
+                                <Stack.Screen component={UpdateProfileScreen} name="UpdateProfile" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountScreen} name="CloseAccount" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountSelectionScreen} name="CloseAccountSelection" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountConfirmPasswordScreen} name="CloseAccountConfirmPassword" options={{headerShown:false}} />
+                                <Stack.Screen component={CloseAccountConfirmScreen} name="CloseAccountConfirm" options={{headerShown:false}} />
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>

@@ -29,7 +29,9 @@ export default function AccountScreen() {
         <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.white }]}>
             <Header title={t("account")}/>
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("UpdateProfile")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#0366fc" }]}>
                         <FontAwesome6 name="user-pen" color="white" size={20} />
@@ -91,7 +93,7 @@ export default function AccountScreen() {
                 </TouchableOpacity>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.card}>
+            {/* <TouchableOpacity style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#ff0000" }]}>
                         <MaterialIcons name="clear-all" color="white" size={28} />
@@ -100,9 +102,11 @@ export default function AccountScreen() {
                         <Text style={styles.cardText}>{t("sortDiscover")}</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
-            <TouchableOpacity style={styles.card}>
+            <TouchableOpacity 
+            onPress={() => navigation.push("CloseAccount")}
+            style={styles.card}>
                 <View style={styles.cardContent}>
                     <View style={[styles.iconContainer, { backgroundColor: "#ff3300" }]}>
                         <MaterialCommunityIcons name="close-circle-outline" color="white" size={28} />
@@ -111,6 +115,9 @@ export default function AccountScreen() {
                         <Text style={styles.cardText}>{t("closeAccount")}</Text>
                     </View>
                 </View>
+                <TouchableOpacity style={styles.chevron}>
+                    <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                </TouchableOpacity>
             </TouchableOpacity>
 
         </SafeAreaView>

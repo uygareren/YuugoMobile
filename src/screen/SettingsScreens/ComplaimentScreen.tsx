@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Text, View, useTheme } from "native-base";
 import { useState } from "react";
-import { Dimensions, FlatList, Pressable, SafeAreaView, StyleSheet } from "react-native";
+import { Dimensions, FlatList, Pressable, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { useDispatch } from "react-redux";
@@ -123,6 +123,12 @@ export default function ComplaimentScreen() {
                                 <FontAwesome6 name={handlePickIcon(item.statusId)} size={16} color={handlePickBorderColor(item.statusId)} />
                                 <Text style={[styles.statusText, { color: handlePickBorderColor(item.statusId) }]}>{item.statusId}</Text>
                             </View>
+                        </View>
+                        <View style={{flexDirection:"row", justifyContent:"flex-end", marginTop:16}}> 
+                            <TouchableOpacity style={{borderWidth:2, borderColor:theme.colors.lightText, paddingHorizontal:8, 
+                                paddingVertical:2, borderRadius:8}}> 
+                                <Text style={{fontWeight:"800", fontSize:14}}>Şikayet İptal!</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 ) : null}
