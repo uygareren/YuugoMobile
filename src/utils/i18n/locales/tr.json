@@ -185,29 +185,29 @@
         "title":"Hesabımı Kapat",
         "askTitle": "Hesabını kapatmak mı istiyorsun?",
         "text": "hesabını kapatmak istiyorsan işleme devam edebilirsin. Veya herhangi bir problem yaşıyorsan bize bildirebilirsin.",
-        "continue": "Devam",
-        "cancel": "İptal"
+        "continue": "DEVAM",
+        "cancel": "İPTAL"
     },
     "CloseAccountSelectionScreen": {
         "title":"Hesabımı Kapat",
         "deleteAccountTitle": "Yuugo Hesabını Sil",
         "text": "'dan ayrılışına üzülüyoruz. Hesabını kapatma sebebini aşağıdan seçebilirsensorunlarımızı çözmemiz konusunda bize yardımcı olabilirsin.",
-        "continue": "Devam",
-        "cancel": "İptal"
+        "continue": "DEVAM",
+        "cancel": "İPTAL"
     },
     "CloseAccountConfirmPasswordScreen": {
         "title":"Hesabımı Kapat",
         "confirmPassword": "Şifreni Onayla",
         "text": "Hesap güvenliğin için şifreni onayla",
-        "continue": "Devam",
-        "cancel": "İptal"
+        "continue": "DEVAM",
+        "cancel": "İPTAL"
     },
     "CloseAccountConfirmScreen": {
         "title":"Hesabımı Kapat",
         "deleteAccount": "Hesabını Sil",
         "text": "Aramızdan ayrıldığın için üzgünüz. Tekrar Görüşmek dileğiyle. Hesabını kalıcı olarak silmek için son adım olarak aşağıdaki butona tıklayarak onaylayabilirsin.",
-        "deleteAccountBtn": "Hesabımı Sil",
-        "cancel": "İptal"
+        "deleteAccountBtn": "HESABIMI SİL",
+        "cancel": "İPTAL"
 
         
     }

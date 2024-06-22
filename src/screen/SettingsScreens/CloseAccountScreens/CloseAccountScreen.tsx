@@ -26,7 +26,7 @@ export default function CloseAccountScreen() {
     <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
       <Header title={t("title")} />
 
-      <View mx="16px" style={styles.mainContent}>
+      <View  style={styles.mainContent}>
         <TitleText style={styles.titleText}>{t("askTitle")}</TitleText>
         <View style={styles.infoContainer}>
           <Text style={styles.infoTitle}>Yuugo </Text>
@@ -44,7 +44,7 @@ export default function CloseAccountScreen() {
         <Button
           title={t("cancel")}
           onPress={() => navigation.goBack()}
-          style={[styles.cancelButton, { backgroundColor: theme.colors.titleText }]}
+          style={[styles.cancelButton, { backgroundColor: "#a9aaab", borderColor:"#8a8a8a" }]}
           isActive={true}
         />
       </View>

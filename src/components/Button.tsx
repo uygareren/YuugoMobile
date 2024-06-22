@@ -24,10 +24,10 @@ export const Button: React.FC<ButtonCompProps> = ({
 
     return(
         <NButton mt={mt} mb={mb} ml={ml} mr={mr} py={"17px"} borderRadius="20px" disabled={!isActive}
-         backgroundColor={isActive ? BLUE1 : theme.colors.lightText }  onPress={onPress} isLoading={loading} 
+         backgroundColor={isActive ? BLUE1 : "#a9aaab" }  onPress={onPress} isLoading={loading} 
         _text={{style: { fontSize: 17, fontWeight: "800",  ...textStyle as TextStyle}}}
-        style={[style, {borderBottomWidth:8, borderLeftWidth:1, borderRightWidth:1,
-            borderColor:BLUE2,}]}>
+        style={[{borderBottomWidth:8, borderLeftWidth:1, borderRightWidth:1,
+            borderColor: isActive ? BLUE2 : "#8a8a8a",},style ]}>
             {title}
         </NButton>
     )

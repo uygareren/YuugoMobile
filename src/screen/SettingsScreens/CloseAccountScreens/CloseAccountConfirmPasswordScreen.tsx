@@ -53,7 +53,7 @@ export default function CloseAccountConfirmPasswordScreen(){
                     <Button
                     title={t("cancel")}
                     onPress={() => navigation.goBack()}
-                    style={[styles.cancelButton, { backgroundColor: theme.colors.lightText }]}
+                    style={[styles.cancelButton, { backgroundColor: "#a9aaab", borderColor:"#8a8a8a" }]}
                     isActive={true}
                     />
                 </View>
