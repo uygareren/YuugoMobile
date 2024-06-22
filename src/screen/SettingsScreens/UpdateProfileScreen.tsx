@@ -1,18 +1,21 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
-import { View, useTheme } from "native-base";
+import { Text, View, useTheme } from "native-base";
 import { useState } from "react";
-import { Dimensions, SafeAreaView, StyleSheet } from "react-native";
+import { Alert, Dimensions, Image, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
-import PasswordInput from "../../components/input/PasswordInput";
+import DateTimeInput from "../../components/input/DateTimeInput";
+import TextInput from "../../components/input/TextInput";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
-import { MARGIN_HORİZONTAL } from "../../utils/utils";
+import { BLUE1, MARGIN_HORİZONTAL } from "../../utils/utils";
+
 
 type UpdateProfileScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -32,11 +35,72 @@ export default function UpdateProfileScreen(){
     const theme = useTheme();
     const dispatch = useDispatch();
 
+    const [image, setImage] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [birthDate, setBirthDate] = useState(new Date);
+
     const [loading, setLoading] = useState(false);
+    const [loadingImage, setLoadingImage] = useState(false);
 
     function handleUpdateProfile(){
 
     }
+
+    function handleSavePhoto() {
+        Alert.alert(
+          t("alertTitle"),
+          t("alertText"),
+          [
+            { style: 'cancel', text: t("cancel"), onPress: () => {} },
+            { style: 'default', text: t("camera"), onPress: () => updatePhoto(true) },
+            { style: 'default', text: t("gallery"), onPress: () => updatePhoto(false) },
+          ],
+        );
+      }
+      
+
+    async function updatePhoto(isCamera: boolean) {
+        try {
+          if (isCamera) {
+            const result = await launchCamera({
+              cameraType: 'front',
+              mediaType: 'photo',
+            });
+          } else {
+            const result = await launchImageLibrary({
+              mediaType: 'photo',
+              selectionLimit: 1,
+            });
+
+              // @ts-ignore
+            setImage(result.assets[0].uri);
+    
+            if (!result.didCancel) {
+              // @ts-ignore
+              const {uri, type, fileName} = result.assets[0];
+              const body = {
+                uri,
+                name: fileName,
+                type,
+              };
+    
+            console.log("body", body);
+
+              const formData = new FormData();
+    
+              formData.append('image', body);
+    
+              setLoadingImage(true);
+    
+              
+            }
+          }
+        } catch (error) {
+        }
+    
+        setLoadingImage(false);
+      }
 
     return(
         <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
@@ -52,28 +116,42 @@ export default function UpdateProfileScreen(){
                     {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
                     <View  mt="28px">
                         <View style={{ rowGap: 12 }}>
-                            
-                            <View mt="8px">
-                                <PasswordInput value={values.currentPassword} onChangeText={handleChange("password")}
-                                    onBlur={handleBlur("password")} placeholder={t("currentPassword")}
-                                    required isInvalid={errors.currentPassword != undefined && touched.currentPassword as boolean}
-                                    errorMessage={errors.currentPassword} />
-                            </View>
-                            
-                            <View mt="8px">
-                                <PasswordInput value={values.password1} onChangeText={handleChange("password")}
-                                    onBlur={handleBlur("password")} placeholder={t("password1")}
-                                    required isInvalid={errors.password1 != undefined && touched.password1 as boolean}
-                                    errorMessage={errors.password1} />
-                            </View>
 
-                            <View mt="16px">
-                                <PasswordInput value={values.password2} onChangeText={handleChange("password")}
-                                    onBlur={handleBlur("password")} placeholder={t("password2")}
-                                    required isInvalid={errors.password2 != undefined && touched.password2 as boolean}
-                                    errorMessage={errors.password2} />
+                            <View mt="8px" style={{borderWidth:0, alignItems:"center"}}>
+                                <View style={{borderWidth:4, borderColor:theme.colors.lightText, width:100, height:100, borderRadius:360, alignItems:"center", justifyContent:"center",
+
+                                }}>
+                                    {image ? (
+                                        <Image source={{uri:image}} 
+                                    style={{width:95, height:95, borderRadius:360}}/>
+                                    ):(
+                                        <Image source={require("../../../assets/images/bird.jpeg")} 
+                                    style={{width:95, height:95, borderRadius:360}}/>
+                                    )}
+                                    
+                                </View>
+
+                                <TouchableOpacity 
+                                onPress={() => handleSavePhoto()}
+                                style={[styles.continueButton, { marginTop:16}]}>
+                                <Text style={styles.continueButtonText}>{t("changePhoto")}</Text>
+                            </TouchableOpacity>
+
                             </View>
-                           
+                            
+                            <View mt="8px">
+                                <TextInput value={name} onChangeText={setName} placeholder={t("name")}/>
+                            </View>
+                            <View mt="8px">
+                                <TextInput value={surname} onChangeText={setSurname} placeholder={t("surname")}/>
+                            </View>
+                            <View mt="8px">
+                              <DateTimeInput
+                                value={birthDate}
+                                onChangeValue={(date) => setBirthDate(date)}
+                                />
+                            </View>
+                            
                             
                         </View>
 
@@ -95,4 +173,15 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: MARGIN_HORİZONTAL
     },
+    continueButton: {
+        alignItems: 'center',
+        paddingVertical: 12,
+        borderRadius: 12,
+        backgroundColor: "white",
+      },
+      continueButtonText: {
+        fontSize: 18,
+        fontWeight: '900',
+        color: BLUE1,
+      },
 })

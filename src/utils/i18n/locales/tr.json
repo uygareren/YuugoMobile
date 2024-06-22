@@ -167,7 +167,18 @@
         "update": "Güncelle" 
     },
     "UpdateProfileScreen": {
-        "title":"Profil Güncelle"
+        "title":"Profil Güncelle",
+        "alertTitle": "Profil Fotoğrafı",
+        "alertText": "Profil fotoğrafı yüklemek için galeri veya kamerayı seçiniz",
+        "cancel":"İptal",
+        "camera": "Kamera",
+        "gallery": "Galeri",
+        "changePhoto": "FOTOĞRAF DEĞİŞTİR",
+        "name": "İsim",
+        "surname": "Soyisim",
+        "update": "GÜNCELLE"
+
+
 
     },
     "CloseAccountScreen": {
