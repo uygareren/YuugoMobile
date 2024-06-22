@@ -68,6 +68,10 @@ export default function ProfileScreen() {
     function handleFriendScreen() {
         navigation.navigate("Friend");
     }
+
+    function handleWords() {
+        navigation.navigate("Words");
+    }
     
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -94,15 +98,15 @@ export default function ProfileScreen() {
                     <Text fontWeight="normal" fontSize="15px">
                         {userInfo.username + " "} 
                     </Text>
-                    <Text fontWeight="extrabold" color="primary.600" fontSize="15.5px" mt="8px">
+                    <Text fontWeight="extrabold" color="primary.400" fontSize="15.5px" mt="8px">
                         {rankI18n.t(getRankName(userInfo.point))}
                         
                     </Text>
                 </View>
 
-                <Pressable onPress={() => {}} ml="16px" mb="16px" flexDir="row" alignItems="center"
-                borderWidth="1px" color="gray.300" alignSelf="flex-start" padding="4px" borderRadius="10px"
-                bgColor="primary.600">
+                <Pressable onPress={handleWords} ml="16px" mb="16px" flexDir="row" alignItems="center"
+                color="gray.300" alignSelf="flex-start" padding="6px" borderRadius="10px"
+                bgColor="primary.400">
                     <Icon as={<FontAwesome name="bookmark-o" />} color="white" size="28px" />
                     <Text color="white" fontWeight="bold">{t("myWords")}</Text>
                 </Pressable>

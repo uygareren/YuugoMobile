@@ -1,4 +1,4 @@
-import { ITheme, Theme, extendTheme } from "native-base";
+import { ICustomTheme, ITheme, Theme, extendTheme } from "native-base";
 
 type ThemeUtil = Theme | (Record<string, any> & {});
 
@@ -124,16 +124,16 @@ const ThemeData: ThemeUtil = {
     // @ts-ignore
     colors: {
         primary: {
-            "50": "#63abf3",
-            "100": "#4597ea",
-            "200": "#2884df",
-            "300": "#2470bc",
-            "400": "#1d5d9b",
-            "500": "#1e5082",
-            "600": "#1e446a",
-            "700": "#1c3855",
-            "800": "#192d40",
-            "900": "#14212d"
+            "50": "#6cbfff",
+            "100": "#44aeff",
+            "200": "#1d9dff",
+            "300": "#008af4",
+            "400": "#0076ce",
+            "500": "#0566af",
+            "600": "#095894",
+            "700": "#0c4a79",
+            "800": "#0d3c61",
+            "900": "#0d2f49"
         },
         success: {
             50: '#e1fde9',
@@ -179,4 +179,4 @@ const ThemeData: ThemeUtil = {
     }
 }
 
-export const theme: ITheme | undefined = extendTheme(ThemeData);
+export const theme: ICustomTheme | undefined = extendTheme(ThemeData);

@@ -24,7 +24,7 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
         onNext(selectedLanguage as number);
     }
 
-    function handleSelectLangauge(id:number){
+    function handleSelectLanguage(id:number){
         if(selectedLanguage == id){
             setSelectedLangauge(null);
         }else{
@@ -44,7 +44,7 @@ export default function StepperSelectLanguage({ onNext }: StepperInfoProps) {
                     <SelectCard
                         isSelected={item.id == selectedLanguage}
                         text={i18nFlags.t(item.languageName)}
-                        onPress={() => handleSelectLangauge(item.id)}
+                        onPress={() => handleSelectLanguage(item.id)}
                     >
                         <SvgUri style={{marginLeft: 8}} uri={item.image} width="24" height="24"  />
                     </SelectCard>
