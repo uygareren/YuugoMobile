@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { Header } from "../../components/Header";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import { MARGIN_HORİZONTAL } from "../../utils/utils";
+import { BLUE1, MARGIN_HORİZONTAL } from "../../utils/utils";
 
 type SettingsScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -33,7 +33,7 @@ export default function AccountScreen() {
             onPress={() => navigation.push("UpdateProfile")}
             style={styles.card}>
                 <View style={styles.cardContent}>
-                    <View style={[styles.iconContainer, { backgroundColor: "#0366fc" }]}>
+                    <View style={[styles.iconContainer]}>
                         <FontAwesome6 name="user-pen" color="white" size={20} />
                     </View>
                     <View style={styles.cardTextContainer}>
@@ -41,7 +41,7 @@ export default function AccountScreen() {
                     </View>
                 </View>
                 <TouchableOpacity style={styles.chevron}>
-                    <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                    <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                 </TouchableOpacity>
             </TouchableOpacity>
 
@@ -49,7 +49,7 @@ export default function AccountScreen() {
             onPress={() => navigation.push("UpdatePassword")}
             style={styles.card}>
                 <View style={styles.cardContent}>
-                    <View style={[styles.iconContainer, { backgroundColor: "#2f00ff" }]}>
+                    <View style={[styles.iconContainer]}>
                         <MaterialIcons name="password" color="white" size={20} />
                     </View>
                     <View style={styles.cardTextContainer}>
@@ -57,7 +57,7 @@ export default function AccountScreen() {
                     </View>
                 </View>
                 <TouchableOpacity style={styles.chevron}>
-                    <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                    <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                 </TouchableOpacity>
             </TouchableOpacity>
 
@@ -65,7 +65,7 @@ export default function AccountScreen() {
             onPress={() => navigation.push("Complaiment")}
             style={styles.card}>
                 <View style={styles.cardContent}>
-                    <View style={[styles.iconContainer, { backgroundColor: "#fbff00" }]}>
+                    <View style={[styles.iconContainer]}>
                         <FontAwesome name="warning" color="white" size={20} />
                     </View>
                     <View style={styles.cardTextContainer}>
@@ -73,7 +73,7 @@ export default function AccountScreen() {
                     </View>
                 </View>
                 <TouchableOpacity style={styles.chevron}>
-                    <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                    <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                 </TouchableOpacity>
             </TouchableOpacity>
 
@@ -81,7 +81,7 @@ export default function AccountScreen() {
             onPress={() => navigation.push("Blocked")}
             style={styles.card}>
                 <View style={styles.cardContent}>
-                    <View style={[styles.iconContainer, { backgroundColor: "#00ff33" }]}>
+                    <View style={[styles.iconContainer]}>
                         <FontAwesome6 name="ban" color="white" size={20} />
                     </View>
                     <View style={styles.cardTextContainer}>
@@ -89,7 +89,7 @@ export default function AccountScreen() {
                     </View>
                 </View>
                 <TouchableOpacity style={styles.chevron}>
-                    <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                    <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                 </TouchableOpacity>
             </TouchableOpacity>
 
@@ -108,7 +108,7 @@ export default function AccountScreen() {
             onPress={() => navigation.push("CloseAccount")}
             style={styles.card}>
                 <View style={styles.cardContent}>
-                    <View style={[styles.iconContainer, { backgroundColor: "#ff3300" }]}>
+                    <View style={[styles.iconContainer]}>
                         <MaterialCommunityIcons name="close-circle-outline" color="white" size={28} />
                     </View>
                     <View style={styles.cardTextContainer}>
@@ -116,7 +116,7 @@ export default function AccountScreen() {
                     </View>
                 </View>
                 <TouchableOpacity style={styles.chevron}>
-                    <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                    <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                 </TouchableOpacity>
             </TouchableOpacity>
 
@@ -150,11 +150,15 @@ const styles = StyleSheet.create({
         fontWeight: "900",
     },
     card: {
-        marginTop: 24,
-        backgroundColor: "#f0fbfc",
+        marginTop: 12,
+        borderLeftWidth:1,
+        borderRightWidth:1,
+        borderBottomWidth:6,
+        borderColor:"#8a8a8a",
         flexDirection: "row",
         justifyContent: "space-between",
         paddingVertical: 8,
+        marginVertical:12,
         paddingHorizontal: 12,
         borderRadius: 12,
     },
@@ -166,7 +170,8 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 180,
+        borderRadius: 12,
+        backgroundColor: BLUE1
     },
     cardTextContainer: {
         marginLeft: 16,
@@ -174,7 +179,7 @@ const styles = StyleSheet.create({
     },
     cardText: {
         fontSize: 18,
-        fontWeight: "700",
+        fontWeight: "900",
     },
     chevron: {
         alignItems: "center",
