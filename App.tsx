@@ -16,7 +16,6 @@ import LoginScreen from './src/screen/Auth/LoginScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
-import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
 import FriendRequestScreen from './src/screen/ProfileScreens/FriendRequestScreen';
 import FriendScreen from './src/screen/ProfileScreens/FriendScreen';
 import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConfirmCodeScreen';
@@ -32,6 +31,10 @@ import CloseAccountSelectionScreen from './src/screen/SettingsScreens/CloseAccou
 import ComplaimentScreen from './src/screen/SettingsScreens/ComplaimentScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
 import UpdatePasswordScreen from './src/screen/SettingsScreens/UpdatePasswordScreen';
+import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
+import WordsScreen from './src/screen/ProfileScreens/WordsScreen';
+import EditWordScreen from './src/screen/ProfileScreens/EditWordScreen';
+import UserProfileScreen from './src/screen/ProfileScreens/UserProfileScreen';
 import UpdateProfileScreen from './src/screen/SettingsScreens/UpdateProfileScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,9 +47,9 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
+                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
 
-                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
                                 <Stack.Screen component={RegisterConfirmPasswordScreen} name="RegisterConfirmPassword" options={{headerShown:false}} />
@@ -66,6 +69,11 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={ComplaimentScreen} name="Complaiment" options={{headerShown:false}} />
                                 <Stack.Screen component={BlockedScreen} name="Blocked" options={{headerShown:false}} />
                                 <Stack.Screen component={UpdatePasswordScreen} name="UpdatePassword" options={{headerShown:false}} />
+
+                                <Stack.Screen component={WordsScreen} name="Words" options={{headerShown:false}} />
+                                <Stack.Screen component={EditWordScreen} name="EditWord" options={{headerShown:false}} />
+
+                                <Stack.Screen component={UserProfileScreen} name="UserProfile" options={{headerShown:false}} />
                                 <Stack.Screen component={UpdateProfileScreen} name="UpdateProfile" options={{headerShown:false}} />
                                 <Stack.Screen component={CloseAccountScreen} name="CloseAccount" options={{headerShown:false}} />
                                 <Stack.Screen component={CloseAccountSelectionScreen} name="CloseAccountSelection" options={{headerShown:false}} />

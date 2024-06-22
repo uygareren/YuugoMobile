@@ -36,6 +36,13 @@ export type RootStackParamList = {
     Friend: undefined
     FriendRequest: undefined
 
+    Words: undefined
+    EditWord: {
+        id: number
+    }
+    UserProfile: {
+        id: number
+    }
 };
 
 export type TabParamList = {

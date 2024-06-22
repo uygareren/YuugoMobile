@@ -19,6 +19,8 @@ type InitialStateType = {
         birthDate: string;
         gender: string;
         avatarUrl: string;
+
+        friendRequestCount: number;
     
         languages: {id: number, languageName: string, level: string}[];
     } | null,
@@ -54,6 +56,11 @@ export const accountSlice = createSlice({
         clearAccount: (state) => {
             state.userInfo = null;
             state.jwt = null;
+        },
+        decrementFriendRequest: (state) => {
+            if(state.userInfo) {
+                state.userInfo.friendRequestCount -= 1; 
+            }
         }
     }
 });

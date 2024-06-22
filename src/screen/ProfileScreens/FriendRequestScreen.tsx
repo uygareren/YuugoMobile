@@ -1,11 +1,9 @@
-import { Avatar, FlatList, Pressable, ScrollView, Text, View, useDisclose } from "native-base";
+import { Avatar, FlatList, Pressable, ScrollView, Text, View } from "native-base";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { Header } from "../../components/Header";
 import { useI18n } from "../../hooks/useI18n";
 import { useAcceptFriendRequestMutation, useGetFriendRequestsQuery, useRejectFriendRequestMutation } from "../../store/services/userService";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
-import { RootStateType } from "../../store/store";
 
 export default function FriendRequestScreen() {
 
@@ -20,15 +18,15 @@ export default function FriendRequestScreen() {
         rejectFriendRequest(id).unwrap();
     }
 
-    function handleAcceptFriend(id: number) {
-        acceptFriendRequest(id).unwrap();
+    function handleAcceptFriend(id: number, friendId: number) {
+        acceptFriendRequest({id, friendId }).unwrap();
     }
 
     function handleUserProfile(userId: number) {
         navigation.navgiate("UserProfile", {userId});
     }
 
-    const FriendItem = ({ avatarUrl, username, userId, point, id }: any) => {
+    const FriendItem = ({ avatarUrl, username, userId, id }: any) => {
         return (
             <View flexDir="row" justifyContent="space-between">
                 <Pressable flexDir="row" alignItems="center" onPress={() => handleUserProfile(userId)}>
@@ -37,7 +35,7 @@ export default function FriendRequestScreen() {
                 </Pressable>
                 <View flexDir="row">
                     <Pressable bgColor="primary.500" justifyContent="center" px="8px" borderRadius="15px" py="3px"
-                    onPress={() => handleAcceptFriend(id)}>
+                    onPress={() => handleAcceptFriend(id, userId)}>
                         <Text color="white" fontWeight="medium">{t("accept")}</Text>
                     </Pressable>
                     <Pressable bgColor="red.600" justifyContent="center" px="8px" borderRadius="15px" py="3px"

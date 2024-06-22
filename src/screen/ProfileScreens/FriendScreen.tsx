@@ -26,7 +26,9 @@ export default function FriendScreen() {
     }
 
     function handleUserProfile(userId: number) {
-        // navigation.navgiate("");
+        navigation.navigate("UserProfile", {
+            id: userId
+        });
     }
 
     function handleFriendRequestScreen() {
@@ -56,7 +58,7 @@ export default function FriendScreen() {
             <ScrollView>
                 <View marginLeft="16px" mr="16px" mt="16px">
                     <Header title={t("headerTitle")} 
-                        rightIcon={<BadgeIcon icon={<FeatherIcon name="user-plus" />} count={userInfo.friendRequestCount}
+                        rightIcon={<BadgeIcon icon={<FeatherIcon name="users" />} count={userInfo.friendRequestCount}
                     visibleBadge={userInfo.friendRequestCount != 0}
                     onPress={handleFriendRequestScreen}  />} />
                 </View>
