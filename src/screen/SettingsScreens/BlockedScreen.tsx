@@ -1,12 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Text, View, useTheme } from "native-base";
+import { Avatar, Text, View, useTheme } from "native-base";
 import { Dimensions, FlatList, Image, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Header } from "../../components/Header";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import { LIGHT_RED, MARGIN_HORİZONTAL } from "../../utils/utils";
+import { useEffect, useState } from "react";
+import api from "../../api/api";
+import { RootStateType } from "../../store/store";
 
 type BlockedScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -14,46 +17,54 @@ type BlockedScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 export default function BlockedScreen() {
-
-    const navigation = useNavigation<BlockedScreenNavigationProp>();
     const { t } = useI18n("BlockedScreen");
-    const { width } = Dimensions.get("screen");
+    const jwt = useSelector<RootStateType>(state => state.account.jwt);
     const theme = useTheme();
-    const dispatch = useDispatch();
+    const [blockeds, setBlockeds] = useState([]);
 
-    const mockData = [
-        {
-            id: 1,
-            username: "uygareren11",
-            image: require("../../../assets/images/bird.jpeg"),
-        },
-        {
-            id: 2,
-            username: "johndoe123",
-            image: require("../../../assets/images/bird.jpeg"),
-        },
-        {
-            id: 3,
-            username: "janedoe456",
-            image: require("../../../assets/images/bird.jpeg"),
+    useEffect(() => {
+        getData();
+    }, []);
+
+    async function getData() {
+        try {
+            const resp = await api.get("/block", {
+                headers: {
+                    authorization: `Bearer ${jwt}`
+                }
+            });
+
+            setBlockeds(resp.data.data);
+        } catch {
+            
         }
-    ];
+    }
+
+    async function handleRemoveBlock(id: number) {
+        try {
+            api.delete("/block/" + id, {
+                headers: {
+                    authorization: `Bearer ${jwt}`
+                }
+            });
+
+            setBlockeds(prevState => prevState.filter((v: any) => v.id != id));
+        } catch {
+            
+        }
+    }
 
     const RenderBlocked = ({ item }: any) => {
         return (
-            <View style={styles.blockedItem}>
-                <View style={{flexDirection:"row"}}>
-
-                <View style={styles.imageContainer}>
-                    <Image source={item.image} style={styles.image} />
-                </View>
-                <View style={styles.usernameContainer}>
-                    <Text style={[styles.usernameText, { color: theme.colors.black }]}>{item.username}</Text>
-                </View>
+            <View flexDir="row" alignItems="center" justifyContent="space-between">
+                <View flexDir="row" alignItems="center">
+                    <Avatar source={item.image} />
+                    <Text fontWeight="normal" fontSize="15px" ml="8px">{item.username}</Text>    
                 </View>
 
-                <TouchableOpacity style={styles.unblockButton}>
-                    <Text style={styles.unblockButtonText}>{t("removeBlock")}</Text>
+                <TouchableOpacity style={{...styles.unblockButton, borderColor: theme.colors.coolGray[500]}}
+                onPress={() => handleRemoveBlock(item.id)}>
+                    <Text fontSize="13px" fontWeight="semibold">{t("removeBlock")}</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -64,8 +75,10 @@ export default function BlockedScreen() {
             <Header title={t("title")} />
             <View>
                 <FlatList
-                    data={mockData}
-                    keyExtractor={item => item.id.toString()}
+                    data={blockeds}
+                    contentContainerStyle={{ gap: 16, marginHorizontal: 16 }}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={(item: any) => item.id.toString()}
                     renderItem={RenderBlocked}
                 />
             </View>
@@ -78,49 +91,13 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: MARGIN_HORİZONTAL,
     },
-    blockedItem: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent:"space-between",
-        marginTop: 24,
-    },
-    imageContainer: {
-        width:50,
-        height:50,
-        borderWidth:3,
-        borderRadius: 360,
-        borderColor:"#a9aaab",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    image: {
-        width:45,
-        height:45,
-        borderRadius: 360,
-    },
-    usernameContainer: {
-        marginLeft: Dimensions.get("screen").width * 0.05,
-        paddingHorizontal: 8,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    usernameText: {
-        fontSize: 15,
-        fontWeight: "800",
-    },
     unblockButton: {
-        marginLeft: Dimensions.get("screen").width * 0.07,
-        borderWidth:1,
+        borderWidth: 1,
         borderBottomWidth: 5,
-        borderColor:LIGHT_RED,
         borderRadius: 8,
         paddingHorizontal: 6,
-        height: Dimensions.get("screen").width * 0.1,
+        paddingVertical: 8,
         alignItems: "center",
         justifyContent: "center",
-    },
-    unblockButtonText: {
-        fontSize: 13,
-        fontWeight: "900",
-    },
+    }
 });
