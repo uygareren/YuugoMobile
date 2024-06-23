@@ -53,14 +53,14 @@ export default function SettingsScreen() {
                         style={styles.profileImage} resizeMode="cover"/>
                 </View>
                 <View style={styles.profileNameContainer}>
-                    <Text style={styles.profileName}>Jenny Wilson</Text>
+                    <Text style={[styles.profileName]}>Jenny Wilson</Text>
                 </View>
             </View>
 
             <View style={styles.cardsContainer}>
                 <TouchableOpacity onPress={() => navigation.navigate("Account")} style={styles.card}>
                     <View style={styles.cardContent}>
-                        <View style={[styles.iconContainer, { backgroundColor: "#0366fc" }]}>
+                        <View style={[styles.iconContainer]}>
                             <MaterialCommunityIcons name="account" color="white" size={24} />
                         </View>
                         <View style={styles.cardTextContainer}>
@@ -68,7 +68,7 @@ export default function SettingsScreen() {
                         </View>
                     </View>
                     <TouchableOpacity onPress={() => navigation.navigate("Account")} style={styles.chevronContainer}>
-                        <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                        <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                     </TouchableOpacity>
                 </TouchableOpacity>
 
@@ -76,7 +76,7 @@ export default function SettingsScreen() {
                 onPress={() => setIsLanguageVisible(true)}
                 style={styles.card}>
                     <View style={styles.cardContent}>
-                        <View style={[styles.iconContainer, { backgroundColor: "#fc8803" }]}>
+                        <View style={[styles.iconContainer]}>
                             <FontAwesome name="language" color="white" size={24} />
                         </View>
                         <View style={styles.cardTextContainer}>
@@ -84,7 +84,7 @@ export default function SettingsScreen() {
                         </View>
                     </View>
                     <TouchableOpacity style={styles.chevronContainer}>
-                        <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                        <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                     </TouchableOpacity>
                 </TouchableOpacity>
 
@@ -98,13 +98,15 @@ export default function SettingsScreen() {
                         </View>
                     </View>
                     <TouchableOpacity style={styles.chevronContainer}>
-                        <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                        <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                     </TouchableOpacity>
                 </TouchableOpacity> */}
 
-                <TouchableOpacity style={styles.card}>
+                <TouchableOpacity 
+                onPress={() => navigation.navigate("KvkkModal")}
+                style={styles.card}>
                     <View style={styles.cardContent}>
-                        <View style={[styles.iconContainer, { backgroundColor: "#03fc7f" }]}>
+                        <View style={[styles.iconContainer]}>
                             <MaterialCommunityIcons name="file-document-outline" color="white" size={24} />
                         </View>
                         <View style={styles.cardTextContainer}>
@@ -112,7 +114,7 @@ export default function SettingsScreen() {
                         </View>
                     </View>
                     <TouchableOpacity style={styles.chevronContainer}>
-                        <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                        <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                     </TouchableOpacity>
                 </TouchableOpacity>
                 
@@ -137,11 +139,11 @@ export default function SettingsScreen() {
                             <MaterialIcons name="logout" color="white" size={24} />
                         </View>
                         <View style={styles.cardTextContainer}>
-                            <Text style={styles.cardText}>{t("logout")}</Text>
+                            <Text style={[styles.cardText, {color: "#fc0318"}]}>{t("logout")}</Text>
                         </View>
                     </View>
                     <TouchableOpacity style={styles.chevronContainer}>
-                        <Entypo name="chevron-right" color={theme.colors.lightBlack} size={28} />
+                        <Entypo name="chevron-right" color={theme.colors.lightText} size={28} />
                     </TouchableOpacity>
                 </TouchableOpacity>
             </View>
@@ -168,7 +170,7 @@ export default function SettingsScreen() {
               {/*  LANGUAGE ActionSheets */}
               <Actionsheet isOpen={isLanguageVisible} onClose={() => setIsLanguageVisible(false)}>
                     <Actionsheet.Content style={styles.languageActionSheetContent}>
-                        <Actionsheet.Item style={[styles.actionSheetItem, { height: height * 0.3,justifyContent: 'flex-start', }]}>
+                        <Actionsheet.Item style={[styles.actionSheetItem, { justifyContent: 'flex-start', }]}>
                         {mockLanguageData.map((item, index) => (
                             <TouchableOpacity 
                             onPress={() => handleSelectLanguage(item.id)}
@@ -196,44 +198,49 @@ const styles = StyleSheet.create({
     },
     
     profileContainer: {
-        marginTop: 32,
+        alignItems:"center",
         paddingVertical: 24,
-        flexDirection: "row",
         borderRadius: 52,
         paddingHorizontal: 16,
     },
     profileImageContainer: {
-        width: 80,
-        height: 80,
+        width: 90,
+        height: 90,
+        borderWidth:3,
+        borderColor:"#a9aaab",
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 180,
+        borderRadius: 360,
     },
     profileImage: {
-        width: 80,
-        height: 80,
+        width: 85,
+        height: 85,
         borderRadius: 180,
     },
     profileNameContainer: {
+        marginTop:24,
         marginLeft: 16,
         alignItems: "center",
         justifyContent: "center",
     },
     profileName: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: "900",
-        color: "black",
     },
     cardsContainer: {
-        marginTop: 24,
+        marginTop: 8,
         flex:1
     },
     card: {
         marginTop: 12,
-        backgroundColor: "#f0fbfc",
+        borderLeftWidth:1,
+        borderRightWidth:1,
+        borderBottomWidth:6,
+        borderColor:"#8a8a8a",
         flexDirection: "row",
         justifyContent: "space-between",
         paddingVertical: 8,
+        marginVertical:12,
         paddingHorizontal: 12,
         borderRadius: 12,
     },
@@ -245,7 +252,8 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 180,
+        borderRadius: 12,
+        backgroundColor: BLUE1
     },
     cardTextContainer: {
         marginLeft: 16,
@@ -253,7 +261,7 @@ const styles = StyleSheet.create({
     },
     cardText: {
         fontSize: 18,
-        fontWeight: "700",
+        fontWeight: "900",
     },
     chevronContainer: {
         alignItems: "center",
@@ -266,10 +274,12 @@ const styles = StyleSheet.create({
         height: Dimensions.get("screen").height * 0.2,
       },
     languageActionSheetContent: {
-        height: Dimensions.get("screen").height * 0.4,
+        backgroundColor:"white"
       },
       actionSheetItem: {
         alignItems: 'center',
+        backgroundColor:"white"
+
       },
       continueButton: {
         borderLeftWidth: 1,

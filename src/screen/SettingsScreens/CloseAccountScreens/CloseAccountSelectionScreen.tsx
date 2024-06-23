@@ -82,7 +82,7 @@ export default function CloseAccountSelectionScreen() {
           </Text>
         </View>
 
-        <View style={styles.complaintsContainer}>
+        <View bgColor="coolGray.100" style={styles.complaintsContainer}>
           <FlatList
             showsVerticalScrollIndicator={false}
             data={mockCompalaimentsData}
@@ -132,12 +132,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   infoText: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight:"600"
   },
   complaintsContainer: {
     marginTop: 32,
     padding: 8,
-    backgroundColor: "#f0fbfc",
     borderRadius: 8,
   },
   complaintContainer: {

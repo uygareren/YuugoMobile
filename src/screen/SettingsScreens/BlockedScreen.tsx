@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { Header } from "../../components/Header";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
-import { MARGIN_HORİZONTAL } from "../../utils/utils";
+import { LIGHT_RED, MARGIN_HORİZONTAL } from "../../utils/utils";
 
 type BlockedScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -42,12 +42,16 @@ export default function BlockedScreen() {
     const RenderBlocked = ({ item }: any) => {
         return (
             <View style={styles.blockedItem}>
+                <View style={{flexDirection:"row"}}>
+
                 <View style={styles.imageContainer}>
                     <Image source={item.image} style={styles.image} />
                 </View>
                 <View style={styles.usernameContainer}>
                     <Text style={[styles.usernameText, { color: theme.colors.black }]}>{item.username}</Text>
                 </View>
+                </View>
+
                 <TouchableOpacity style={styles.unblockButton}>
                     <Text style={styles.unblockButtonText}>{t("removeBlock")}</Text>
                 </TouchableOpacity>
@@ -77,21 +81,24 @@ const styles = StyleSheet.create({
     blockedItem: {
         flexDirection: "row",
         alignItems: "center",
+        justifyContent:"space-between",
         marginTop: 24,
     },
     imageContainer: {
-        width: Dimensions.get("screen").width * 0.15,
+        width:50,
+        height:50,
+        borderWidth:3,
         borderRadius: 360,
+        borderColor:"#a9aaab",
         alignItems: "center",
         justifyContent: "center",
     },
     image: {
-        width: Dimensions.get("screen").width * 0.15,
-        height: Dimensions.get("screen").width * 0.15,
+        width:45,
+        height:45,
         borderRadius: 360,
     },
     usernameContainer: {
-        width: Dimensions.get("screen").width * 0.42,
         marginLeft: Dimensions.get("screen").width * 0.05,
         paddingHorizontal: 8,
         alignItems: "center",
@@ -103,9 +110,9 @@ const styles = StyleSheet.create({
     },
     unblockButton: {
         marginLeft: Dimensions.get("screen").width * 0.07,
-        borderWidth: 1,
-        borderBottomWidth: 6,
-        borderColor: "#db37ce",
+        borderWidth:1,
+        borderBottomWidth: 5,
+        borderColor:LIGHT_RED,
         borderRadius: 8,
         paddingHorizontal: 6,
         height: Dimensions.get("screen").width * 0.1,

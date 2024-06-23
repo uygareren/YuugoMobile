@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   infoText: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight:"600"
   },
   continueButton: {
     marginTop: 48,

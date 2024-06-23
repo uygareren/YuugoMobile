@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Formik } from "formik";
 import { Text, View, useTheme } from "native-base";
 import { useState } from "react";
-import { Alert, Dimensions, Image, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
+import { Dimensions, Image, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { Button } from "../../components/Button";
@@ -47,7 +47,7 @@ export default function UpdateProfileScreen(){
     function handleSavePhoto() {
 
     }
-    
+   
     return(
         <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
             <Header title={t("title")}/>
@@ -67,18 +67,12 @@ export default function UpdateProfileScreen(){
                                 <View style={{borderWidth:4, borderColor:theme.colors.lightText, width:100, height:100, borderRadius:360, alignItems:"center", justifyContent:"center",
 
                                 }}>
-                                    {image ? (
-                                        <Image source={{uri:image}} 
+                                   <Image source={require("../../../assets/images/bird.jpeg")} 
                                     style={{width:95, height:95, borderRadius:360}}/>
-                                    ):(
-                                        <Image source={require("../../../assets/images/bird.jpeg")} 
-                                    style={{width:95, height:95, borderRadius:360}}/>
-                                    )}
                                     
                                 </View>
 
                                 <TouchableOpacity 
-                                onPress={() => handleSavePhoto()}
                                 style={[styles.continueButton, { marginTop:16}]}>
                                 <Text style={styles.continueButtonText}>{t("changePhoto")}</Text>
                             </TouchableOpacity>
@@ -100,8 +94,6 @@ export default function UpdateProfileScreen(){
                             
                             
                         </View>
-
-                        
 
                         <Button onPress={() => handleSubmit()} isActive={true} mt="20px"
                         loading={loading} title={t("update")} mb="8px" />

@@ -106,21 +106,21 @@
     },
     "SettingsScreen":{
         "settings":"Ayarlar",
-        "account":"Hesabım",
-        "changeLanguage":"Dil Değiştir",
-        "ticket": "Bilet",
-        "kvkk":"KVKK Sözleşmesi",
-        "mailNotification":"Mail Bildirimi",
-        "logout":"Çıkış Yap"
+        "account":"HESABIM",
+        "changeLanguage":"DİL DEĞİŞTİR",
+        "ticket": "BİLET",
+        "kvkk":"KVKK SÖZLEŞMESİ",
+        "mailNotification":"MAİL BİLDİRİMİ",
+        "logout":"ÇIKIŞ"
     },
     "AccountScreen":{
         "account": "Hesabım",
-        "updateProfile":"Profil Güncelle",
-        "updatePassword": "Parola Güncelle",
-        "complaiment": "Şikayetlerim",
-        "blocked":"Engellediklerim",
-        "closeAccount": "Hesabımı Kapat",
-        "sortDiscover":"Keşfetimi Sırala"
+        "updateProfile":"PROFİL GÜNCELLE",
+        "updatePassword": "PAROLA GÜNCELLE",
+        "complaiment": "ŞİKAYETLERİM",
+        "blocked":"ENGELLEDİKLERİM",
+        "closeAccount": "HESABIMI KAPAT",
+        "sortDiscover":"KEŞFETİMİ SIRALA"
     },
     "language": {
         "afghan": "Peştuca",
@@ -251,7 +251,7 @@
         "cancel":"İptal",
         "camera": "Kamera",
         "gallery": "Galeri",
-        "changePhoto": "FOTOĞRAF DEĞİŞTİR",
+        "changePhoto": "AVATAR DEĞİŞTİR",
         "name": "İsim",
         "surname": "Soyisim",
         "update": "GÜNCELLE"

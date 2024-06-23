@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Icon, View, Text } from "native-base";
+import { Icon, Text, View } from "native-base";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import Entypo from 'react-native-vector-icons/Entypo';
