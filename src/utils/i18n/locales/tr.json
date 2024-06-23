@@ -261,7 +261,10 @@
         "changePhoto": "AVATAR DEĞİŞTİR",
         "name": "İsim",
         "surname": "Soyisim",
-        "update": "GÜNCELLE"
+        "update": "GÜNCELLE",
+        "male": "Erkek",
+        "female": "Kadın",
+        "successMessage": "Başarıyla Güncellendi"
     },
     "CloseAccountScreen": {
         "title":"Hesabımı Kapat",

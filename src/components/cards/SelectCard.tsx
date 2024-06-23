@@ -18,8 +18,8 @@ export const SelectCard = ({ isSelected, onPress, children=undefined, text, cont
             onPress={onPress}
             style={{
                 ...styles.container,
-                borderColor: isSelected ? "#db37ce" : "grey",
-                backgroundColor: isSelected ? "#fac5f5" : "white",
+                borderColor: isSelected ? theme.colors.primary[500] : "grey",
+                backgroundColor: isSelected ? theme.colors.primary[100] : "white",
                 ...containerStyle
             }}
         >

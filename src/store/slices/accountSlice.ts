@@ -53,6 +53,12 @@ export const accountSlice = createSlice({
                 state.userInfo.languages[index].level = title;
             }
         },
+        editAccountInfo: (state, action) => {   
+            state.userInfo = {
+                ...state.userInfo,
+                ...action.payload
+            }
+        },
         clearAccount: (state) => {
             state.userInfo = null;
             state.jwt = null;
