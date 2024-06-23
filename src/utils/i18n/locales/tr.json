@@ -111,7 +111,14 @@
         "ticket": "BİLET",
         "kvkk":"KVKK SÖZLEŞMESİ",
         "mailNotification":"MAİL BİLDİRİMİ",
-        "logout":"ÇIKIŞ"
+        "logout":"ÇIKIŞ",
+        "dialogTitle": "Çıkış",
+        "dialogBody": "Hesabınızdan çıkış yapmak istediğinize emin misiniz?",
+        "cancel": "İptal",
+        "yes": "Evet",
+        "blocked": "ENGELLEDİKLERİM",
+        "tr": "Türkçe",
+        "en": "İngilizce"
     },
     "AccountScreen":{
         "account": "Hesabım",
