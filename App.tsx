@@ -16,8 +16,13 @@ import LoginScreen from './src/screen/Auth/LoginScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
+import KvkkModalScreen from './src/screen/Modal/KvkkModalScreen';
+import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
+import EditWordScreen from './src/screen/ProfileScreens/EditWordScreen';
 import FriendRequestScreen from './src/screen/ProfileScreens/FriendRequestScreen';
 import FriendScreen from './src/screen/ProfileScreens/FriendScreen';
+import UserProfileScreen from './src/screen/ProfileScreens/UserProfileScreen';
+import WordsScreen from './src/screen/ProfileScreens/WordsScreen';
 import RegisterConfirmCodeScreen from './src/screen/RegisterScreens/RegisterConfirmCodeScreen';
 import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/RegisterConfirmPasswordScreen';
 import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
@@ -31,10 +36,6 @@ import CloseAccountSelectionScreen from './src/screen/SettingsScreens/CloseAccou
 import ComplaimentScreen from './src/screen/SettingsScreens/ComplaimentScreen';
 import SettingsScreen from './src/screen/SettingsScreens/SettingsScreen';
 import UpdatePasswordScreen from './src/screen/SettingsScreens/UpdatePasswordScreen';
-import AddNewLanguageScreen from './src/screen/ProfileScreens/AddNewLanguageScreen';
-import WordsScreen from './src/screen/ProfileScreens/WordsScreen';
-import EditWordScreen from './src/screen/ProfileScreens/EditWordScreen';
-import UserProfileScreen from './src/screen/ProfileScreens/UserProfileScreen';
 import UpdateProfileScreen from './src/screen/SettingsScreens/UpdateProfileScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -47,8 +48,9 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
-                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
+
+                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
 
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
@@ -79,6 +81,11 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={CloseAccountSelectionScreen} name="CloseAccountSelection" options={{headerShown:false}} />
                                 <Stack.Screen component={CloseAccountConfirmPasswordScreen} name="CloseAccountConfirmPassword" options={{headerShown:false}} />
                                 <Stack.Screen component={CloseAccountConfirmScreen} name="CloseAccountConfirm" options={{headerShown:false}} />
+
+                                <Stack.Group screenOptions={{presentation: "modal"}}>
+                                    <Stack.Screen component={KvkkModalScreen} name='KvkkModal' options={{headerShown:false}}/>
+
+                                </Stack.Group>
                             </Stack.Navigator>
                         </AuthProvider>
                     </NavigationContainer>

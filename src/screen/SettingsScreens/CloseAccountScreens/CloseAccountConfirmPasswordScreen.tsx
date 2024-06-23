@@ -35,7 +35,7 @@ export default function CloseAccountConfirmPasswordScreen(){
                 <TitleText>{t("confirmPassword")}</TitleText>
 
                 <View mt="16px">
-                  <Text>{t("text")}</Text>
+                  <Text style={styles.infoText}>{t("text")}</Text>
                 </View>
 
                 <View mt="32px">
@@ -67,15 +67,19 @@ export default function CloseAccountConfirmPasswordScreen(){
 }
 
 const styles = StyleSheet.create({
-    safeAreaView: {
-      flex: 1,
-      paddingHorizontal: MARGIN_HORİZONTAL,
-    },
-    continueButton: {
-        marginTop: 48,
-      },
-      cancelButton: {
-        marginTop: 16,
-        marginBottom: 48,
-      },
+  safeAreaView: {
+    flex: 1,
+    paddingHorizontal: MARGIN_HORİZONTAL,
+  },
+  continueButton: {
+      marginTop: 48,
+},
+cancelButton: {
+    marginTop: 16,
+    marginBottom: 48,
+},
+infoText: {
+    fontSize: 18,
+    fontWeight:"600"
+},
 })

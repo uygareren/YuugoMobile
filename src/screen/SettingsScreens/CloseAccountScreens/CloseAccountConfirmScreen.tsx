@@ -31,7 +31,7 @@ export default function CloseAccountConfirmScreen(){
                 <TitleText>{t("deleteAccount")}</TitleText>
 
                 <View mt="16px">
-                    <Text>{t("text")}</Text>
+                    <Text style={styles.infoText}>{t("text")}</Text>
                 </View>
 
                 <View mt="16px">
@@ -62,9 +62,13 @@ const styles = StyleSheet.create({
     },
     continueButton: {
         marginTop: 48,
-      },
-      cancelButton: {
+    },
+    cancelButton: {
         marginTop: 16,
         marginBottom: 48,
-      },
+    },
+    infoText: {
+        fontSize: 18,
+        fontWeight:"600"
+    },
 })

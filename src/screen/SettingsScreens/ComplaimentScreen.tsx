@@ -95,7 +95,7 @@ export default function ComplaimentScreen() {
     const RenderComplaiment = ({ item }: any) => {
         return (
             <View style={styles.complaintContainer}>
-                <View style={styles.complaintHeader}>
+                <View bgColor="coolGray.100" style={styles.complaintHeader}>
                     <View style={styles.headerContent}>
                         <Text style={[styles.titleText, { color: theme.colors.black }]}>{item.title}</Text>
                         <Text style={[styles.descriptionText, { color: theme.colors.black }]}>{item.description}</Text>
@@ -112,7 +112,7 @@ export default function ComplaimentScreen() {
                 </View>
 
                 {expandedId == item.id ? (
-                    <View style={styles.complaintDetails}>
+                    <View bgColor="coolGray.100" style={styles.complaintDetails}>
                         <Text>{item.details}</Text>
                         <View style={styles.detailsFooter}>
                             <View style={styles.detailsRecipient}>
@@ -125,7 +125,8 @@ export default function ComplaimentScreen() {
                             </View>
                         </View>
                         <View style={{flexDirection:"row", justifyContent:"flex-end", marginTop:16}}> 
-                            <TouchableOpacity style={{borderWidth:2, borderColor:theme.colors.lightText, paddingHorizontal:8, 
+                            <TouchableOpacity style={{borderLeftWidth:1, borderRightWidth:1, borderBottomWidth:4,
+                             borderColor:theme.colors.lightText, paddingHorizontal:8, 
                                 paddingVertical:2, borderRadius:8}}> 
                                 <Text style={{fontWeight:"800", fontSize:14}}>Şikayet İptal!</Text>
                             </TouchableOpacity>
@@ -165,7 +166,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         justifyContent: "space-between",
         borderRadius: 8,
-        backgroundColor: "#f0fbfc",
     },
     headerContent: {
         borderWidth: 0,
@@ -190,7 +190,6 @@ const styles = StyleSheet.create({
     complaintDetails: {
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
-        backgroundColor: "#f0fbfc",
         paddingHorizontal: 12,
         paddingBottom: 12,
     },

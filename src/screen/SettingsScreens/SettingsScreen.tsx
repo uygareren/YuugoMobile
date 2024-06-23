@@ -102,7 +102,9 @@ export default function SettingsScreen() {
                     </TouchableOpacity>
                 </TouchableOpacity> */}
 
-                <TouchableOpacity style={styles.card}>
+                <TouchableOpacity 
+                onPress={() => navigation.navigate("KvkkModal")}
+                style={styles.card}>
                     <View style={styles.cardContent}>
                         <View style={[styles.iconContainer]}>
                             <MaterialCommunityIcons name="file-document-outline" color="white" size={24} />
@@ -168,7 +170,7 @@ export default function SettingsScreen() {
               {/*  LANGUAGE ActionSheets */}
               <Actionsheet isOpen={isLanguageVisible} onClose={() => setIsLanguageVisible(false)}>
                     <Actionsheet.Content style={styles.languageActionSheetContent}>
-                        <Actionsheet.Item style={[styles.actionSheetItem, { height: height * 0.3,justifyContent: 'flex-start', }]}>
+                        <Actionsheet.Item style={[styles.actionSheetItem, { justifyContent: 'flex-start', }]}>
                         {mockLanguageData.map((item, index) => (
                             <TouchableOpacity 
                             onPress={() => handleSelectLanguage(item.id)}
@@ -272,7 +274,6 @@ const styles = StyleSheet.create({
         height: Dimensions.get("screen").height * 0.2,
       },
     languageActionSheetContent: {
-        height: Dimensions.get("screen").height * 0.4,
         backgroundColor:"white"
       },
       actionSheetItem: {
