@@ -10,6 +10,7 @@ import { useGetUserProfileQuery, useRemoveFriendMutation } from "../../store/ser
 import { RootStackParamList } from "../../types/react-navigation";
 import { BackIcon } from "../../components/BackIcon";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import Entypo from 'react-native-vector-icons/Entypo';
 
 type UserProfileScreenRouteProp = RouteProp<RootStackParamList, 'UserProfile'>;
 
@@ -82,8 +83,9 @@ export default function UserProfileScreen() {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView bgColor="white">
-                <View ml="16px" mt="16px">
-                    {<RenderFriendIcon />}
+                <View ml="16px" mt="16px" justifyContent="space-between">
+                    <Icon as={<Entypo name="chevron-left" />} size="24px" onPress={() => navigation.goBack()} />
+                    <View>{<RenderFriendIcon />}</View>
                 </View>
 
                 <View width="125px" height="125px" alignSelf="center" marginTop="16px">

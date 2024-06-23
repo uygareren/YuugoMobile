@@ -4,7 +4,6 @@ import { Formik } from "formik";
 import { Text, View, useTheme } from "native-base";
 import { useState } from "react";
 import { Alert, Dimensions, Image, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { Button } from "../../components/Button";
@@ -15,7 +14,6 @@ import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import i18n from "../../utils/i18n/i18n";
 import { BLUE1, MARGIN_HORİZONTAL } from "../../utils/utils";
-
 
 type UpdateProfileScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -41,67 +39,15 @@ export default function UpdateProfileScreen(){
     const [birthDate, setBirthDate] = useState(new Date);
 
     const [loading, setLoading] = useState(false);
-    const [loadingImage, setLoadingImage] = useState(false);
 
     function handleUpdateProfile(){
 
     }
 
     function handleSavePhoto() {
-        Alert.alert(
-          t("alertTitle"),
-          t("alertText"),
-          [
-            { style: 'cancel', text: t("cancel"), onPress: () => {} },
-            { style: 'default', text: t("camera"), onPress: () => updatePhoto(true) },
-            { style: 'default', text: t("gallery"), onPress: () => updatePhoto(false) },
-          ],
-        );
-      }
-      
 
-    async function updatePhoto(isCamera: boolean) {
-        try {
-          if (isCamera) {
-            const result = await launchCamera({
-              cameraType: 'front',
-              mediaType: 'photo',
-            });
-          } else {
-            const result = await launchImageLibrary({
-              mediaType: 'photo',
-              selectionLimit: 1,
-            });
-
-              // @ts-ignore
-            setImage(result.assets[0].uri);
+    }
     
-            if (!result.didCancel) {
-              // @ts-ignore
-              const {uri, type, fileName} = result.assets[0];
-              const body = {
-                uri,
-                name: fileName,
-                type,
-              };
-    
-            console.log("body", body);
-
-              const formData = new FormData();
-    
-              formData.append('image', body);
-    
-              setLoadingImage(true);
-    
-              
-            }
-          }
-        } catch (error) {
-        }
-    
-        setLoadingImage(false);
-      }
-
     return(
         <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
             <Header title={t("title")}/>

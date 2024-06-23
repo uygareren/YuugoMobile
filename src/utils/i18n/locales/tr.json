@@ -215,7 +215,11 @@
     },
     "FriendScreen": {
         "headerTitle": "Arkadaşlarım",
-        "searchFriend": "Arkadaşını Ara"
+        "searchFriend": "Arkadaşını Ara",
+        "dialogBody": "Kişiyi arkadaş listesinden silmek istediğinize emin misiniz?",
+        "dialogTitle": "Dikkat",
+        "cancel": "İptal",
+        "yes": "Evet"
     },
     "FriendRequestScreen": {
         "headerTitle": "Arkadaş İstekleri",

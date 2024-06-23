@@ -42,7 +42,7 @@ export const userApi = createApi({
                 return data;
             },
             // merge: ()
-            keepUnusedDataFor: 60 * 60 // 60 minutes
+            keepUnusedDataFor: 60 // 60 minutes
         }),
         removeFriend: builder.mutation<any, any>({
             query: (id: number) => ({
