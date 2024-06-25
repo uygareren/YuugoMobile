@@ -32,7 +32,8 @@ export type RootStackParamList = {
     CloseAccountConfirm: undefined,
     KvkkModal: undefined,
     Explore: undefined,
-    RoomDetail: undefined
+    RoomDetail: undefined,
+    Search: undefined
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined

@@ -28,6 +28,7 @@ import RegisterConfirmPasswordScreen from './src/screen/RegisterScreens/Register
 import RegisterEmailScreen from './src/screen/RegisterScreens/RegisterEmailScreen';
 import RegisterInfoScreen from './src/screen/RegisterScreens/RegisterInfoScreen';
 import RoomDetailScreen from './src/screen/RoomDetailScreen';
+import SearchScreen from './src/screen/SearchScreen';
 import AccountScreen from './src/screen/SettingsScreens/AccountScreen';
 import BlockedScreen from './src/screen/SettingsScreens/BlockedScreen';
 import CloseAccountConfirmPasswordScreen from './src/screen/SettingsScreens/CloseAccountScreens/CloseAccountConfirmPasswordScreen';
@@ -86,6 +87,7 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={CloseAccountConfirmScreen} name="CloseAccountConfirm" options={{headerShown:false}} />
                                 
                                 <Stack.Screen component={RoomDetailScreen} name="RoomDetail" options={{headerShown:false}} />
+                                <Stack.Screen component={SearchScreen} name="Search" options={{headerShown:false}} />
 
                                 <Stack.Group screenOptions={{presentation: "modal"}}>
                                     <Stack.Screen component={KvkkModalScreen} name='KvkkModal' options={{headerShown:false}}/>

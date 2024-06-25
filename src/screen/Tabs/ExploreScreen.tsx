@@ -5,11 +5,11 @@ import { useState } from "react";
 import { Dimensions, FlatList, Pressable, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { SvgUri } from "react-native-svg";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { useDispatch } from "react-redux";
-import { Header } from "../../components/Header";
 import { useI18n } from "../../hooks/useI18n";
 import { RootStackParamList } from "../../types/react-navigation";
 import { BLUE1, CARDBLUE1, CARDBLUE2, CARDPURPLE1, CARDPURPLE2, CARDRED1, CARDRED2, MARGIN_HORİZONTAL } from "../../utils/utils";
@@ -222,9 +222,14 @@ export default function ExploreScreen() {
 
     return (
         <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
-            <Header title={"Keşfet"} />
-
-            <Pressable style={{ borderWidth: 1.5, borderTopWidth: 1, borderBottomWidth: 4, borderColor: theme.colors.lightText, padding: 12, borderRadius: 8, marginTop: 16, flexDirection: "row", alignItems: "center" }}>
+            <View mt="16px">
+                <TouchableOpacity style={{alignSelf:"flex-end"}}>
+                    <Entypo name="plus" color={theme.colors.lightText} size={32}/>
+                </TouchableOpacity>
+            </View>
+            <Pressable 
+            onPress={() => navigation.navigate("Search")}
+            style={{ borderWidth: 1.5, borderTopWidth: 1, borderBottomWidth: 4, borderColor: theme.colors.lightText, padding: 12, borderRadius: 8, marginTop: 16, flexDirection: "row", alignItems: "center" }}>
                 <FontAwesome name="search" color={"black"} size={20} />
                 <Text style={{ fontSize: 16, marginLeft: 8, fontWeight: "900" }}>Oda veya Kullanıcı Ara..</Text>
             </Pressable>
