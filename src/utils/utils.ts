@@ -33,23 +33,15 @@ export const getRankName = (point: number) => {
 
 export const mockLanguageLevelData = [
     { 
-        id:"A1",
-        title:"A1"
+        id:"beginner",
+        title:"Beginner"
     },
     { 
-        id:"A2",
-        title:"A2"
+        id:"intermediate",
+        title:"Intermediate"
     },
     { 
-        id:"B1",
-        title:"B1"
-    },
-    { 
-        id:"B2",
-        title:"B2"
-    },
-    { 
-        id:"C1",
-        title:"C1"
+        id:"advanced",
+        title:"Advanced"
     },
 ]
