@@ -5,6 +5,12 @@ export const MARGIN_HORİZONTAL = 16;
 
 export const BLUE1 = "#0076CE";
 export const BLUE2 = "#025b9e";
+export const CARDBLUE1 = "#65bbfc";
+export const CARDBLUE2 = "#26a0fc";
+export const CARDPURPLE1 = "#8479fc";
+export const CARDPURPLE2 = "#6355fa";
+export const CARDRED1 = "#f7546a";
+export const CARDRED2 = "#fa2d48";
 export const LIGHT_RED = '#c43355';
 
 export const formatDate = (date: Date) => {
