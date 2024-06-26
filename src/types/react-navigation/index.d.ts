@@ -33,7 +33,8 @@ export type RootStackParamList = {
     KvkkModal: undefined,
     Explore: undefined,
     RoomDetail: undefined,
-    Search: undefined
+    Search: undefined,
+    CreateRoom: undefined
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined
