@@ -1,232 +1,236 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Actionsheet, Text, View, useTheme } from "native-base";
+import { Actionsheet, Avatar, Icon, ScrollView, Text, View, useDisclose, useTheme } from "native-base";
 import { useState } from "react";
 import { Dimensions, FlatList, Image, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { SvgUri } from "react-native-svg";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useDispatch } from "react-redux";
 import { Button } from "../components/Button";
 import { Header } from "../components/Header";
 import { useI18n } from "../hooks/useI18n";
 import { RootStackParamList } from "../types/react-navigation";
-import { MARGIN_HORİZONTAL } from "../utils/utils";
+import { BLUE1, BLUE2, CARDRED1, CARDRED2, MARGIN_HORİZONTAL } from "../utils/utils";
 
 
 type RoomDetailScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Explore">;
 
 
-export default function RoomDetailScreen(){
+export default function RoomDetailScreen() {
 
     const navigation = useNavigation<RoomDetailScreenNavigationProp>();
     const { t } = useI18n("AccountScreen");
-    const {width, height} = Dimensions.get("screen");
+    const { width, height } = Dimensions.get("screen");
     const theme = useTheme();
     const dispatch = useDispatch();
-
+    
+    const [tab, setTab] = useState(0);
     const [isUserSheetVisible, setIsUserSheetVisible] = useState(false);
+    const { isOpen, onOpen, onClose } = useDisclose(false);
 
     const mockUserData = [
         {
             id: "1",
             name: "User 1",
             avatar: "../../assets/images/bird.jpeg",
+            isAdmin: true,
         },
         {
             id: 2,
             name: "User 2",
             avatar: "../../assets/images/bird.jpeg",
+            isAdmin: false,
         },
         {
-            "id": 3,
-            "name": "User 3",
-            "avatar": "../../assets/images/bird.jpeg",
+            id: 3,
+            name: "User 3",
+            avatar: "../../assets/images/bird.jpeg",
+            isAdmin: false,
         },
         {
-            "id": 4,
-            "name": "User 4",
-            "avatar": "../../assets/images/bird.jpeg",
+            id: 3,
+            name: "User 4",
+            avatar: "../../assets/images/bird.jpeg",
+            isAdmin: false
         },
-        {
-            "id": 5,
-            "name": "User 5",
-            "avatar": "../../assets/images/bird.jpeg",
-        }      
     ]
 
-    const RenderUser = ({item}:any) => {
-        return(
-            <TouchableOpacity 
-            onPress={() => setIsUserSheetVisible(true)}
-            style={{paddingHorizontal:12, marginVertical:8, borderBottomWidth:7, 
-            borderRadius:8, flexDirection:"row", alignItems:"center", backgroundColor:"#a1a2ff", borderColor:"#7e72fc",
-            paddingVertical:6}}>
-                <View style={{width:50, height:50, borderRadius:360, borderWidth:3, borderColor:theme.colors.lightText,
-                    alignItems:"center", justifyContent:"center"
-                }}>
-                    <Image source={require("../../assets/images/bird.jpeg")}
-                        style={{width:45, height:45, borderRadius:360}}
-                    />
+    const inviteStatus = (status: string) => {
+        switch (status) {
+            case "pending":
+                return (<Icon as={<MaterialCommunityIcons name="circle-slice-7" />} size="24px" color="primary.500" />)
+            case "accepted":
+                return (<Icon as={<MaterialCommunityIcons name="check-circle" />} size="24px" color="success.700" />)
+            case "rejected":
+                <Icon as={<MaterialCommunityIcons name="close-circle" />} size="24px" color="danger.700" />
+            default: 
+                return "";
+        }
+    }
+
+    const RenderUser = ({ item }: any) => {
+        return (
+            <TouchableOpacity onPress={() => setIsUserSheetVisible(true)}
+                style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                <View flexDir="row" alignItems="center">
+                    <Avatar size="45px" source={{uri: "https://i.pinimg.com/236x/b2/7f/0e/b27f0e466185ac66a461551f09aaa925.jpg"}} />
+                    <View ml="8px">
+                        <Text fontWeight="medium" fontSize="15px">{item.name}</Text>
+                        {item.isAdmin ? (
+                        <View borderWidth="1px" borderBottomWidth="3px" borderTopWidth="1px" borderColor="primary.500"
+                        py="2px" px="4px" borderRadius="8px" bgColor="white">
+                            <Text fontSize="10.5px" color="primary.500" textTransform="capitalize">Admin</Text>
+                        </View>
+                    ) : null}
+
+                    </View>
+                    
                 </View>
-                <View style={{marginLeft:12,}}>
-                    <Text style={{fontSize:18, fontWeight:"900", color:"white"}}>User 1</Text>
+                <View flexDir="row">
+                    <View borderWidth="1px" borderBottomWidth="3px" borderTopWidth="1px" borderColor={BLUE1}
+                    py="2px" px="4px" borderRadius="8px" alignSelf="flex-start" bgColor={BLUE2}>
+                        <Text fontSize="12.5px" fontWeight="extrabold" color="white" textTransform="capitalize">Beginner</Text>
+                    </View>
+                    <Icon as={<MaterialCommunityIcons name="dots-vertical" />} size="28px" />
                 </View>
             </TouchableOpacity>
         )
     }
-    
-    return(
-        <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
-            <Header title={"Sohbet Detay"}/>
 
-            <View mt="16px" bgColor={"#f5f5fc"} style={{ alignItems:"center", paddingVertical:12, borderRadius:8}}>
-                <Text style={{fontSize:22, fontWeight:"900", color:"black"}}>Sohbet Detay Title</Text>
+    const RenderInvitedUser = ({ item }: any) => {
+        return (
+            <TouchableOpacity onPress={() => setIsUserSheetVisible(true)}
+                style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+                <View flexDir="row" alignItems="center">
+                    <Avatar size="45px" source={{uri: "https://i.pinimg.com/236x/b2/7f/0e/b27f0e466185ac66a461551f09aaa925.jpg"}} />
+                    <View ml="8px">
+                        <Text fontWeight="medium" fontSize="15px">{item.name}</Text>
+                        {item.isAdmin ? (
+                        <View borderWidth="1px" borderBottomWidth="3px" borderTopWidth="1px" borderColor="primary.500"
+                        py="2px" px="4px" borderRadius="8px" bgColor="white">
+                            <Text fontSize="10.5px" color="primary.500" textTransform="capitalize">Admin</Text>
+                        </View>
+                    ) : null}
 
-                <View mt="32px" style={{ flexDirection:"row", width:"100%", justifyContent:"space-around"}}>
+                    </View>
                     
-                    <View >
-                        <View style={{flexDirection:"row", alignItems:"center",marginTop:12}}>
-                            <SvgUri uri={"https://hatscripts.github.io/circle-flags/flags/tr.svg"} width="24" height="24" />
-                            <View>
-                                <Text style={{marginLeft:8, fontSize:18, fontWeight:"400", color:"black"}}>Türkçe</Text>
-                            </View>
-                        </View>
+                </View>
+                {inviteStatus("accepted")}
+            </TouchableOpacity>
+        )
+    }
 
-                        <View style={{flexDirection:"row", alignItems:"center", marginTop:12}}>
-                        <MaterialIcons name="network-wifi-3-bar" color={"black"} size={24}/>
-                        <View>
-                            <Text style={{marginLeft:8, fontSize:18, fontWeight:"400", color:"black"}}>Beginner</Text>
-                        </View>
-                    </View>
-
-                    </View>
-
-                    <View >
-                        <View style={{flexDirection:"row", alignItems:"center", marginTop:12}}>
-                    <AntDesign name="clockcircleo" color={"black"} size={24}/>    
-                    <View>
-                            <Text style={{marginLeft:8, fontSize:18, fontWeight:"400", color:"black"}}>30 Dakika</Text>
-                        </View>
-                    </View>
-
-                    <View style={{flexDirection:"row", alignItems:"center", marginTop:12}}>
-                    <FontAwesome6 name="people-group" color={"black"} size={24}/>    
-                    <View>
-                            <Text style={{marginLeft:8, fontSize:18, fontWeight:"400", color:"black"}}>6 Kontenjan</Text>
-                        </View>
-                    </View>
-                    </View>
-
+    return (
+        <SafeAreaView style={[styles.safeAreaView, { backgroundColor: theme.colors.white }]}>
+            <ScrollView>
+                <Header title={"Asikus's Room"} style={{ marginTop: 16 }} />
+                <View mr="16px" position={"absolute"} right="0" marginTop="16px">
+                    <SvgUri uri={"https://hatscripts.github.io/circle-flags/flags/tr.svg"} width="32px" height="32" />
                 </View>
 
-                
+                <View mx="16px">
+                    <Text mb="16px" fontWeight="extrabold" fontSize="17px">Konu Başlığı</Text>
+                    <View borderWidth="1px" borderBottomWidth="3px" borderTopWidth="1px" borderColor={BLUE1}
+                    py="2px" px="4px" borderRadius="8px" alignSelf="flex-start" bgColor={BLUE2}>
+                        <Text fontSize="12.5px" fontWeight="extrabold" color="white" textTransform="capitalize">Beginner</Text>
+                    </View>
 
-            </View>
+                    <Text numberOfLines={3} ellipsizeMode="tail" mt="12px" fontSize="13.5px" >
+                        Lorem ipsum dolor sit amet, consectetur adipisc elit. Nulla erat felis, imperdiet quis mauris a, sempe fermentum ante. Aliquam vitae ultricies sapien. Suspendisse accumsan, libero a varius tincidunt, odio dui finibus enim, sed faucibus velit enim et elit. Pellentesque vehicula rhoncus mauris eleifend molestie.
+                    </Text>
+        
+                    <View my="16px" flexDir="row" alignItems="center">
+                        <Icon mr="8px" as={<AntDesign name="clockcircleo" color={theme.colors.white} size={24}/>} />
+                        <Text fontSize="15px" fontWeight="bold">30 Dakika</Text>
+                    </View>
+                </View>
 
-            <View mt="32px" style={{ maxHeight:height*0.5}}>
-                <Text style={{fontSize:20, fontWeight:"900"}}>Kullanıcılar</Text>
-                <FlatList
-                    contentContainerStyle={{marginTop:8}}
-                    showsVerticalScrollIndicator={false}
-                    data={mockUserData}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={RenderUser}
-                />
-            </View>
-            <View style={{position:"absolute", bottom:32, left:0, right:0,width:width}}>
+                <View mb="16px" flexDir="row" justifyContent="space-between" mx="16px" style={{ gap: 5 }} >
+                    <TouchableOpacity onPress={() => setTab(0)}
+                    style={{...styles.tabBarTitleContainer, borderColor: tab == 0 ? theme.colors.primary[400] : undefined}}>
+                        <Text color={tab == 0 ? "primary.500" : undefined}>KATILIMCILAR</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => setTab(1)}
+                    style={{...styles.tabBarTitleContainer, borderColor: tab == 1 ? theme.colors.primary[400] : undefined}}>
+                        <Text color={tab == 1 ? "primary.500" : undefined}>DAVETLİLER</Text>
+                    </TouchableOpacity>
+                </View>
 
-            <Button title="SOHBETE KATIL" onPress={() => console.log("asd")} 
-                style={{ width:width-32, alignSelf:"center"}}/>
-            </View>
+                <View mx="16px" mb="16px">
+                    {tab == 0 ? (
+                        <View>
+                            <Text>4 / 5</Text>
+                            <FlatList 
+                                data={mockUserData}
+                                contentContainerStyle={{ gap: 16, marginTop: 8 }}
+                                renderItem={RenderUser}
+                            />    
+                        </View>
+                    ) : (
+                        <View>
+                            <FlatList 
+                                data={[
+                                    { name: "user1", id: 1 }
+                                ]}
+                                contentContainerStyle={{ gap: 16 }}
+                                renderItem={RenderInvitedUser}
+                            />
+                        </View>
+                    )}
+                    
+                </View>
 
-            <Actionsheet isOpen={isUserSheetVisible} onClose={() => setIsUserSheetVisible(false)}>
-                <Actionsheet.Content>
+                <Button title="SOHBETİ BAŞLAT" onPress={() => console.log("asd")} ml="16px" mr="16px" />
+
+                <Actionsheet isOpen={isUserSheetVisible} onClose={() => setIsUserSheetVisible(false)}>
+                    <Actionsheet.Content>
                         <Actionsheet.Item >
-                            {/* <View style={{flexDirection:"row"}}>
-                                <View style={{width:50, height:50, borderRadius:360, borderWidth:3, borderColor:theme.colors.lightText,
-                                        alignItems:"center", justifyContent:"center"
-                                    }}>
-                                        <Image source={require("../../assets/images/bird.jpeg")}
-                                            style={{width:45, height:45, borderRadius:360}}
-                                        />
+                            <View flexDir="row" justifyContent="space-between" >
+                                
+                                <Avatar source={{uri: "https://i.pinimg.com/236x/b2/7f/0e/b27f0e466185ac66a461551f09aaa925.jpg"}} />
+                                <View style={{ marginLeft: 12 }}>
+                                    <Text style={{ fontSize: 16, fontWeight: "400", color: theme.colors.black }}>Name Surname 🇹🇷</Text>
+                                    <Text style={{ fontSize: 14.5, fontWeight: "900", }}>username</Text>
                                 </View>
-
-                                <View style={{marginLeft:12}}>
-                                    <Text style={{fontSize:20, fontWeight:"900", color: theme.colors.black}}>Name Surname</Text>
-                                    <Text style={{fontSize:14, fontWeight:"900",}}>username</Text>
-                                </View>
-
+                            
                             </View>
-
-                            <View mt="24px">
-                                <View style={{flexDirection:"row", alignItems:"center",}}>
-                                    <SvgUri uri={"https://hatscripts.github.io/circle-flags/flags/tr.svg"} width="24" height="24" />
-                                    <View>
-                                        <Text style={{marginLeft:8, fontSize:18, fontWeight:"900", color:"black"}}>Türkiye</Text>
-                                    </View>
+                            <View borderWidth="1px" borderBottomWidth="3px" borderTopWidth="1px" borderColor={BLUE1} mt="12px"
+                                py="2px" px="4px" borderRadius="8px" alignSelf="flex-start" bgColor={BLUE2}>
+                                    <Text fontSize="12.5px" fontWeight="extrabold" color="white" textTransform="capitalize">Beginner</Text>
                                 </View>
-                                <View style={{flexDirection:"row", alignItems:"center", marginTop:12}}>
-                                    <MaterialIcons name="network-wifi-3-bar" color={"black"} size={24}/>
-                                    <View>
-                                        <Text style={{marginLeft:8, fontSize:18, fontWeight:"900", color:"black"}}>Beginner</Text>
-                                    </View>
-                                </View>
-                                <View style={{flexDirection:"row", alignItems:"center", marginTop:12}}>
-                                    <View>
-                                        <Text>YG</Text>
-                                    </View>
-                                    <View>
-                                        <Text style={{marginLeft:8, fontSize:18, fontWeight:"400", color:"black"}}>1140 </Text>
-                                    </View>
-                                </View>
-                            </View> */}
-
-                            <View style={{flexDirection:"row",  width:width-32, alignSelf:"center", justifyContent:"space-between"}}>
-                                <View style={{flexDirection:"row", alignItems:"center"}}>
-                                    <View style={{width:50, height:50, borderRadius:360, borderWidth:3, borderColor:theme.colors.lightText,
-                                            alignItems:"center", justifyContent:"center"
-                                        }}>
-                                            <Image source={require("../../assets/images/bird.jpeg")}
-                                                style={{width:45, height:45, borderRadius:360}}
-                                            />
-                                    </View>
-                                    <View style={{ marginLeft:12}}>
-                                        <Text style={{fontSize:20, fontWeight:"900", color: theme.colors.black}}>Name Surname</Text>
-                                        <Text style={{fontSize:14, fontWeight:"900",}}>username</Text>
-                                    </View>
-                                </View>
-
-                                <View style={{marginRight:16}}>
-                                    <SvgUri uri={"https://hatscripts.github.io/circle-flags/flags/tr.svg"} width="24" height="24" />
-
-                                </View>
-                            </View>
-                            <View mt="24px" style={{flexDirection:"row", alignItems:"center", justifyContent:"space-between",
-                                paddingHorizontal:12
+                            <View mt="24px" style={{
+                                flexDirection: "row", alignItems: "center",
+                                paddingHorizontal: 12
                             }}>
-                                
-                                <View style={{flexDirection:"row", alignItems:"center", marginTop:12}}>
-                                    <MaterialIcons name="network-wifi-3-bar" color={"black"} size={24}/>
-                                    <View>
-                                        <Text style={{marginLeft:8, fontSize:18, fontWeight:"900", color:"black"}}>Beginner</Text>
-                                    </View>
-                                </View>
-                                <View style={{flexDirection:"row", alignItems:"center", marginTop:12}}>
-                                    <View>
-                                        <Text style={{fontWeight:"900",}}>YG</Text>
-                                    </View>
-                                    <View>
-                                        <Text style={{marginLeft:8, fontSize:18, fontWeight:"400", color:"black"}}>1140 </Text>
-                                    </View>
-                                </View>
+                                <Text style={{ fontWeight: "900", }}>YG</Text>        
+                                <Text style={{ marginLeft: 8, fontSize: 18, fontWeight: "400", color: "black" }}>1140 </Text>
                             </View>
 
-                                
+
                         </Actionsheet.Item>
-                </Actionsheet.Content>
-            </Actionsheet>
+                    </Actionsheet.Content>
+                </Actionsheet>
+
+                <Actionsheet isOpen={true} onClose={onClose}>
+                    <Actionsheet.Content>
+                        <Actionsheet.Item >
+                            <Text fontSize="16px">Yetki Ver</Text>
+                        </Actionsheet.Item>
+                        <Actionsheet.Item >
+                            <Text fontSize="16px">Profiline Git</Text>
+                        </Actionsheet.Item>
+                        <Actionsheet.Item >
+                            <Text fontSize="16px" color="danger.500">Şikayet Et</Text>
+                        </Actionsheet.Item>
+                        <Actionsheet.Item >
+                            <Text fontSize="16px" color="danger.500">Odadan At</Text>
+                        </Actionsheet.Item>
+                    </Actionsheet.Content>
+                </Actionsheet>
+            </ScrollView>
 
         </SafeAreaView>
     )
@@ -237,5 +241,13 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: MARGIN_HORİZONTAL,
     },
-    
+    tabBarTitleContainer: {
+        alignItems: "center",
+        borderBottomWidth: 1,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderRadius: 5,
+        borderColor: "#a9a9a9",
+        flex: 1,
+    }
 });

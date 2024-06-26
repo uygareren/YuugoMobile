@@ -51,11 +51,10 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
+                                <Stack.Screen component={RoomDetailScreen} name="RoomDetail" options={{headerShown:false}} />
+                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 <Stack.Screen component={ExploreScreen} name="Explore" options={{headerShown:false}} />
                                 <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
-
-                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
-
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />
                                 <Stack.Screen component={RegisterConfirmPasswordScreen} name="RegisterConfirmPassword" options={{headerShown:false}} />
@@ -86,7 +85,7 @@ function App(): React.JSX.Element {
                                 <Stack.Screen component={CloseAccountConfirmPasswordScreen} name="CloseAccountConfirmPassword" options={{headerShown:false}} />
                                 <Stack.Screen component={CloseAccountConfirmScreen} name="CloseAccountConfirm" options={{headerShown:false}} />
                                 
-                                <Stack.Screen component={RoomDetailScreen} name="RoomDetail" options={{headerShown:false}} />
+                                
                                 <Stack.Screen component={SearchScreen} name="Search" options={{headerShown:false}} />
 
                                 <Stack.Group screenOptions={{presentation: "modal"}}>

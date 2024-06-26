@@ -9,6 +9,7 @@ import api from "../../../api/api";
 import { accountSliceActions } from "../../../store/slices/accountSlice";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 import { useI18n } from "../../../hooks/useI18n";
+import { setSecureStoreToken } from "../../../utils/AsyncStorage";
 
 const avatars = [
     {
@@ -67,7 +68,7 @@ type StepperAvatarProps = {
     onNext: () => void
 } 
 export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
-    const jwt = useSelector<RootStateType>(state => state.account.jwt);
+    const jwt = useSelector<RootStateType, string | null>(state => state.account.jwt);
     const navigation = useNavigation<any>();
     const dispatch = useDispatch();
     const {t} = useI18n("RegisterInfo");
@@ -101,7 +102,7 @@ export const StepperAvatar = ({ onNext }: StepperAvatarProps) => {
             navigation.dispatch(
                 CommonActions.reset({
                     routes: [
-                        { name: "Home" }
+                        { name: "Tab" }
                     ],
                     index: 0
                 })

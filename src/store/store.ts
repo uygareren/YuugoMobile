@@ -4,12 +4,14 @@ import { accountSlice } from './slices/accountSlice';
 import { utilApi } from './services/utilSerivce';
 import { userApi } from './services/userService';
 import { wordSlice } from './slices/wordSlice';
+import { chatSlice } from './slices/chatSlice';
 
 export const store = configureStore({ 
     reducer: {
         [utilApi.reducerPath]: utilApi.reducer,
         account: accountSlice.reducer,
         word: wordSlice.reducer,
+        chat: chatSlice.reducer,
         [userApi.reducerPath]: userApi.reducer
     },
     middleware: (getDefaultMiddleware) =>

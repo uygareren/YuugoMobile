@@ -129,6 +129,18 @@
         "closeAccount": "HESABIMI KAPAT",
         "sortDiscover":"KEŞFETİMİ SIRALA"
     },
+    "interests": {
+        "sports": "Spor",
+        "arts_and_culture": "Sanat ve Kültür",
+        "technology": "Teknoloji",
+        "science": "Bilim",
+        "hobbies_and_crafts": "Hoib ve El Sanatları",
+        "travel": "Seyahat",
+        "food_and_gastronomy": "Yemek ve Gastronomi",
+        "personal_development": "Kişisel Gelişim",
+        "fashion_and_beauty": "Moda ve Güzellik",
+        "games_and_entertainment": "Oyun ve Eğlence"
+    },
     "language": {
         "afghan": "Peştuca",
         "albanian": "Arnavutça",
