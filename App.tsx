@@ -13,6 +13,7 @@ import I18nProvider from './src/provider/I18nProvider';
 // Screens
 import TabNavigator from './src/navigators/TabNavigator';
 import LoginScreen from './src/screen/Auth/LoginScreen';
+import CreateRoomScreen from './src/screen/CreateRoomScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
@@ -51,6 +52,7 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
+                                <Stack.Screen component={CreateRoomScreen} name="CreateRoom" options={{headerShown:false}} />
                                 <Stack.Screen component={ExploreScreen} name="Explore" options={{headerShown:false}} />
                                 <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
 

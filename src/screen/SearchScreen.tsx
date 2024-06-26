@@ -78,7 +78,7 @@ export default function SearchScreen(){
             "timestamp": "2024-06-25T13:00:00Z"
         }
     ]
-
+""
     const RenderLastSearched = ({item}:any) => {
         return(
             <View style={{marginVertical:12, flexDirection:"row", alignItems:"center", justifyContent:"space-between",
