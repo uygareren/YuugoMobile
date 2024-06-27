@@ -315,5 +315,16 @@
         "title": "Metni Çevir",
         "allLanguages": "Tüm Diller",
         "translateFrom": "Çeviri"
+    },
+    "CreateRoomScreen": {
+        "createRoom": "Oda Oluştur",
+        "roomName": "Oda İsmi",
+        "roomDescription": "Oda Açıklaması",
+        "roomDuration": "Oda Süresi",
+        "roomLevel": "Oda Seviyesi",
+        "roomQuota": "Oda Kontenjanı",
+        "roomPrivacy": "Oda Gizliliği",
+        "createRoomBtn": "SOHBETİ OLUŞTUR"
+
     }
 }
