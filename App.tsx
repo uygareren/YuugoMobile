@@ -52,9 +52,9 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
-                                <Stack.Screen component={RoomDetailScreen} name="RoomDetail" options={{headerShown:false}} />
-                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 <Stack.Screen component={CreateRoomScreen} name="CreateRoom" options={{headerShown:false}} />
+                                <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
+                                <Stack.Screen component={RoomDetailScreen} name="RoomDetail" options={{headerShown:false}} />
                                 <Stack.Screen component={ExploreScreen} name="Explore" options={{headerShown:false}} />
                                 <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
                                 

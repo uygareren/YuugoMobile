@@ -315,5 +315,10 @@
         "title": "Metni Çevir",
         "allLanguages": "Tüm Diller",
         "translateFrom": "Çeviri"
+    },
+    "SearchScreen": {
+        "title": "Oda veya Kullanıcı Ara",
+        "theLastSearches": "En son arananlar",
+        "allDelete": "Hepsini Sil"
     }
 }

@@ -17,20 +17,22 @@ type TextInputProps = {
     visibleIcon?: boolean;
     touched?: boolean;
     placeholder?: string
+    onEndEditing?: (e: string) => void;
+    onPress?: () => void;
 }
 
 export default function TextInput({ 
     label, value, onChangeText, style={}, errorMessage="", required=false, isInvalid=false, onBlur, keyboardType, maxLength,
-    visibleIcon=false, placeholder=""
+    visibleIcon=false, placeholder="", onEndEditing, onPress
 }: TextInputProps) {
     return (
         <FormControl style={style} isInvalid={isInvalid}>
             {/* <FormControl.Label>
                 <Text>{label}</Text>
             </FormControl.Label> */}
-            <Input keyboardType={keyboardType} value={value} borderWidth="2px" borderRadius="20px"
+            <Input keyboardType={keyboardType} value={value} borderWidth="2px" borderRadius="20px" onEndEditing={(e) => onEndEditing && onEndEditing(e.nativeEvent.text)}
             borderColor={"#d6d6d6"} style={{backgroundColor:"#f5f5f5"}} fontSize="15px" fontWeight={"bold"} color="titleText"
-            placeholderTextColor={"#a19f9f"} _focus={{borderColor:"#d6d6d6"}}
+            placeholderTextColor={"#a19f9f"} _focus={{borderColor:"#d6d6d6"}} onPress={onPress}
             maxLength={maxLength} placeholder={placeholder}
             onChangeText={onChangeText} onBlur={onBlur} InputRightElement={
                 visibleIcon ? (

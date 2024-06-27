@@ -214,7 +214,7 @@ export default function RoomDetailScreen() {
                     </Actionsheet.Content>
                 </Actionsheet>
 
-                <Actionsheet isOpen={true} onClose={onClose}>
+                <Actionsheet isOpen={isOpen} onClose={onClose}>
                     <Actionsheet.Content>
                         <Actionsheet.Item >
                             <Text fontSize="16px">Yetki Ver</Text>
