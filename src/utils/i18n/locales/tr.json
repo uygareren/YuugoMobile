@@ -320,5 +320,16 @@
         "title": "Oda veya Kullanıcı Ara",
         "theLastSearches": "En son arananlar",
         "allDelete": "Hepsini Sil"
+    },
+    "CreateRoomScreen": {
+        "createRoom": "Oda Oluştur",
+        "roomName": "Oda İsmi",
+        "roomDescription": "Oda Açıklaması",
+        "roomDuration": "Oda Süresi",
+        "roomLevel": "Oda Seviyesi",
+        "roomQuota": "Oda Kontenjanı",
+        "roomPrivacy": "Oda Gizliliği",
+        "createRoomBtn": "SOHBETİ OLUŞTUR"
+
     }
 }
