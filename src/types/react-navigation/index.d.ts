@@ -34,7 +34,8 @@ export type RootStackParamList = {
     Explore: undefined,
     RoomDetail: undefined,
     Search: undefined,
-    CreateRoom: undefined
+    CreateRoom: undefined,
+    Filter: undefined
 
     Tab: BottomTabNavigationProp<TabParamList>,
     AddNewLanguage: undefined
