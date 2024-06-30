@@ -14,6 +14,7 @@ import I18nProvider from './src/provider/I18nProvider';
 import TabNavigator from './src/navigators/TabNavigator';
 import LoginScreen from './src/screen/Auth/LoginScreen';
 import CreateRoomScreen from './src/screen/CreateRoomScreen';
+import FilterScreen from './src/screen/FilterScreen';
 import ForgetPasswordCodeScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordCodeScreen';
 import ForgetPasswordConfirmPassword from './src/screen/ForgetPasswordScreens/ForgetPasswordConfirmPassword';
 import ForgetPasswordEmailScreen from './src/screen/ForgetPasswordScreens/ForgetPasswordEmailScreen';
@@ -52,10 +53,11 @@ function App(): React.JSX.Element {
                     <NavigationContainer>
                         <AuthProvider>
                             <Stack.Navigator>
+                                <Stack.Screen component={FilterScreen} name="Filter" options={{headerShown:false}} />
+                                <Stack.Screen component={ExploreScreen} name="Explore" options={{headerShown:false}} />
                                 <Stack.Screen component={CreateRoomScreen} name="CreateRoom" options={{headerShown:false}} />
                                 <Stack.Screen component={LoginScreen} name="Login" options={{headerShown:false}} />
                                 <Stack.Screen component={RoomDetailScreen} name="RoomDetail" options={{headerShown:false}} />
-                                <Stack.Screen component={ExploreScreen} name="Explore" options={{headerShown:false}} />
                                 <Stack.Screen component={SettingsScreen} name="Settings" options={{headerShown:false}} />
                                 
                                 <Stack.Screen component={RegisterEmailScreen} name="RegisterEmail" options={{headerShown:false}} />

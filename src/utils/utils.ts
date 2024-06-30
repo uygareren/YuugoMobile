@@ -12,6 +12,8 @@ export const CARDPURPLE2 = "#6355fa";
 export const CARDRED1 = "#f7546a";
 export const CARDRED2 = "#fa2d48";
 export const LIGHT_RED = '#c43355';
+export const LIGHT_BLACK = "#282829";
+
 
 export const formatDate = (date: Date) => {
     // Gün, Ay ve Yıl bilgilerini alıyoruz
