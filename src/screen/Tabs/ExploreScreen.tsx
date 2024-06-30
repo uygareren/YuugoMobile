@@ -17,6 +17,7 @@ import { RootStateType } from "../../store/store";
 import api from "../../api/api";
 import { ChatRoomsType } from "../../types/response/response";
 import { chatSliceActions } from "../../store/slices/chatSlice";
+import { Button } from "../../components/Button";
 
 type ExploreScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Explore">;
 
@@ -24,7 +25,6 @@ export default function ExploreScreen() {
     const navigation = useNavigation<ExploreScreenNavigationProp>();
     const { t } = useI18n("AccountScreen");
     const i18nInterests = useI18n("interests");
-    const {width, height} = Dimensions.get("screen");
     const theme = useTheme();
     const dispatch = useDispatch();
 
@@ -52,15 +52,6 @@ export default function ExploreScreen() {
             console.log("error", error);
         }
     }
-
-    const mockData = [
-        { id: '1', label: 'Önerilen' },
-        { id: '2', label: 'Tarihe Göre En Yeni' },
-        { id: '3', label: 'Tarihe Göre En Eski' },
-        { id: '4', label: 'Seviyeye Göre En Yüksek' },
-        { id: '5', label: 'Seviyeye Göre En Düşük' },
-        { id: '6', label: 'Dile Göre' },
-    ];
 
     function handleSelectBackgrounColor(levelId: string){
         switch(levelId){
@@ -219,7 +210,9 @@ export default function ExploreScreen() {
                 <FontAwesome name="search" color={theme.colors.coolGray[500]} size={20} />
                 <Text fontSize="15px" ml="8px" fontWeight="600px" >Oda veya Kullanıcı Ara..</Text>
             </Pressable>
-
+            <View mx="16px" mb="16px">
+                <Button onPress={() => navigation.navigate("CreateRoom")} title="Oda Oluştur" />
+            </View>
             <View>
                 <FlatList
                     showsVerticalScrollIndicator={false}

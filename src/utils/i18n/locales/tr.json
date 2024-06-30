@@ -328,7 +328,10 @@
         "roomDuration": "Oda Süresi",
         "roomLevel": "Oda Seviyesi",
         "roomQuota": "Oda Kontenjanı",
+        "roomInterest": "Oda İlgi alanı",
         "roomPrivacy": "Oda Gizliliği",
+        "public": "Herkese Açık",
+        "private": "Gizli",
         "createRoomBtn": "SOHBETİ OLUŞTUR"
 
     }

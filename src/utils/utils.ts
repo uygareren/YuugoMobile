@@ -37,6 +37,32 @@ export const getRankName = (point: number) => {
     }
 }
 
+export function handleSelectBackgrounColor(levelId: string){
+    switch(levelId){
+        case "beginner":
+            return CARDBLUE1
+        case "intermediate":
+            return CARDPURPLE1
+        case "advanced":
+            return CARDRED1
+        default: 
+            return "#0076CE"
+    }
+}
+
+export function handleSelectBorderColor(levelId: string){
+    switch(levelId){
+        case "beginner":
+            return CARDBLUE2
+        case "intermediate":
+            return CARDPURPLE2
+        case "advanced":
+            return CARDRED2
+        default: 
+            return "#0076CE"
+    }
+}
+
 export const mockLanguageLevelData = [
     { 
         id:"beginner",

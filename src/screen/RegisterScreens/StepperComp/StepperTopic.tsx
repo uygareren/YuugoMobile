@@ -22,6 +22,7 @@ type RenderTopicType = {
 
 export default function StepperTopic({ onNext }: StepperInfoProps) {
     const { t } = useI18n("RegisterTopic");
+    const i18nInterests = useI18n("interests");
     const jwt = useSelector<RootStateType>(state => state.account.jwt);
 
     const {width, height} = Dimensions.get("screen");
@@ -78,7 +79,7 @@ export default function StepperTopic({ onNext }: StepperInfoProps) {
                 renderItem={({item, index}) => <SelectCard
                         isSelected={selectedTopics.includes(item.id)}
                         onPress={() => handleSelectTopic(item.id)}
-                        text={item.name}
+                        text={i18nInterests.t(item.name)}
                         containerStyle={{ width: (width * 0.5) - 32, height: width * 0.25, alignItems: "center" }}
                     />
                 }

@@ -15,7 +15,6 @@ import { useI18n } from "../hooks/useI18n";
 import { RootStackParamList } from "../types/react-navigation";
 import { BLUE1, BLUE2, CARDRED1, CARDRED2, MARGIN_HORİZONTAL } from "../utils/utils";
 
-
 type RoomDetailScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Explore">;
 
 
