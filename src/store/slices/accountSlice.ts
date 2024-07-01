@@ -22,7 +22,7 @@ type InitialStateType = {
 
         friendRequestCount: number;
     
-        languages: {id: number, languageName: string, level: string}[];
+        languages: {id: number, languageName: string, image: string, languageId: number, level: string}[];
     } | null,
     jwt: string | null;
 }

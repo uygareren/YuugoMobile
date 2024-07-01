@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Avatar, Text, View, useTheme, Pressable, Skeleton } from "native-base";
+import { Avatar, Text, View, useTheme, Pressable, Skeleton, Icon, ScrollView } from "native-base";
 import { useEffect, useState } from "react";
 import { Dimensions, FlatList, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { SvgUri } from "react-native-svg";
@@ -210,19 +210,23 @@ export default function ExploreScreen() {
                 <FontAwesome name="search" color={theme.colors.coolGray[500]} size={20} />
                 <Text fontSize="15px" ml="8px" fontWeight="600px" >Oda veya Kullanıcı Ara..</Text>
             </Pressable>
-            <View mx="16px" mb="16px">
-                <Button onPress={() => navigation.navigate("CreateRoom")} title="Oda Oluştur" />
-            </View>
-            <View>
+            <ScrollView>
+                <View mx="16px" mb="16px">
+                    <Button onPress={() => navigation.navigate("CreateRoom")} title="Oda Oluştur" />
+                </View>
+                <Pressable mx="16px" mb="16px" borderColor="#aaa" onPress={() => navigation.navigate("Filter")}
+                borderWidth="1px" alignSelf="flex-start" py="3px" px="2px" borderRadius="7px">
+                    <Icon as={<AntDesign name="filter" />} size="28px" color="lightText" />
+                </Pressable>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={chats}
-                    contentContainerStyle={{ gap: 16, paddingBottom: 100}}
+                    contentContainerStyle={{ gap: 16, paddingBottom: 16}}
                     keyExtractor={item => item.id.toString()}
                     renderItem={RenderChatRoomCard}
                 />
                 
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
